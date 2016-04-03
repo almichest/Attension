@@ -5,3 +5,5 @@ use_frameworks!
 pod 'Alamofire'
 pod 'Realm'
 pod 'Fabric'
+pod 'BlocksKit'
+pod 'SwiftTask'
