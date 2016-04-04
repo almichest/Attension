@@ -7,3 +7,5 @@ pod 'Realm'
 pod 'Fabric'
 pod 'BlocksKit'
 pod 'SwiftTask'
+pod 'INTULocationManager'
+

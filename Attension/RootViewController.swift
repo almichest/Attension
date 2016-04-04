@@ -17,27 +17,28 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tap = UITapGestureRecognizer.bk_recognizerWithHandler {[weak self] (sender, state, location) in
+        let tap = UILongPressGestureRecognizer.bk_recognizerWithHandler {[weak self] (sender, state, location) in
             guard self != nil else {return}
             let coordinater = self!.mapView.convertPoint(location, toCoordinateFromView: self!.mapView)
-            print(coordinater)
-        } as! UITapGestureRecognizer
+            let annotation1 = MKPointAnnotation()
+            annotation1.coordinate = coordinater
+            annotation1.title = "Test1"
+            self!.mapView.addAnnotation(annotation1)
+        
+        } as! UILongPressGestureRecognizer
         mapView.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        var region = mapView.region
-        region.center = CLLocationCoordinate2DMake(35.71, 139.81)
-        region.span = MKCoordinateSpanMake(0.01, 0.01)
-        mapView.setRegion(region, animated: true)
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = region.center
-        annotation.title = "Test"
-        mapView.addAnnotation(annotation)
-        
+        LocationManager.sharedInstance.requestLocation().on(success: { (location) in
+            var region = self.mapView.region
+            region.center = location.coordinate
+            region.span = MKCoordinateSpanMake(0.005, 0.005)
+            self.mapView.setRegion(region, animated: true)
+            
+        }, failure: nil)
     }
 }
 
