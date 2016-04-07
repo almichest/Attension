@@ -13,6 +13,7 @@ import BlocksKit
 class RootViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var searchBar: GeoLocationSearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,20 @@ class RootViewController: UIViewController {
         
         } as! UILongPressGestureRecognizer
         mapView.addGestureRecognizer(tap)
+        
+        searchBar.searchButtonHandler = {(searchBar) in
+            guard let text = searchBar.text else {return}
+            self.searchLocation(text)
+        }
+        searchBar.showsCancelButton = true
+    }
+    
+    private func searchLocation(locationName: String) {
+        GeoLocationProvider.sharedInstance.searchLocation(locationName).on(success: { (mapItem) in
+            print(mapItem)
+        }) { (error, isCancelled) in
+            print("Error")
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
