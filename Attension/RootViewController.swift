@@ -38,7 +38,11 @@ class RootViewController: UIViewController {
     
     private func searchLocation(locationName: String) {
         GeoLocationProvider.sharedInstance.searchLocation(locationName).on(success: { (mapItem) in
-            print(mapItem)
+            var region = self.mapView.region
+            region.center = mapItem.placemark.coordinate
+            region.span = MKCoordinateSpanMake(0.005, 0.005)
+            self.mapView.setRegion(region, animated: true)
+            
         }) { (error, isCancelled) in
             print("Error")
         }
@@ -53,7 +57,11 @@ class RootViewController: UIViewController {
             region.span = MKCoordinateSpanMake(0.005, 0.005)
             self.mapView.setRegion(region, animated: true)
             
-        }, failure: nil)
+            }, failure: {(error, cancelled) in
+                debugPrint(error)
+            }
+        )
+        
     }
 }
 
