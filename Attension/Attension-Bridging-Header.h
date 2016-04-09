@@ -6,5 +6,6 @@
 #define LOCATION_BRIDGING_HEADER_h
 
 #import "INTULocationManager.h"
+#import "UIBarButtonItem+BKWrapper.h"
 
 #endif

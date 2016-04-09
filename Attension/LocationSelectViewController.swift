@@ -15,6 +15,46 @@ class LocationSelectViewController: UIViewController {
             fatalError()
         }
         
+        vc.mapItems = mapItems
         return vc
     }
+    
+    private var mapItems: [MKMapItem]?
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+}
+
+extension LocationSelectViewController: UITableViewDataSource {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let mapItems = mapItems else {return 0}
+        return mapItems.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.locationCell) else {
+            fatalError()
+        }
+        if let item = mapItems?[indexPath.row] {
+            cell.textLabel?.text = item.name
+        }
+        
+        return cell
+    }
+}
+
+extension LocationSelectViewController: UITableViewDelegate {
+    
 }

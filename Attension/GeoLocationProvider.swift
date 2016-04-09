@@ -22,14 +22,14 @@ class GeoLocationProvider: NSObject {
     
     static let sharedInstance = GeoLocationProvider()
     
-    func searchLocation(locationName: String) -> Task<Float, MKMapItem, NSError> {
-        return Task<Float, MKMapItem, NSError>(promiseInitClosure: { (fulfill, reject) in
+    func searchLocation(locationName: String) -> Task<Float, [MKMapItem], NSError> {
+        return Task<Float, [MKMapItem], NSError>(promiseInitClosure: { (fulfill, reject) in
             let request = MKLocalSearchRequest()
             request.naturalLanguageQuery = locationName
             let search = MKLocalSearch(request: request)
             search.startWithCompletionHandler({ (response, error) in
-                if let response = response where 0 < response.mapItems.count {
-                    fulfill(response.mapItems[0])
+                if let mapItems = response?.mapItems {
+                    fulfill(mapItems)
                 } else if let response = response where response.mapItems.count == 0 {
                     reject(NSError(domain:GeoLocationErrorDomain, code: GeoLocationError.NoResult.rawValue, userInfo: nil))
                 } else {

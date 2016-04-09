@@ -37,15 +37,27 @@ class RootViewController: UIViewController {
     }
     
     private func searchLocation(locationName: String) {
-        GeoLocationProvider.sharedInstance.searchLocation(locationName).on(success: { (mapItem) in
-            var region = self.mapView.region
-            region.center = mapItem.placemark.coordinate
-            region.span = MKCoordinateSpanMake(0.005, 0.005)
-            self.mapView.setRegion(region, animated: true)
-            
-        }) { (error, isCancelled) in
-            print("Error")
+        GeoLocationProvider.sharedInstance.searchLocation(locationName).on(success: {[weak self] (mapItems) in
+            self?.showMapItems(mapItems)
+        }) {[weak self] (error, isCancelled) in
+            self?.showNoResultError()
         }
+    }
+    
+    private func showMapItems(mapItems: [MKMapItem]) {
+        let vc = LocationSelectViewController.viewController(mapItems)
+        let nav = UINavigationController(rootViewController: vc)
+        let cancelButton = UIBarButtonItem(systemItem: .Cancel) { (sender) in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        cancelButton.title = "Cancel"
+        nav.navigationItem.rightBarButtonItem = cancelButton
+        self.presentViewController(nav, animated: true, completion: nil)
+    }
+    
+    private func showNoResultError() {
+        let alert = UIAlertController(title: "No Result", message: "No result found. Please try for another location name.", preferredStyle: .Alert)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
