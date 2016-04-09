@@ -180,7 +180,7 @@
 			buildConfigurationList = 4287D53B1CB14ACC00E78E47 /* Build configuration list for PBXNativeTarget "Attension" */;
 			buildPhases = (
 				AF4B21ECF37F9D7D630A802A /* 📦 Check Pods Manifest.lock */,
-				422F2E971CB9320100F74FBF /* Run Script */,
+				422F2E971CB9320100F74FBF /* Run R.swift generator */,
 				4287D51A1CB14ACC00E78E47 /* Sources */,
 				4287D51B1CB14ACC00E78E47 /* Frameworks */,
 				4287D51C1CB14ACC00E78E47 /* Resources */,
@@ -279,14 +279,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		422F2E971CB9320100F74FBF /* Run Script */ = {
+		422F2E971CB9320100F74FBF /* Run R.swift generator */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = "Run R.swift generator";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

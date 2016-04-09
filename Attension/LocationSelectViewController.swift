@@ -11,6 +11,10 @@ import MapKit
 
 class LocationSelectViewController: UIViewController {
     static func viewController(mapItems: [MKMapItem]) -> LocationSelectViewController {
-        return R.storyboard.locationSelectViewController().instantiateInitialViewController() as! LocationSelectViewController
+        guard let vc = R.storyboard.locationSelectViewController.initialViewController() else {
+            fatalError()
+        }
+        
+        return vc
     }
 }
