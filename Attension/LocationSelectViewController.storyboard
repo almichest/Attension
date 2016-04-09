@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Location Select View Controller-->
         <scene sceneID="o1k-4w-aW2">
             <objects>
-                <viewController id="sVx-9H-nNn" sceneMemberID="viewController">
+                <viewController id="sVx-9H-nNn" customClass="LocationSelectViewController" customModule="Attension" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vps-dx-wdR"/>
                         <viewControllerLayoutGuide type="bottom" id="gAM-fT-8dg"/>

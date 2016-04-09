@@ -10,8 +10,7 @@ import UIKit
 import MapKit
 
 class LocationSelectViewController: UIViewController {
-    static func viewController(mapItems: [MKMapItem]) {
-        
+    static func viewController(mapItems: [MKMapItem]) -> LocationSelectViewController {
+        return R.storyboard.locationSelectViewController().instantiateInitialViewController() as! LocationSelectViewController
     }
-
 }

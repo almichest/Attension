@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-target "Attension" do
+target 'Attension' do
     pod 'Alamofire'
     pod 'RealmSwift'
     pod 'BlocksKit'
