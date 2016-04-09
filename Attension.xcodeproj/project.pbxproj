@@ -36,6 +36,8 @@
 		421F1E531CB2B911008307A5 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		422F2E8E1CB6948F00F74FBF /* GeoLocationSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoLocationSearchBar.swift; sourceTree = "<group>"; };
 		422F2E901CB6B79900F74FBF /* GeoLocationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoLocationProvider.swift; sourceTree = "<group>"; };
+		422F2E921CB925AB00F74FBF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		422F2E931CB925AB00F74FBF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		4287D51E1CB14ACC00E78E47 /* Attension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attension.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4287D5211CB14ACC00E78E47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4287D5231CB14ACC00E78E47 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4287D5261CB14ACC00E78E47 /* Base */,
+				422F2E921CB925AB00F74FBF /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4287D52B1CB14ACC00E78E47 /* Base */,
+				422F2E931CB925AB00F74FBF /* ja */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
