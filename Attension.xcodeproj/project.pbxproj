@@ -11,6 +11,9 @@
 		421F1E541CB2B911008307A5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421F1E531CB2B911008307A5 /* LocationManager.swift */; };
 		422F2E8F1CB6948F00F74FBF /* GeoLocationSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422F2E8E1CB6948F00F74FBF /* GeoLocationSearchBar.swift */; };
 		422F2E911CB6B79900F74FBF /* GeoLocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422F2E901CB6B79900F74FBF /* GeoLocationProvider.swift */; };
+		422F2E961CB931A200F74FBF /* LocationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422F2E951CB931A200F74FBF /* LocationSelectViewController.swift */; };
+		422F2E991CB9323D00F74FBF /* LocationSelectViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 422F2E981CB9323D00F74FBF /* LocationSelectViewController.storyboard */; };
+		422F2E9B1CB932FA00F74FBF /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422F2E9A1CB932FA00F74FBF /* R.generated.swift */; };
 		4287D5221CB14ACC00E78E47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287D5211CB14ACC00E78E47 /* AppDelegate.swift */; };
 		4287D5241CB14ACC00E78E47 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287D5231CB14ACC00E78E47 /* RootViewController.swift */; };
 		4287D5271CB14ACC00E78E47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4287D5251CB14ACC00E78E47 /* Main.storyboard */; };
@@ -38,6 +41,9 @@
 		422F2E901CB6B79900F74FBF /* GeoLocationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoLocationProvider.swift; sourceTree = "<group>"; };
 		422F2E921CB925AB00F74FBF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		422F2E931CB925AB00F74FBF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		422F2E951CB931A200F74FBF /* LocationSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSelectViewController.swift; sourceTree = "<group>"; };
+		422F2E981CB9323D00F74FBF /* LocationSelectViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LocationSelectViewController.storyboard; sourceTree = "<group>"; };
+		422F2E9A1CB932FA00F74FBF /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		4287D51E1CB14ACC00E78E47 /* Attension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attension.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4287D5211CB14ACC00E78E47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4287D5231CB14ACC00E78E47 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +96,16 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		422F2E941CB9317200F74FBF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4287D5231CB14ACC00E78E47 /* RootViewController.swift */,
+				422F2E951CB931A200F74FBF /* LocationSelectViewController.swift */,
+				422F2E981CB9323D00F74FBF /* LocationSelectViewController.storyboard */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
 		4287D5151CB14ACC00E78E47 = {
 			isa = PBXGroup;
 			children = (
@@ -113,11 +129,12 @@
 		4287D5201CB14ACC00E78E47 /* Attension */ = {
 			isa = PBXGroup;
 			children = (
+				422F2E9A1CB932FA00F74FBF /* R.generated.swift */,
+				422F2E941CB9317200F74FBF /* ViewController */,
 				422F2E8B1CB6934900F74FBF /* View */,
 				421F1E521CB2B8F1008307A5 /* Location */,
 				421F1E4E1CB2B793008307A5 /* Attension-Bridging-Header.h */,
 				4287D5211CB14ACC00E78E47 /* AppDelegate.swift */,
-				4287D5231CB14ACC00E78E47 /* RootViewController.swift */,
 				4287D5251CB14ACC00E78E47 /* Main.storyboard */,
 				4287D5281CB14ACC00E78E47 /* Assets.xcassets */,
 				4287D52A1CB14ACC00E78E47 /* LaunchScreen.storyboard */,
@@ -161,6 +178,7 @@
 			buildConfigurationList = 4287D53B1CB14ACC00E78E47 /* Build configuration list for PBXNativeTarget "Attension" */;
 			buildPhases = (
 				938ECDF82F3EBDC3C2ABBC1C /* Check Pods Manifest.lock */,
+				422F2E971CB9320100F74FBF /* Run Script */,
 				4287D51A1CB14ACC00E78E47 /* Sources */,
 				4287D51B1CB14ACC00E78E47 /* Frameworks */,
 				4287D51C1CB14ACC00E78E47 /* Resources */,
@@ -244,6 +262,7 @@
 			files = (
 				4287D52C1CB14ACC00E78E47 /* LaunchScreen.storyboard in Resources */,
 				4287D5291CB14ACC00E78E47 /* Assets.xcassets in Resources */,
+				422F2E991CB9323D00F74FBF /* LocationSelectViewController.storyboard in Resources */,
 				4287D5271CB14ACC00E78E47 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +277,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		422F2E971CB9320100F74FBF /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT/Attension\"";
+		};
 		5E3CD32B25AD5350BECB5760 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -311,10 +344,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				422F2E8F1CB6948F00F74FBF /* GeoLocationSearchBar.swift in Sources */,
+				422F2E9B1CB932FA00F74FBF /* R.generated.swift in Sources */,
 				4287D5241CB14ACC00E78E47 /* RootViewController.swift in Sources */,
 				4287D5221CB14ACC00E78E47 /* AppDelegate.swift in Sources */,
 				422F2E911CB6B79900F74FBF /* GeoLocationProvider.swift in Sources */,
 				421F1E541CB2B911008307A5 /* LocationManager.swift in Sources */,
+				422F2E961CB931A200F74FBF /* LocationSelectViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

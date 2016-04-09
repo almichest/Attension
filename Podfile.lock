@@ -17,6 +17,9 @@ PODS:
     - BlocksKit/DynamicDelegate
   - Fabric (1.6.7)
   - INTULocationManager (4.2.0)
+  - R.swift (2.1.0):
+    - R.swift.Library (~> 2.0.0)
+  - R.swift.Library (2.0.0)
   - Realm (0.98.6):
     - Realm/Headers (= 0.98.6)
   - Realm/Headers (0.98.6)
@@ -27,6 +30,7 @@ DEPENDENCIES:
   - BlocksKit
   - Fabric
   - INTULocationManager
+  - R.swift
   - Realm
   - SwiftTask
 
@@ -35,6 +39,8 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
+  R.swift: efff131531b5cf142e28fd94957806ff71ccbcf2
+  R.swift.Library: 9f4b2d12040daa1ffe336d8f7e1574f73721fd01
   Realm: 44803f35418c5d89b27825a564247fcd190de37e
   SwiftTask: 30423c2499ac69e3fc20c001600ab7de46efeed1
 

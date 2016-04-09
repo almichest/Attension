@@ -8,4 +8,4 @@ pod 'Fabric'
 pod 'BlocksKit'
 pod 'SwiftTask'
 pod 'INTULocationManager'
-
+pod 'R.swift'
