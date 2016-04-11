@@ -7,7 +7,7 @@
         <!--Location Select View Controller-->
         <scene sceneID="o1k-4w-aW2">
             <objects>
-                <viewController id="sVx-9H-nNn" customClass="LocationSelectViewController" customModule="Attension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="sVx-9H-nNn" customClass="LocationSelectViewController" customModule="Attension" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vps-dx-wdR"/>
                         <viewControllerLayoutGuide type="bottom" id="gAM-fT-8dg"/>
@@ -48,6 +48,7 @@
                             <constraint firstItem="hzy-Dx-z6w" firstAttribute="leading" secondItem="awf-0E-5iK" secondAttribute="leading" id="hgx-Qa-1eN"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="hzy-Dx-z6w" id="h1W-Ws-hvu"/>
                     </connections>

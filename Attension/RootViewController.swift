@@ -51,12 +51,18 @@ class RootViewController: UIViewController {
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         cancelButton.title = "Cancel"
-        nav.navigationItem.rightBarButtonItem = cancelButton
+        vc.navigationItem.rightBarButtonItem = cancelButton
+        vc.navigationItem.title = "Search Result"
         self.presentViewController(nav, animated: true, completion: nil)
     }
     
     private func showNoResultError() {
         let alert = UIAlertController(title: "No Result", message: "No result found. Please try for another location name.", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Cancel) { (action) in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        )
+            
         self.presentViewController(alert, animated: true, completion: nil)
     }
     

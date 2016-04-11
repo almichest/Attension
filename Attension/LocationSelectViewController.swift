@@ -57,4 +57,12 @@ extension LocationSelectViewController: UITableViewDataSource {
 
 extension LocationSelectViewController: UITableViewDelegate {
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
 }
