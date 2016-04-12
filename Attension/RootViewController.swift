@@ -23,7 +23,7 @@ class RootViewController: UIViewController {
             let coordinater = self!.mapView.convertPoint(location, toCoordinateFromView: self!.mapView)
             let annotation1 = MKPointAnnotation()
             annotation1.coordinate = coordinater
-            annotation1.title = "Test1"
+            annotation1.title = "Test"
             self!.mapView.addAnnotation(annotation1)
         
         } as! UILongPressGestureRecognizer
@@ -33,7 +33,18 @@ class RootViewController: UIViewController {
             guard let text = searchBar.text else {return}
             self.searchLocation(text)
         }
-        searchBar.showsCancelButton = true
+        
+        LocationManager.sharedInstance.requestLocation().on(success: { (location) in
+            var region = self.mapView.region
+            region.center = location.coordinate
+            region.span = MKCoordinateSpanMake(0.005, 0.005)
+            self.mapView.setRegion(region, animated: true)
+            
+            }, failure: {(error, cancelled) in
+                debugPrint(error)
+            }
+        )
+        
     }
     
     private func searchLocation(locationName: String) {
@@ -46,6 +57,14 @@ class RootViewController: UIViewController {
     
     private func showMapItems(mapItems: [MKMapItem]) {
         let vc = LocationSelectViewController.viewController(mapItems)
+        vc.mapItemSelectionHandler = {(mapItem) in
+            self.dismissViewControllerAnimated(true, completion: {
+                var region = self.mapView.region
+                region.center = mapItem.placemark.coordinate
+                region.span = MKCoordinateSpanMake(0.005, 0.005)
+                self.mapView.setRegion(region, animated: true)
+            })
+        }
         let nav = UINavigationController(rootViewController: vc)
         let cancelButton = UIBarButtonItem(systemItem: .Cancel) { (sender) in
             self.dismissViewControllerAnimated(true, completion: nil)
@@ -66,20 +85,5 @@ class RootViewController: UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        LocationManager.sharedInstance.requestLocation().on(success: { (location) in
-            var region = self.mapView.region
-            region.center = location.coordinate
-            region.span = MKCoordinateSpanMake(0.005, 0.005)
-            self.mapView.setRegion(region, animated: true)
-            
-            }, failure: {(error, cancelled) in
-                debugPrint(error)
-            }
-        )
-        
-    }
 }
 

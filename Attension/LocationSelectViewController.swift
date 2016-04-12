@@ -20,11 +20,14 @@ class LocationSelectViewController: UIViewController {
     }
     
     private var mapItems: [MKMapItem]?
-    @IBOutlet weak var tableView: UITableView!
     
+    var mapItemSelectionHandler: ((MKMapItem) -> ())?
+    
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        tableView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -58,7 +61,9 @@ extension LocationSelectViewController: UITableViewDataSource {
 extension LocationSelectViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        dismissViewControllerAnimated(true, completion: nil)
+        if let mapItem = mapItems?[indexPath.row], handler = mapItemSelectionHandler {
+            handler(mapItem)
+        }
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

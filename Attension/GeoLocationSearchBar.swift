@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GeoLocationSearchBar: UISearchBar, UISearchBarDelegate {
+class GeoLocationSearchBar: UISearchBar {
     
     var searchButtonHandler: ((UISearchBar) -> Void)?
     
@@ -16,7 +16,9 @@ class GeoLocationSearchBar: UISearchBar, UISearchBarDelegate {
         super.init(coder: aDecoder)
         delegate = self
     }
-    
+}
+
+extension GeoLocationSearchBar: UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if let handler = searchButtonHandler {
             handler(searchBar)
