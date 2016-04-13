@@ -199,6 +199,7 @@
 				4287D51C1CB14ACC00E78E47 /* Resources */,
 				64EAC19323DC0731513D3616 /* 📦 Embed Pods Frameworks */,
 				7258D642801938B909E30E42 /* 📦 Copy Pods Resources */,
+				F74911ADD27B854444CEA478 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -349,6 +350,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F74911ADD27B854444CEA478 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Attension/Pods-Attension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -505,7 +521,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/Attension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				USER_HEADER_SEARCH_PATHS = "Pods/**";
+				USER_HEADER_SEARCH_PATHS = "Pods/BlocksKit/**/** Pods/INTULocationManager/**";
 			};
 			name = Debug;
 		};
@@ -521,7 +537,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hira.Attension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/Attension-Bridging-Header.h";
-				USER_HEADER_SEARCH_PATHS = "Pods/**";
+				USER_HEADER_SEARCH_PATHS = "Pods/BlocksKit/**/** Pods/INTULocationManager/**";
 			};
 			name = Release;
 		};
