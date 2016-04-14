@@ -20,13 +20,16 @@ class RootViewController: UIViewController {
         
         let tap = UILongPressGestureRecognizer.bk_recognizerWithHandler {[weak self] (sender, state, location) in
             guard self != nil else {return}
-            let coordinater = self!.mapView.convertPoint(location, toCoordinateFromView: self!.mapView)
-            let annotation1 = MKPointAnnotation()
-            annotation1.coordinate = coordinater
-            annotation1.title = "Test"
-            self!.mapView.addAnnotation(annotation1)
+//            let coordinater = self!.mapView.convertPoint(location, toCoordinateFromView: self!.mapView)
+//            let annotation1 = MKPointAnnotation()
+//            annotation1.coordinate = coordinater
+//            annotation1.title = "Test"
+//            self!.mapView.addAnnotation(annotation1)
+            guard state == .Began else {return}
+            self?.showPopupForAddingAttentionItem(location)
         
         } as! UILongPressGestureRecognizer
+        
         mapView.addGestureRecognizer(tap)
         
         searchBar.searchButtonHandler = {(searchBar) in
@@ -83,6 +86,28 @@ class RootViewController: UIViewController {
         )
             
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+}
+
+//MARK: Popover
+extension RootViewController: UIPopoverPresentationControllerDelegate {
+    
+    private func showPopupForAddingAttentionItem(location: CGPoint) {
+        print("add")
+        let vc = AddingItemViewController.viewController()
+        
+        vc.modalPresentationStyle = .Popover
+        vc.popoverPresentationController?.permittedArrowDirections = [.Up, .Down]
+        vc.popoverPresentationController?.sourceRect = CGRect(x: location.x, y: location.y, width: 0, height: 0)
+        vc.popoverPresentationController?.sourceView = mapView
+        vc.popoverPresentationController?.delegate = self
+        vc.preferredContentSize = CGSize(width: view.bounds.width, height: 200)
+        presentViewController(vc, animated: true, completion: nil)
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
     }
     
 }
