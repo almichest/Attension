@@ -94,7 +94,6 @@ class RootViewController: UIViewController {
 extension RootViewController: UIPopoverPresentationControllerDelegate {
     
     private func showPopupForAddingAttentionItem(location: CGPoint) {
-        print("add")
         let vc = AddingItemViewController.viewController()
         
         vc.modalPresentationStyle = .Popover
@@ -103,7 +102,13 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
         vc.popoverPresentationController?.sourceView = mapView
         vc.popoverPresentationController?.delegate = self
         vc.preferredContentSize = CGSize(width: view.bounds.width, height: 200)
-        presentViewController(vc, animated: true, completion: nil)
+        
+        presentViewController(vc, animated: true) {
+            // viewがloadされてからじゃないとエラーになる
+            vc.doneButton.bk_addEventHandler({ (sender) in
+                
+            }, forControlEvents: .TouchUpInside)
+        }
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {

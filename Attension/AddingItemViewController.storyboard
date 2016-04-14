@@ -17,39 +17,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lf-MH-SW0">
-                                <rect key="frame" x="10" y="55" width="49" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="10" y="55" width="42" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2D2-tJ-Q8K">
-                                <rect key="frame" x="86" y="10" width="504" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex) 新宿駅" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2D2-tJ-Q8K">
+                                <rect key="frame" x="77" y="10" width="513" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0hs-Po-uHh">
-                                <rect key="frame" x="86" y="50" width="504" height="100"/>
+                                <rect key="frame" x="77" y="50" width="513" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pau-Vv-yea">
                                 <rect key="frame" x="553" y="160" width="37" height="30"/>
                                 <state key="normal" title="Done"/>
-                                <connections>
-                                    <action selector="didPushDoneButton:" destination="lgf-9k-QQ3" eventType="touchUpInside" id="fqC-GV-Zlx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alz-AM-INC">
-                                <rect key="frame" x="475" y="160" width="48" height="30"/>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="didPushCancelButton:" destination="lgf-9k-QQ3" eventType="touchUpInside" id="vrQ-jw-Xry"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IlQ-6T-xoO">
-                                <rect key="frame" x="10" y="15" width="59" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="10" y="17" width="50" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -57,9 +47,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="IlQ-6T-xoO" firstAttribute="centerY" secondItem="2D2-tJ-Q8K" secondAttribute="centerY" id="0qL-hA-BBf"/>
-                            <constraint firstItem="pau-Vv-yea" firstAttribute="leading" secondItem="alz-AM-INC" secondAttribute="trailing" constant="30" id="45T-v7-AUQ"/>
                             <constraint firstItem="1lf-MH-SW0" firstAttribute="top" secondItem="0hs-Po-uHh" secondAttribute="top" constant="5" id="5C3-dg-iws"/>
-                            <constraint firstItem="fRd-hd-XBS" firstAttribute="top" secondItem="alz-AM-INC" secondAttribute="bottom" constant="10" id="MMf-5R-bko"/>
                             <constraint firstItem="0hs-Po-uHh" firstAttribute="width" secondItem="2D2-tJ-Q8K" secondAttribute="width" id="MQk-Wq-APC"/>
                             <constraint firstItem="0hs-Po-uHh" firstAttribute="top" secondItem="2D2-tJ-Q8K" secondAttribute="bottom" constant="10" id="S4B-lD-B41"/>
                             <constraint firstItem="1lf-MH-SW0" firstAttribute="leading" secondItem="UmF-QT-2DT" secondAttribute="leading" constant="10" id="aMW-sR-w8f"/>
@@ -78,6 +66,11 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="200"/>
+                    <connections>
+                        <outlet property="doneButton" destination="pau-Vv-yea" id="kES-s5-jGa"/>
+                        <outlet property="whatTextView" destination="0hs-Po-uHh" id="sj7-VP-by2"/>
+                        <outlet property="whereTextField" destination="2D2-tJ-Q8K" id="VQ6-Qh-tDF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kGB-5x-vhJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
