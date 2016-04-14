@@ -29,4 +29,10 @@ class AttentionItemDataSource: NSObject {
             realm.delete(item)
         }
     }
+    
+    func deleteAll() {
+        try! realm.write {
+            realm.deleteAll()
+        }
+    }
 }

@@ -13,4 +13,15 @@ class AttentionItem: Object {
     dynamic var latitude: Double = 0.0
     dynamic var glatitude: Double = 0.0
     dynamic var attentionBody: String = ""
+    
+}
+
+func ==(left: AttentionItem, right: AttentionItem) -> Bool {
+    return left.latitude == right.latitude &&
+           left.glatitude == right.glatitude &&
+           left.attentionBody == right.attentionBody
+}
+
+func !=(left: AttentionItem, right: AttentionItem) -> Bool {
+    return !(right == left)
 }

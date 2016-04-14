@@ -13,7 +13,7 @@ class AttensionTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        AttentionItemDataSource.sharedInstance.deleteAll()
     }
     
     override func tearDown() {
@@ -28,6 +28,8 @@ class AttensionTests: XCTestCase {
         item.attentionBody = "test"
         AttentionItemDataSource.sharedInstance.addAttentionItem(item)
         
-        XCTAssert(AttentionItemDataSource.sharedInstance.attentionItems.count == 1)
+        let items = AttentionItemDataSource.sharedInstance.attentionItems
+        XCTAssert(items.count == 1)
+        XCTAssert(items[0] == item)
     }
 }
