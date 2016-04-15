@@ -49,7 +49,14 @@ class RootViewController: UIViewController {
                 debugPrint(error)
             }
         )
-        
+
+        AttentionItemDataSource.sharedInstance.query(0, longtitude: 0, radius: 0).on(success: {[weak self] (items) in
+            items.forEach { (item) in
+                let annotation = MKPointAnnotation()
+                let coordinate = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longtitude)
+                annotation.coordinate = coordinate
+                self?.mapView.addAnnotation(annotation)
+        }}, failure: nil)
     }
     
     private func searchLocation(locationName: String) {

@@ -8,16 +8,20 @@
 
 import UIKit
 import RealmSwift
+import SwiftTask
 
 class AttentionItemDataSource: NSObject {
     
     static let sharedInstance = AttentionItemDataSource()
     private let realm = try! Realm()
     
-    var attentionItems: [AttentionItem] {
-        return Array(realm.objects(AttentionItem))
+    func query(latitude: CLLocationDegrees, longtitude: CLLocationDegrees, radius: Double) -> Task<Float, [AttentionItem], NSError> {
+        return Task<Float, [AttentionItem], NSError>{ fulfill, reject in
+            let result = Array(self.realm.objects(AttentionItem))
+            fulfill(result)
+        }
     }
-    
+
     func addAttentionItem(item: AttentionItem) {
         try! realm.write {
             realm.add(item)

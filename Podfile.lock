@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.3.0)
+  - Alamofire (3.3.1)
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
   - BlocksKit/All (2.2.5):
@@ -19,11 +19,11 @@ PODS:
   - R.swift (2.1.0):
     - R.swift.Library (~> 2.0.0)
   - R.swift.Library (2.0.0)
-  - Realm (0.98.6):
-    - Realm/Headers (= 0.98.6)
-  - Realm/Headers (0.98.6)
-  - RealmSwift (0.98.6):
-    - Realm (= 0.98.6)
+  - Realm (0.98.7):
+    - Realm/Headers (= 0.98.7)
+  - Realm/Headers (0.98.7)
+  - RealmSwift (0.98.7):
+    - Realm (= 0.98.7)
   - SwiftTask (4.2.1)
 
 DEPENDENCIES:
@@ -35,13 +35,13 @@ DEPENDENCIES:
   - SwiftTask
 
 SPEC CHECKSUMS:
-  Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
   R.swift: efff131531b5cf142e28fd94957806ff71ccbcf2
   R.swift.Library: 9f4b2d12040daa1ffe336d8f7e1574f73721fd01
-  Realm: 44803f35418c5d89b27825a564247fcd190de37e
-  RealmSwift: c7239c52c83f8c43525a5269ba7be1694da33afc
+  Realm: 46df2178359b6b57812e6cf957956febaba513a5
+  RealmSwift: 3056e6d7ad30ed50dd866185a615fccea73db5f5
   SwiftTask: 30423c2499ac69e3fc20c001600ab7de46efeed1
 
 COCOAPODS: 0.39.0
