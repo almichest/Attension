@@ -10,11 +10,5 @@ import UIKit
 import MapKit
 
 class AttentionAnnotation: MKPointAnnotation {
-
-    let attentionItem: AttentionItem
-
-    init(attentionItem: AttentionItem) {
-        self.attentionItem = attentionItem
-    }
-
+    var attentionItem: AttentionItem?
 }

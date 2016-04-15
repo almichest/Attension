@@ -24,7 +24,7 @@ class RootViewController: UIViewController {
             guard self != nil && state == .Began else {return}
             
             let coordinater = self!.mapView.convertPoint(location, toCoordinateFromView: self!.mapView)
-            let annotation = MKPointAnnotation()
+            let annotation = AttentionAnnotation()
             annotation.coordinate = coordinater
             self?.mapView.addAnnotation(annotation)
             self?.currentAnnotation = annotation
@@ -53,7 +53,8 @@ class RootViewController: UIViewController {
 
         AttentionItemDataSource.sharedInstance.query(0, longtitude: 0, radius: 0).on(success: {[weak self] (items) in
             items.forEach { (item) in
-                let annotation = AttentionAnnotation(attentionItem: item)
+                let annotation = AttentionAnnotation()
+                annotation.attentionItem = item
                 let coordinate = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longtitude)
                 annotation.coordinate = coordinate
                 self?.mapView.addAnnotation(annotation)
@@ -102,7 +103,7 @@ class RootViewController: UIViewController {
 //MARK: Popover
 extension RootViewController: UIPopoverPresentationControllerDelegate {
     
-    private func showPopupForAddingAttentionItem(location: CGPoint, annotation: MKAnnotation) {
+    private func showPopupForAddingAttentionItem(location: CGPoint, annotation: AttentionAnnotation) {
         let vc = AddingItemViewController.viewController()
         
         vc.modalPresentationStyle = .Popover
@@ -126,6 +127,7 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
                         item.attentionBody = whatText
                     }
                     item.identifier = AttentionItemDataSource.sharedInstance.nextIdentifier()
+                    annotation.attentionItem = item
                     self?.registerItem(item)
                 }
                 
@@ -155,9 +157,14 @@ extension RootViewController: MKMapViewDelegate {
 
         let vc = AnnotationBodyViewController.viewController()
         let _ = vc.view
-        vc.titleLabel.text = attentionAnnotation.attentionItem.placeName
-        vc.bodyLabel.text = attentionAnnotation.attentionItem.attentionBody
-        
+        if let item = attentionAnnotation.attentionItem {
+            vc.titleLabel.text = item.placeName
+            vc.bodyLabel.text = item.attentionBody
+        } else {
+            vc.titleLabel.text = "No information"
+            vc.bodyLabel.text = "No information"
+        }
+
         vc.modalPresentationStyle = .Popover
         vc.popoverPresentationController?.permittedArrowDirections = [.Up, .Down]
         vc.popoverPresentationController?.sourceRect = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: 0, height: 0)
