@@ -15,6 +15,7 @@ class RootViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchBar: GeoLocationSearchBar!
     
+    private var currentAnnotation: MKAnnotation?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +27,7 @@ class RootViewController: UIViewController {
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinater
             self?.mapView.addAnnotation(annotation)
+            self?.currentAnnotation = annotation
             self?.showPopupForAddingAttentionItem(location, annotation: annotation)
         
         } as! UILongPressGestureRecognizer
@@ -118,12 +120,14 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
                     }
                     self?.registerItem(item)
                 }
+                
+                self?.dismissViewControllerAnimated(true, completion: nil)
             }, forControlEvents: .TouchUpInside)
         }
     }
     
     private func registerItem(item: AttentionItem) {
-//        AttentionItemDataSource.sharedInstance.addAttentionItem(item)
+        AttentionItemDataSource.sharedInstance.addAttentionItem(item)
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -131,7 +135,9 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
     }
     
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
-        print("dismiss")
+        if let annotation = self.currentAnnotation {
+            self.mapView.removeAnnotation(annotation)
+        }
     }
 }
 
