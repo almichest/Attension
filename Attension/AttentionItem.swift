@@ -10,10 +10,15 @@ import UIKit
 import RealmSwift
 
 class AttentionItem: Object {
+    dynamic var identifier: Int = 0
     dynamic var latitude: CLLocationDegrees = 0.0
     dynamic var longtitude: CLLocationDegrees = 0.0
     dynamic var attentionBody: String = ""
     dynamic var placeName: String = ""
+
+    override class func primaryKey() -> String? {
+        return "identifier"
+    }
 }
 
 func ==(left: AttentionItem, right: AttentionItem) -> Bool {

@@ -35,4 +35,12 @@ class AttentionItemDataSource: NSObject {
             realm.deleteAll()
         }
     }
+
+    func nextIdentifier() -> Int {
+        if let item = realm.objects(AttentionItem).last {
+            return item.identifier + 1
+        } else {
+            return 0
+        }
+    }
 }
