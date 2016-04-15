@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rbw-5W-0tc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Annotation Body View Controller-->
+        <scene sceneID="tMI-To-sah">
+            <objects>
+                <viewController id="rbw-5W-0tc" customClass="AnnotationBodyViewController" customModule="Attension" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tyg-HS-bII"/>
+                        <viewControllerLayoutGuide type="bottom" id="lrz-1i-KAp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CAu-g2-Gel">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEH-Ob-YJF">
+                                <rect key="frame" x="10" y="10" width="580" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8hP-L1-QRC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpz-ZB-MWt">
+                                <rect key="frame" x="10" y="50" width="580" height="140"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="XEH-Ob-YJF" secondAttribute="trailing" constant="10" id="PSm-pV-9ar"/>
+                            <constraint firstAttribute="trailing" secondItem="gpz-ZB-MWt" secondAttribute="trailing" constant="10" id="Pkh-5v-zwG"/>
+                            <constraint firstItem="gpz-ZB-MWt" firstAttribute="top" secondItem="XEH-Ob-YJF" secondAttribute="bottom" constant="10" id="RkM-d3-29J"/>
+                            <constraint firstItem="XEH-Ob-YJF" firstAttribute="top" secondItem="Tyg-HS-bII" secondAttribute="bottom" constant="10" id="gc8-o0-udT"/>
+                            <constraint firstItem="lrz-1i-KAp" firstAttribute="top" secondItem="gpz-ZB-MWt" secondAttribute="bottom" constant="10" id="tRI-2G-TsI"/>
+                            <constraint firstItem="gpz-ZB-MWt" firstAttribute="leading" secondItem="CAu-g2-Gel" secondAttribute="leading" constant="10" id="vkl-Zf-YtK"/>
+                            <constraint firstItem="XEH-Ob-YJF" firstAttribute="leading" secondItem="CAu-g2-Gel" secondAttribute="leading" constant="10" id="vn0-f1-DtQ"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="200"/>
+                    <connections>
+                        <outlet property="bodyLabel" destination="gpz-ZB-MWt" id="bKd-yx-k4b"/>
+                        <outlet property="titleLabel" destination="XEH-Ob-YJF" id="4kb-r4-w0R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="izU-mC-WCt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="522" y="362"/>
+        </scene>
+    </scenes>
+</document>

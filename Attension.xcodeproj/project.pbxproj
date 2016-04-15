@@ -21,6 +21,8 @@
 		426343CA1CBFD68C00D39185 /* AddingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426343C91CBFD68C00D39185 /* AddingItemViewController.swift */; };
 		426343CC1CBFD6A100D39185 /* AddingItemViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 426343CB1CBFD6A100D39185 /* AddingItemViewController.storyboard */; };
 		426343D01CC153CF00D39185 /* AttentionAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426343CF1CC153CF00D39185 /* AttentionAnnotation.swift */; };
+		426343D21CC1561000D39185 /* AnnotationBodyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426343D11CC1561000D39185 /* AnnotationBodyViewController.swift */; };
+		426343D41CC1562600D39185 /* AnnotationBodyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 426343D31CC1562600D39185 /* AnnotationBodyViewController.storyboard */; };
 		4287D5221CB14ACC00E78E47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287D5211CB14ACC00E78E47 /* AppDelegate.swift */; };
 		4287D5241CB14ACC00E78E47 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287D5231CB14ACC00E78E47 /* RootViewController.swift */; };
 		4287D5271CB14ACC00E78E47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4287D5251CB14ACC00E78E47 /* Main.storyboard */; };
@@ -58,6 +60,8 @@
 		426343C91CBFD68C00D39185 /* AddingItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingItemViewController.swift; sourceTree = "<group>"; };
 		426343CB1CBFD6A100D39185 /* AddingItemViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddingItemViewController.storyboard; sourceTree = "<group>"; };
 		426343CF1CC153CF00D39185 /* AttentionAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionAnnotation.swift; sourceTree = "<group>"; };
+		426343D11CC1561000D39185 /* AnnotationBodyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationBodyViewController.swift; sourceTree = "<group>"; };
+		426343D31CC1562600D39185 /* AnnotationBodyViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AnnotationBodyViewController.storyboard; sourceTree = "<group>"; };
 		4287D51E1CB14ACC00E78E47 /* Attension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attension.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4287D5211CB14ACC00E78E47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4287D5231CB14ACC00E78E47 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +123,8 @@
 				422F2E981CB9323D00F74FBF /* LocationSelectViewController.storyboard */,
 				426343C91CBFD68C00D39185 /* AddingItemViewController.swift */,
 				426343CB1CBFD6A100D39185 /* AddingItemViewController.storyboard */,
+				426343D11CC1561000D39185 /* AnnotationBodyViewController.swift */,
+				426343D31CC1562600D39185 /* AnnotationBodyViewController.storyboard */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -303,6 +309,7 @@
 				4287D52C1CB14ACC00E78E47 /* LaunchScreen.storyboard in Resources */,
 				4287D5291CB14ACC00E78E47 /* Assets.xcassets in Resources */,
 				422F2E991CB9323D00F74FBF /* LocationSelectViewController.storyboard in Resources */,
+				426343D41CC1562600D39185 /* AnnotationBodyViewController.storyboard in Resources */,
 				4287D5271CB14ACC00E78E47 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,6 +409,7 @@
 				426343CA1CBFD68C00D39185 /* AddingItemViewController.swift in Sources */,
 				422F2E9B1CB932FA00F74FBF /* R.generated.swift in Sources */,
 				4287D5241CB14ACC00E78E47 /* RootViewController.swift in Sources */,
+				426343D21CC1561000D39185 /* AnnotationBodyViewController.swift in Sources */,
 				4287D5221CB14ACC00E78E47 /* AppDelegate.swift in Sources */,
 				426343D01CC153CF00D39185 /* AttentionAnnotation.swift in Sources */,
 				422F2E911CB6B79900F74FBF /* GeoLocationProvider.swift in Sources */,

@@ -153,7 +153,21 @@ extension RootViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         guard let attentionAnnotation = view.annotation as? AttentionAnnotation else { return }
 
-        print(attentionAnnotation)
+        let vc = AnnotationBodyViewController.viewController()
+        let _ = vc.view
+        vc.titleLabel.text = attentionAnnotation.attentionItem.placeName
+        vc.bodyLabel.text = attentionAnnotation.attentionItem.attentionBody
+        
+        vc.modalPresentationStyle = .Popover
+        vc.popoverPresentationController?.permittedArrowDirections = [.Up, .Down]
+        vc.popoverPresentationController?.sourceRect = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: 0, height: 0)
+        vc.popoverPresentationController?.sourceView = mapView
+        vc.popoverPresentationController?.delegate = self
+        vc.preferredContentSize = CGSize(width: self.view.bounds.width, height: 200)
+
+        presentViewController(vc, animated: true) {
+            self.mapView.deselectAnnotation(attentionAnnotation, animated: true)
+        }
     }
 }
 
