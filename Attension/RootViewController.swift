@@ -33,6 +33,7 @@ class RootViewController: UIViewController {
         } as! UILongPressGestureRecognizer
         
         mapView.addGestureRecognizer(tap)
+        mapView.delegate = self
         
         searchBar.searchButtonHandler = {(searchBar) in
             guard let text = searchBar.text else {return}
@@ -52,7 +53,7 @@ class RootViewController: UIViewController {
 
         AttentionItemDataSource.sharedInstance.query(0, longtitude: 0, radius: 0).on(success: {[weak self] (items) in
             items.forEach { (item) in
-                let annotation = MKPointAnnotation()
+                let annotation = AttentionAnnotation(attentionItem: item)
                 let coordinate = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longtitude)
                 annotation.coordinate = coordinate
                 self?.mapView.addAnnotation(annotation)
@@ -96,7 +97,6 @@ class RootViewController: UIViewController {
             
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
 }
 
 //MARK: Popover
@@ -146,6 +146,14 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
         if let annotation = self.currentAnnotation {
             self.mapView.removeAnnotation(annotation)
         }
+    }
+}
+
+extension RootViewController: MKMapViewDelegate {
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        guard let attentionAnnotation = view.annotation as? AttentionAnnotation else { return }
+
+        print(attentionAnnotation)
     }
 }
 

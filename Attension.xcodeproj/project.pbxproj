@@ -20,6 +20,7 @@
 		426343B61CBE8FD300D39185 /* AttentionItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426343B41CBE8FD300D39185 /* AttentionItemDataSource.swift */; };
 		426343CA1CBFD68C00D39185 /* AddingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426343C91CBFD68C00D39185 /* AddingItemViewController.swift */; };
 		426343CC1CBFD6A100D39185 /* AddingItemViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 426343CB1CBFD6A100D39185 /* AddingItemViewController.storyboard */; };
+		426343D01CC153CF00D39185 /* AttentionAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426343CF1CC153CF00D39185 /* AttentionAnnotation.swift */; };
 		4287D5221CB14ACC00E78E47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287D5211CB14ACC00E78E47 /* AppDelegate.swift */; };
 		4287D5241CB14ACC00E78E47 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287D5231CB14ACC00E78E47 /* RootViewController.swift */; };
 		4287D5271CB14ACC00E78E47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4287D5251CB14ACC00E78E47 /* Main.storyboard */; };
@@ -56,6 +57,7 @@
 		426343B41CBE8FD300D39185 /* AttentionItemDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionItemDataSource.swift; sourceTree = "<group>"; };
 		426343C91CBFD68C00D39185 /* AddingItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingItemViewController.swift; sourceTree = "<group>"; };
 		426343CB1CBFD6A100D39185 /* AddingItemViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddingItemViewController.storyboard; sourceTree = "<group>"; };
+		426343CF1CC153CF00D39185 /* AttentionAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionAnnotation.swift; sourceTree = "<group>"; };
 		4287D51E1CB14ACC00E78E47 /* Attension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attension.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4287D5211CB14ACC00E78E47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4287D5231CB14ACC00E78E47 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				422F2E8E1CB6948F00F74FBF /* GeoLocationSearchBar.swift */,
+				426343CF1CC153CF00D39185 /* AttentionAnnotation.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				422F2E9B1CB932FA00F74FBF /* R.generated.swift in Sources */,
 				4287D5241CB14ACC00E78E47 /* RootViewController.swift in Sources */,
 				4287D5221CB14ACC00E78E47 /* AppDelegate.swift in Sources */,
+				426343D01CC153CF00D39185 /* AttentionAnnotation.swift in Sources */,
 				422F2E911CB6B79900F74FBF /* GeoLocationProvider.swift in Sources */,
 				422F2E9F1CB95CAB00F74FBF /* UIBarButtonItem+BKWrapper.m in Sources */,
 				426343B61CBE8FD300D39185 /* AttentionItemDataSource.swift in Sources */,
