@@ -10,16 +10,17 @@ import UIKit
 import RealmSwift
 
 class AttentionItem: Object {
-    dynamic var latitude: Double = 0.0
-    dynamic var glatitude: Double = 0.0
+    dynamic var latitude: CLLocationDegrees = 0.0
+    dynamic var longtitude: CLLocationDegrees = 0.0
     dynamic var attentionBody: String = ""
-    
+    dynamic var placeName: String = ""
 }
 
 func ==(left: AttentionItem, right: AttentionItem) -> Bool {
     return left.latitude == right.latitude &&
-           left.glatitude == right.glatitude &&
-           left.attentionBody == right.attentionBody
+           left.longtitude == right.longtitude &&
+           left.attentionBody == right.attentionBody &&
+           left.placeName == right.placeName
 }
 
 func !=(left: AttentionItem, right: AttentionItem) -> Bool {

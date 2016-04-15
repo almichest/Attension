@@ -19,14 +19,14 @@ class RootViewController: UIViewController {
         super.viewDidLoad()
         
         let tap = UILongPressGestureRecognizer.bk_recognizerWithHandler {[weak self] (sender, state, location) in
-            guard self != nil else {return}
-//            let coordinater = self!.mapView.convertPoint(location, toCoordinateFromView: self!.mapView)
-//            let annotation1 = MKPointAnnotation()
-//            annotation1.coordinate = coordinater
-//            annotation1.title = "Test"
-//            self!.mapView.addAnnotation(annotation1)
-            guard state == .Began else {return}
-            self?.showPopupForAddingAttentionItem(location)
+            
+            guard self != nil && state == .Began else {return}
+            
+            let coordinater = self!.mapView.convertPoint(location, toCoordinateFromView: self!.mapView)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinater
+            self?.mapView.addAnnotation(annotation)
+            self?.showPopupForAddingAttentionItem(location, annotation: annotation)
         
         } as! UILongPressGestureRecognizer
         
@@ -93,7 +93,7 @@ class RootViewController: UIViewController {
 //MARK: Popover
 extension RootViewController: UIPopoverPresentationControllerDelegate {
     
-    private func showPopupForAddingAttentionItem(location: CGPoint) {
+    private func showPopupForAddingAttentionItem(location: CGPoint, annotation: MKAnnotation) {
         let vc = AddingItemViewController.viewController()
         
         vc.modalPresentationStyle = .Popover
@@ -105,15 +105,33 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
         
         presentViewController(vc, animated: true) {
             // viewがloadされてからじゃないとエラーになる
-            vc.doneButton.bk_addEventHandler({ (sender) in
-                
+            vc.doneButton.bk_addEventHandler({[weak self] (sender) in
+                let item = AttentionItem()
+                if let coordinater = self?.mapView.convertPoint(location, toCoordinateFromView: self!.mapView) {
+                    item.latitude = coordinater.latitude
+                    item.longtitude = coordinater.longitude
+                    if let whereText = vc.whereTextField.text {
+                        item.placeName = whereText
+                    }
+                    if let whatText = vc.whatTextView.text {
+                        item.attentionBody = whatText
+                    }
+                    self?.registerItem(item)
+                }
             }, forControlEvents: .TouchUpInside)
         }
+    }
+    
+    private func registerItem(item: AttentionItem) {
+//        AttentionItemDataSource.sharedInstance.addAttentionItem(item)
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
     }
     
+    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+        print("dismiss")
+    }
 }
 
