@@ -23,6 +23,7 @@ class AttentionItemDataSource: NSObject {
     }
 
     func addAttentionItem(item: AttentionItem) {
+        item.identifier = createIdentifier(item)
         try! realm.write {
             realm.add(item)
         }
@@ -40,11 +41,8 @@ class AttentionItemDataSource: NSObject {
         }
     }
 
-    func nextIdentifier() -> Int {
-        if let item = realm.objects(AttentionItem).last {
-            return item.identifier + 1
-        } else {
-            return 0
-        }
+    private func createIdentifier(item: AttentionItem) -> String {
+        return String(item.latitude) + String(item.longtitude)
     }
+
 }

@@ -126,7 +126,6 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
                     if let whatText = vc.whatTextView.text {
                         item.attentionBody = whatText
                     }
-                    item.identifier = AttentionItemDataSource.sharedInstance.nextIdentifier()
                     annotation.attentionItem = item
                     self?.registerItem(item)
                 }
