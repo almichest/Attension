@@ -17,7 +17,7 @@ class AttentionDatabase(object):
             Column('longitude', DECIMAL),
         )
 
-        self.__engine = create_engine(db_name, echo=True)
+        self.__engine = create_engine('sqlite:///' + db_name, echo=True)
         self.__metadata.bind = self.__engine
         self.__metadata.create_all()
 
@@ -29,29 +29,31 @@ class AttentionDatabase(object):
                                                 latitude=item.latitude,
                                                 longitude=item.longitude)
     def update(self, item):
-        self.__attention_items.update().where(self.__attention_items.c.identifier == item.identifier).execute(place_name=item.place_name,
+        self.__attention_items.update().where(self.__attention_items.c.identifier==item.identifier).execute(place_name=item.place_name,
                                                                                                               attention_body=item.attention_body,
                                                                                                               latitude=item.latitude,
                                                                                                               longitude=item.longitude)
     def remove(self, item):
-        self.__attention_items.delete().where(self.__attention_items.c.identifier == item.identifier).execute()
+        self.__attention_items.delete().where(self.__attention_items.c.identifier==item.identifier).execute()
 
     def remove_all(self):
         self.__attention_items.delete().execute()
 
-
-    def get_all_items(self):
+    def get_items(self, identifier=None):
 
         def convert(item):
-            attention_item = AttentionItem()
-            attention_item.identifier = item[0]
-            attention_item.place_name = item[1]
-            attention_item.attention_body = item[2]
-            attention_item.latitude = item[3]
-            attention_item.longitude = item[4]
-            return attention_item
+            dic = {}
+            dic['identifier'] = item[0]
+            dic['place_name'] = item[1]
+            dic['attention_body'] = item[2]
+            dic['latitude'] = item[3]
+            dic['longitude'] = item[4]
+            return dic
 
+        if identifier == None:
+            items = self.__attention_items.select().execute().fetchall()
+        else:
+            items = self.__attention_items.select().where(self.__attention_items.c.identifier==identifier).execute().fetchall()
 
-        items = self.__attention_items.select().execute().fetchall()
         return list(map(convert, items))
 

@@ -1,13 +1,15 @@
 import falcon
 import json
+from attention_item import AttentionItem
+from db.db import AttentionDatabase
+
+_database = AttentionDatabase(db_name='db.sqlite3')
 
 class Get(object):
 
     def on_get(self, req, resp):
-        msg = {
-            "message": "Hello, World"
-        }
-        resp.body = json.dumps(msg)
+        items = _database.get_all_items()
+        resp.body = json.dumps(items)
 
 class Post(object):
     def on_post(self, req, resp):
@@ -21,8 +23,8 @@ class Post(object):
         body = b''
 
         while True:
-
-            chunk = req.stream.read()
+            chunk = req.stream.read(65536)
+            print(chunk)
             if not chunk:
                 break
 
@@ -40,6 +42,15 @@ class Post(object):
 
         resp.status = falcon.HTTP_200
         resp.body = ''
+
+    def add_item_with(self, dic):
+        item = AttentionItem()
+        item.identifier = dic['identifier']
+        item.place_name = dic['place_name']
+        item.attention_body = dic['attention_body']
+        item.latitude = dic['latitude']
+        item.longitude = dic['longitude']
+        _database.insert(item)
 
     def validate_post_request_header(self, req):
         if req.content_type != 'application/json':
