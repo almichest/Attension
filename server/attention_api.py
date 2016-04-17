@@ -8,7 +8,8 @@ _database = AttentionDatabase(db_name='db.sqlite3')
 class Get(object):
 
     def on_get(self, req, resp):
-        items = _database.get_all_items()
+        items = _database.get_items()
+        print(items)
         resp.body = json.dumps(items)
 
 class Post(object):
@@ -40,16 +41,23 @@ class Post(object):
             resp.body = ''
             return
 
+        self.add_item(dic)
+
         resp.status = falcon.HTTP_200
         resp.body = ''
 
-    def add_item_with(self, dic):
+    def add_item(self, dic):
         item = AttentionItem()
         item.identifier = dic['identifier']
-        item.place_name = dic['place_name']
-        item.attention_body = dic['attention_body']
-        item.latitude = dic['latitude']
-        item.longitude = dic['longitude']
+        if 'place_name' in dic:
+            item.place_name = dic['place_name']
+        if 'attention_body' in dic:
+            item.attention_body = dic['attention_body']
+        if 'latitude' in dic:
+            item.latitude = dic['latitude']
+        if 'longitude' in dic:
+            item.longitude = dic['longitude']
+
         _database.insert(item)
 
     def validate_post_request_header(self, req):

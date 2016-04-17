@@ -1,7 +1,6 @@
 __author__ = 'hira'
 
 from sqlalchemy import create_engine, MetaData, Table, Column, FLOAT, String
-from attention_item import AttentionItem
 
 class AttentionDatabase(object):
 
