@@ -36,9 +36,10 @@ class Post(object):
         dic = json.loads(body.decode('utf-8'), encoding='utf-8')
 
         validation = self.validate_post_request_body(dic)
-        if validation == '400':
+        if validation[0] == '400':
             resp.status = falcon.HTTP_400
-            resp.body = ''
+            error = '{error_code : ' + validation[1] + '}'
+            resp.body = error
             return
 
         self.add_item(dic)
@@ -70,7 +71,9 @@ class Post(object):
 
     def validate_post_request_body(self, body):
         if not 'identifier' in body:
-            return '400'
+            return ('400', '1')
+        if _database.get_items(identifier=body['identifier']):
+            return ('400', '2')
 
         return '200'
 
