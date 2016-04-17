@@ -10,6 +10,13 @@ class AttentionAPI(object):
         resp.body = json.dumps(msg)
 
     def on_post(self, req, resp):
+
+        validation = self.validate_post_request(req)
+        if validation == '400':
+            resp.status = falcon.HTTP_400
+            resp.body = ''
+            return
+
         body = b''
 
         while True:
@@ -24,7 +31,16 @@ class AttentionAPI(object):
 
         print('request body = ' + str(body))
 
+        resp.status = falcon.HTTP_200
         resp.body = ''
+
+    def validate_post_request(self, req):
+        if req.content_type != 'application/json':
+            return '400'
+        if req.content_length <= 0:
+            return '400'
+
+        return '200'
 
 app = falcon.API()
 app.add_route("/", AttentionAPI())
