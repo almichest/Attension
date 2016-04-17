@@ -3,6 +3,7 @@ from unittest import TestCase
 from nose.tools import ok_, eq_
 from db.db import AttentionDatabase
 from attention_item import AttentionItem
+import json
 
 class AttentionDatabaseTest(TestCase):
     def setUp(self):
@@ -33,6 +34,30 @@ class AttentionDatabaseTest(TestCase):
 
         items = self.database.get_items(identifier=item.identifier)
         eq_(len(items), 1)
+
+    def test_get_all_items(self):
+        item = AttentionItem()
+        item.identifier = 'test_identifier1'
+        item.attention_body = 'test_body'
+        item.place_name = 'test_place_name'
+        item.latitude = 0.5
+        item.longitude = 1.0
+        self.database.insert(item)
+
+        item = AttentionItem()
+        item.identifier = 'test_identifier2'
+        item.attention_body = 'test_body'
+        item.place_name = 'test_place_name'
+        item.latitude = 0.5
+        item.longitude = 1.0
+        self.database.insert(item)
+
+        items = self.database.get_items()
+        print(items)
+        eq_(len(items), 2)
+
+        result = json.dumps(items)
+        print(result)
 
     def test_insert_item(self):
         item = AttentionItem()

@@ -1,6 +1,6 @@
 __author__ = 'hira'
 
-from sqlalchemy import create_engine, MetaData, Table, Column, DECIMAL, String
+from sqlalchemy import create_engine, MetaData, Table, Column, FLOAT, String
 from attention_item import AttentionItem
 
 class AttentionDatabase(object):
@@ -13,8 +13,8 @@ class AttentionDatabase(object):
             Column('identifier', String, primary_key=True),
             Column('place_name', String),
             Column('attention_body', String),
-            Column('latitude', DECIMAL),
-            Column('longitude', DECIMAL),
+            Column('latitude', FLOAT),
+            Column('longitude', FLOAT),
         )
 
         self.__engine = create_engine('sqlite:///' + db_name, echo=True)
