@@ -1,7 +1,6 @@
 __author__ = 'hira'
 
 from sqlalchemy import create_engine, MetaData, Table, Column, DECIMAL, String
-from attention_item import AttantionItem
 
 __metadata = MetaData()
 __attention_items = Table(
