@@ -1,6 +1,6 @@
 __author__ = 'hira'
 
-from sqlalchemy import create_engine, MetaData, Table, Column, FLOAT, String,
+from sqlalchemy import create_engine, MetaData, Table, Column, FLOAT, String
 import util
 
 class AttentionDatabase(object):
@@ -56,20 +56,5 @@ class AttentionDatabase(object):
         else:
             items = self.__attention_items.select().where(self.__attention_items.c.identifier==identifier).execute().fetchall()
 
-        return list(map(convert, items))
-
-    def get_items(self, longitude, latitude, radius):
-
-        def convert(item):
-            dic = {}
-            dic['identifier'] = item[0]
-            dic['place_name'] = item[1]
-            dic['attention_body'] = item[2]
-            dic['latitude'] = item[3]
-            dic['longitude'] = item[4]
-            return dic
-
-        c = self.__attention_items.c
-        items = self.__attention_items.select().where(util.distance_by_huubeny((c.longitude, c.latitude), (longitude, latitude) < radius)).execute().fetchall()
         return list(map(convert, items))
 

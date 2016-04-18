@@ -9,8 +9,15 @@ class Get(object):
 
     def on_get(self, req, resp):
         items = _database.get_items()
-        print(items)
+
+        if hasattr(req, 'query_string'):
+            items = self.filter_with_query(req.query_string, items)
+
         resp.body = json.dumps(items)
+
+    def filter_with_query(self, query, items):
+        print(query)
+        return items
 
 class Post(object):
     def on_post(self, req, resp):
@@ -78,8 +85,8 @@ class Post(object):
         return '200'
 
 app = falcon.API()
-app.add_route('/', Get())
-app.add_route('/add/', Post())
+app.add_route('/api/', Get())
+app.add_route('/api/add/', Post())
 
 def start_server():
     from wsgiref import simple_server
