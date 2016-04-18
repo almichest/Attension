@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (3.3.1)
+  - APIKit (1.3.0):
+    - Result (~> 2.0.0)
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
   - BlocksKit/All (2.2.5):
@@ -15,6 +17,7 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - Himotoki (2.0.0)
   - INTULocationManager (4.2.0)
   - R.swift (2.1.0):
     - R.swift.Library (~> 2.0.0)
@@ -24,11 +27,14 @@ PODS:
   - Realm/Headers (0.98.7)
   - RealmSwift (0.98.7):
     - Realm (= 0.98.7)
+  - Result (2.0.0)
   - SwiftTask (4.2.1)
 
 DEPENDENCIES:
   - Alamofire
+  - APIKit
   - BlocksKit
+  - Himotoki
   - INTULocationManager
   - R.swift
   - RealmSwift
@@ -36,12 +42,15 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  APIKit: 14c0233ad090ae2dcfc9f642bc8158ff7ad50a4b
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  Himotoki: 77fb61dbd6cd5dae033af630b591fec383eece28
   INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
   R.swift: efff131531b5cf142e28fd94957806ff71ccbcf2
   R.swift.Library: 9f4b2d12040daa1ffe336d8f7e1574f73721fd01
   Realm: 46df2178359b6b57812e6cf957956febaba513a5
   RealmSwift: 3056e6d7ad30ed50dd866185a615fccea73db5f5
+  Result: 9e75e1111c774c6ac594e14907b15057053a7959
   SwiftTask: 30423c2499ac69e3fc20c001600ab7de46efeed1
 
 COCOAPODS: 0.39.0

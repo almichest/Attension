@@ -9,4 +9,6 @@ target 'Attension' do
     pod 'SwiftTask'
     pod 'INTULocationManager'
     pod 'R.swift'
+    pod 'APIKit'
+    pod 'Himotoki'
 end
