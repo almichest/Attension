@@ -81,11 +81,9 @@ app = falcon.API()
 app.add_route('/', Get())
 app.add_route('/add/', Post())
 
-def main():
+def start_server():
     from wsgiref import simple_server
     httpd = simple_server.make_server("127.0.0.1", 8000, app)
     httpd.serve_forever()
-    print('start server')
 
-if __name__ == '__main__':
-    main()
+
