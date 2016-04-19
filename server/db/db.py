@@ -1,6 +1,7 @@
 __author__ = 'hira'
 
 from sqlalchemy import create_engine, MetaData, Table, Column, FLOAT, String
+import util
 
 class AttentionDatabase(object):
 
@@ -37,6 +38,7 @@ class AttentionDatabase(object):
 
     def remove_all(self):
         self.__attention_items.delete().execute()
+
 
     def get_items(self, identifier=None):
 
