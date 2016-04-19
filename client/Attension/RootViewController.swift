@@ -136,7 +136,7 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
     }
     
     private func registerItem(item: AttentionItem) {
-        AttentionItemDataSource.sharedInstance.addAttentionItem(item)
+        AttentionItemDataSource.sharedInstance.addAttentionItems([item])
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {

@@ -14,18 +14,24 @@ class AttentionItemDataSource: NSObject {
     
     static let sharedInstance = AttentionItemDataSource()
     private let realm = try! Realm()
-    private lazy var realmToken: NotificationToken = {
-        return self.realm.addNotificationBlock {[weak self] (notification, realm) in
-            guard self != nil else {return}
-            self?.receivers.forEach { (receiver) in
-                receiver.datasetDidChange(self!)
-            }
-        }
-    }()
+    private var realmToken: NotificationToken?
+
+    deinit {
+        realmToken?.stop()
+    }
 
     private var receivers: [AttentionItemDataSourceReceiver] = []
 
     func subscribe(receiver: AttentionItemDataSourceReceiver) {
+        if receivers.count == 0 {
+            realmToken = self.realm.addNotificationBlock {[weak self] (notification, realm) in
+                guard self != nil else {return}
+                self?.receivers.forEach { (receiver) in
+                    receiver.datasetDidChange(self!)
+                }
+            }
+        }
+
         guard !receivers.contains({$0 === receiver}) else {return}
         receivers.append(receiver)
     }
@@ -34,8 +40,13 @@ class AttentionItemDataSource: NSObject {
         if let index = receivers.indexOf({$0 === receiver}) {
             receivers.removeAtIndex(index)
         }
+
+        if receivers.count == 0 {
+            realmToken?.stop()
+        }
     }
 
+    //TODO: filter
     func query(latitude: CLLocationDegrees, longtitude: CLLocationDegrees, radius: Double) -> Task<Float, [AttentionItem], NSError> {
         return Task<Float, [AttentionItem], NSError>{ fulfill, reject in
             let result = Array(self.realm.objects(AttentionItem))
@@ -43,16 +54,20 @@ class AttentionItemDataSource: NSObject {
         }
     }
 
-    func addAttentionItem(item: AttentionItem) {
-        item.identifier = createIdentifier(item)
+    func addAttentionItems(items: [AttentionItem]) {
         try! realm.write {
-            realm.add(item)
+            items.forEach({ (item) in
+                item.identifier = createIdentifier(item)
+                realm.add(item)
+            })
         }
     }
     
-    func deleteAttentionItem(item: AttentionItem) {
+    func deleteAttentionItems(items: [AttentionItem]) {
         try! realm.write {
-            realm.delete(item)
+            items.forEach({ (item) in
+                realm.delete(item)
+            })
         }
     }
     
