@@ -29,6 +29,11 @@
 		4287D5291CB14ACC00E78E47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4287D5281CB14ACC00E78E47 /* Assets.xcassets */; };
 		4287D52C1CB14ACC00E78E47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4287D52A1CB14ACC00E78E47 /* LaunchScreen.storyboard */; };
 		4287D5371CB14ACC00E78E47 /* AttensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287D5361CB14ACC00E78E47 /* AttensionTests.swift */; };
+		42A0DEB81CC662C70098C41A /* GetItemsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEB71CC662C70098C41A /* GetItemsRequest.swift */; };
+		42A0DEBA1CC663320098C41A /* AttentionRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEB91CC663320098C41A /* AttentionRequestType.swift */; };
+		42A0DEBC1CC667480098C41A /* AttentionResponseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEBB1CC667480098C41A /* AttentionResponseItem.swift */; };
+		42A0DEBE1CC66A170098C41A /* AttentionAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEBD1CC66A170098C41A /* AttentionAPIClient.swift */; };
+		42A0DEC01CC66F2D0098C41A /* AttentionAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +77,11 @@
 		4287D5321CB14ACC00E78E47 /* AttensionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AttensionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4287D5361CB14ACC00E78E47 /* AttensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttensionTests.swift; sourceTree = "<group>"; };
 		4287D5381CB14ACC00E78E47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42A0DEB71CC662C70098C41A /* GetItemsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetItemsRequest.swift; sourceTree = "<group>"; };
+		42A0DEB91CC663320098C41A /* AttentionRequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionRequestType.swift; sourceTree = "<group>"; };
+		42A0DEBB1CC667480098C41A /* AttentionResponseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionResponseItem.swift; sourceTree = "<group>"; };
+		42A0DEBD1CC66A170098C41A /* AttentionAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionAPIClient.swift; sourceTree = "<group>"; };
+		42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionAPITests.swift; sourceTree = "<group>"; };
 		6E024979BF18D315370E7E0D /* Pods_Attension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Attension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79444ABCA0915F5FFC1112EC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D636FFC6387FE4AB2BAADF63 /* Pods-Attension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Attension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Attension/Pods-Attension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +160,7 @@
 		4287D5151CB14ACC00E78E47 = {
 			isa = PBXGroup;
 			children = (
+				42A0DEB61CC662960098C41A /* API */,
 				4287D5201CB14ACC00E78E47 /* Attension */,
 				4287D5351CB14ACC00E78E47 /* AttensionTests */,
 				4287D51F1CB14ACC00E78E47 /* Products */,
@@ -192,6 +203,7 @@
 			children = (
 				4287D5361CB14ACC00E78E47 /* AttensionTests.swift */,
 				4287D5381CB14ACC00E78E47 /* Info.plist */,
+				42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */,
 			);
 			path = AttensionTests;
 			sourceTree = "<group>";
@@ -199,6 +211,17 @@
 		42A037C11CC5220A008C9C14 /* API */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		42A0DEB61CC662960098C41A /* API */ = {
+			isa = PBXGroup;
+			children = (
+				42A0DEB91CC663320098C41A /* AttentionRequestType.swift */,
+				42A0DEB71CC662C70098C41A /* GetItemsRequest.swift */,
+				42A0DEBB1CC667480098C41A /* AttentionResponseItem.swift */,
+				42A0DEBD1CC66A170098C41A /* AttentionAPIClient.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -417,15 +440,19 @@
 				426343CA1CBFD68C00D39185 /* AddingItemViewController.swift in Sources */,
 				422F2E9B1CB932FA00F74FBF /* R.generated.swift in Sources */,
 				4287D5241CB14ACC00E78E47 /* RootViewController.swift in Sources */,
+				42A0DEBE1CC66A170098C41A /* AttentionAPIClient.swift in Sources */,
 				426343D21CC1561000D39185 /* AnnotationBodyViewController.swift in Sources */,
 				4287D5221CB14ACC00E78E47 /* AppDelegate.swift in Sources */,
 				426343D01CC153CF00D39185 /* AttentionAnnotation.swift in Sources */,
+				42A0DEB81CC662C70098C41A /* GetItemsRequest.swift in Sources */,
 				422F2E911CB6B79900F74FBF /* GeoLocationProvider.swift in Sources */,
 				422F2E9F1CB95CAB00F74FBF /* UIBarButtonItem+BKWrapper.m in Sources */,
+				42A0DEBC1CC667480098C41A /* AttentionResponseItem.swift in Sources */,
 				426343B61CBE8FD300D39185 /* AttentionItemDataSource.swift in Sources */,
 				421F1E541CB2B911008307A5 /* LocationManager.swift in Sources */,
 				426343B51CBE8FD300D39185 /* AttentionItem.swift in Sources */,
 				422F2E961CB931A200F74FBF /* LocationSelectViewController.swift in Sources */,
+				42A0DEBA1CC663320098C41A /* AttentionRequestType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4287D5371CB14ACC00E78E47 /* AttensionTests.swift in Sources */,
+				42A0DEC01CC66F2D0098C41A /* AttentionAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
