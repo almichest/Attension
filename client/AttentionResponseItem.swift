@@ -24,4 +24,8 @@ struct AttentionResponseItem: Decodable {
             placeName: e <| "place_name"
         )
     }
+
+    var description: String {
+        return "\(identifier) - \(placeName)"
+    }
 }

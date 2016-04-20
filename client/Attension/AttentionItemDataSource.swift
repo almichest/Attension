@@ -58,7 +58,7 @@ class AttentionItemDataSource: NSObject {
         try! realm.write {
             items.forEach({ (item) in
                 item.identifier = createIdentifier(item)
-                realm.add(item)
+                realm.add(item, update: true)
             })
         }
     }

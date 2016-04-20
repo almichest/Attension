@@ -9,7 +9,10 @@ def main():
 
     post_data = json.dumps({
         'identifier': identifier,
-        'attention_body': "hogehogehogehogehogehoge"
+        'attention_body': '投稿テスト',
+        'place_name':  '新宿駅東南口',
+        'latitude': 35.6899585624,
+        'longitude': 139.7004931789
     })
 
     headers = {

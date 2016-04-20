@@ -160,7 +160,6 @@
 		4287D5151CB14ACC00E78E47 = {
 			isa = PBXGroup;
 			children = (
-				42A0DEB61CC662960098C41A /* API */,
 				4287D5201CB14ACC00E78E47 /* Attension */,
 				4287D5351CB14ACC00E78E47 /* AttensionTests */,
 				4287D51F1CB14ACC00E78E47 /* Products */,
@@ -181,7 +180,7 @@
 		4287D5201CB14ACC00E78E47 /* Attension */ = {
 			isa = PBXGroup;
 			children = (
-				42A037C11CC5220A008C9C14 /* API */,
+				42A0DEB61CC662960098C41A /* API */,
 				426343B21CBE8FC500D39185 /* DataBase */,
 				422F2E9C1CB95C8A00F74FBF /* Others */,
 				422F2E9A1CB932FA00F74FBF /* R.generated.swift */,
@@ -208,13 +207,6 @@
 			path = AttensionTests;
 			sourceTree = "<group>";
 		};
-		42A037C11CC5220A008C9C14 /* API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = API;
-			sourceTree = "<group>";
-		};
 		42A0DEB61CC662960098C41A /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +216,7 @@
 				42A0DEBD1CC66A170098C41A /* AttentionAPIClient.swift */,
 			);
 			name = API;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		CC3DE574811D3DD5FA8E9718 /* Pods */ = {

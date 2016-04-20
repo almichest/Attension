@@ -51,16 +51,27 @@ class RootViewController: UIViewController {
             }
         )
 
-        AttentionItemDataSource.sharedInstance.query(0, longtitude: 0, radius: 0).on(success: {[weak self] (items) in
-            items.forEach { (item) in
-                let annotation = AttentionAnnotation()
-                annotation.attentionItem = item
-                let coordinate = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longtitude)
-                annotation.coordinate = coordinate
-                self?.mapView.addAnnotation(annotation)
-        }}, failure: nil)
+        AttentionItemDataSource.sharedInstance.subscribe(self)
     }
-    
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        AttentionAPIClient.sharedInstance.getAttentionItems(0, longitude: 0, radius: 0).on(success: { response in
+            let items = response.map({ (resItem) -> AttentionItem in
+                let item = AttentionItem()
+                item.identifier = resItem.identifier
+                item.latitude = resItem.latitude
+                item.longtitude = resItem.longitude
+                item.attentionBody = resItem.attentionBody
+                item.placeName = resItem.placeName
+                return item
+            })
+            AttentionItemDataSource.sharedInstance.addAttentionItems(items)
+
+        }) { (error, isCancelled) in
+            debugPrint("fail")
+        }
+    }
     private func searchLocation(locationName: String) {
         GeoLocationProvider.sharedInstance.searchLocation(locationName).on(success: {[weak self] (mapItems) in
             self?.showMapItems(mapItems)
@@ -77,6 +88,7 @@ class RootViewController: UIViewController {
                 region.center = mapItem.placemark.coordinate
                 region.span = MKCoordinateSpanMake(0.005, 0.005)
                 self.mapView.setRegion(region, animated: true)
+                self.searchItems()
             })
         }
         let nav = UINavigationController(rootViewController: vc)
@@ -88,6 +100,25 @@ class RootViewController: UIViewController {
         vc.navigationItem.title = "Search Result"
         self.presentViewController(nav, animated: true, completion: nil)
     }
+
+    private func searchItems() {
+//        AttentionAPIClient.sharedInstance.getAttentionItems(0, longitude: 0, radius: 0).on(success: { response in
+//            let items = response.map({ (resItem) -> AttentionItem in
+//                let item = AttentionItem()
+//                item.identifier = resItem.identifier
+//                item.latitude = resItem.latitude
+//                item.longtitude = resItem.longitude
+//                item.attentionBody = resItem.attentionBody
+//                item.placeName = resItem.placeName
+//                return item
+//            })
+//            AttentionItemDataSource.sharedInstance.addAttentionItems(items)
+//
+//        }) { (error, isCancelled) in
+//            debugPrint("fail")
+//        }
+    }
+
     
     private func showNoResultError() {
         let alert = UIAlertController(title: "No Result", message: "No result found. Please try for another location name.", preferredStyle: .Alert)
@@ -177,3 +208,16 @@ extension RootViewController: MKMapViewDelegate {
     }
 }
 
+extension RootViewController: AttentionItemDataSourceReceiver {
+    func datasetDidChange(dataSource: AttentionItemDataSource) {
+        dataSource.query(0, longtitude: 0, radius: 0).on(success: { (items) in
+            items.forEach({ (item) in
+                let coordinate = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longtitude)
+                let annotation = AttentionAnnotation()
+                annotation.attentionItem = item
+                annotation.coordinate = coordinate
+                self.mapView.addAnnotation(annotation)
+            })
+        }, failure: nil)
+    }
+}

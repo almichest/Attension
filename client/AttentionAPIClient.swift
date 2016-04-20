@@ -24,6 +24,7 @@ public class AttentionAPIClient: NSObject {
                     }).map({ (item) -> AttentionResponseItem in
                         item!
                     })
+                    print(items)
                     fulfill(items)
 
                 case .Failure(let error):
