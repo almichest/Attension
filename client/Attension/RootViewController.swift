@@ -11,7 +11,7 @@ import MapKit
 import BlocksKit
 
 class RootViewController: UIViewController {
-
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchBar: GeoLocationSearchBar!
     
@@ -29,8 +29,8 @@ class RootViewController: UIViewController {
             self?.mapView.addAnnotation(annotation)
             self?.currentAnnotation = annotation
             self?.showPopupForAddingAttentionItem(location, annotation: annotation)
-        
-        } as! UILongPressGestureRecognizer
+            
+            } as! UILongPressGestureRecognizer
         
         mapView.addGestureRecognizer(tap)
         mapView.delegate = self
@@ -50,10 +50,10 @@ class RootViewController: UIViewController {
                 debugPrint(error)
             }
         )
-
+        
         AttentionItemDataSource.sharedInstance.subscribe(self)
     }
-
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         AttentionAPIClient.sharedInstance.getAttentionItems(0, longitude: 0, radius: 0).on(success: { response in
@@ -64,10 +64,11 @@ class RootViewController: UIViewController {
                 item.longtitude = resItem.longitude
                 item.attentionBody = resItem.attentionBody
                 item.placeName = resItem.placeName
+                item.onServer = true
                 return item
             })
             AttentionItemDataSource.sharedInstance.addAttentionItems(items)
-
+            
         }) { (error, isCancelled) in
             debugPrint("fail")
         }
@@ -100,33 +101,33 @@ class RootViewController: UIViewController {
         vc.navigationItem.title = "Search Result"
         self.presentViewController(nav, animated: true, completion: nil)
     }
-
+    
     private func searchItems() {
-//        AttentionAPIClient.sharedInstance.getAttentionItems(0, longitude: 0, radius: 0).on(success: { response in
-//            let items = response.map({ (resItem) -> AttentionItem in
-//                let item = AttentionItem()
-//                item.identifier = resItem.identifier
-//                item.latitude = resItem.latitude
-//                item.longtitude = resItem.longitude
-//                item.attentionBody = resItem.attentionBody
-//                item.placeName = resItem.placeName
-//                return item
-//            })
-//            AttentionItemDataSource.sharedInstance.addAttentionItems(items)
-//
-//        }) { (error, isCancelled) in
-//            debugPrint("fail")
-//        }
+        //        AttentionAPIClient.sharedInstance.getAttentionItems(0, longitude: 0, radius: 0).on(success: { response in
+        //            let items = response.map({ (resItem) -> AttentionItem in
+        //                let item = AttentionItem()
+        //                item.identifier = resItem.identifier
+        //                item.latitude = resItem.latitude
+        //                item.longtitude = resItem.longitude
+        //                item.attentionBody = resItem.attentionBody
+        //                item.placeName = resItem.placeName
+        //                return item
+        //            })
+        //            AttentionItemDataSource.sharedInstance.addAttentionItems(items)
+        //
+        //        }) { (error, isCancelled) in
+        //            debugPrint("fail")
+        //        }
     }
-
+    
     
     private func showNoResultError() {
         let alert = UIAlertController(title: "No Result", message: "No result found. Please try for another location name.", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Cancel) { (action) in
-                self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismissViewControllerAnimated(true, completion: nil)
             }
         )
-            
+        
         self.presentViewController(alert, animated: true, completion: nil)
     }
 }
@@ -162,7 +163,7 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
                 }
                 
                 self?.dismissViewControllerAnimated(true, completion: nil)
-            }, forControlEvents: .TouchUpInside)
+                }, forControlEvents: .TouchUpInside)
         }
     }
     
@@ -184,7 +185,7 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
 extension RootViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         guard let attentionAnnotation = view.annotation as? AttentionAnnotation else { return }
-
+        
         let vc = AnnotationBodyViewController.viewController()
         let _ = vc.view
         if let item = attentionAnnotation.attentionItem {
@@ -194,14 +195,14 @@ extension RootViewController: MKMapViewDelegate {
             vc.titleLabel.text = "No information"
             vc.bodyLabel.text = "No information"
         }
-
+        
         vc.modalPresentationStyle = .Popover
         vc.popoverPresentationController?.permittedArrowDirections = [.Up, .Down]
         vc.popoverPresentationController?.sourceRect = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: 0, height: 0)
         vc.popoverPresentationController?.sourceView = mapView
         vc.popoverPresentationController?.delegate = self
         vc.preferredContentSize = CGSize(width: self.view.bounds.width, height: 200)
-
+        
         presentViewController(vc, animated: true) {
             self.mapView.deselectAnnotation(attentionAnnotation, animated: true)
         }
@@ -218,6 +219,6 @@ extension RootViewController: AttentionItemDataSourceReceiver {
                 annotation.coordinate = coordinate
                 self.mapView.addAnnotation(annotation)
             })
-        }, failure: nil)
+            }, failure: nil)
     }
 }

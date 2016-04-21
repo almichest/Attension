@@ -37,7 +37,7 @@ DEPENDENCIES:
   - Himotoki
   - INTULocationManager
   - R.swift
-  - RealmSwift
+  - RealmSwift (= 0.98.7)
   - SwiftTask
 
 SPEC CHECKSUMS:

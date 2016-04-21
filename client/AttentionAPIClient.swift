@@ -10,9 +10,9 @@ import APIKit
 import SwiftTask
 
 public class AttentionAPIClient: NSObject {
-
+    
     public static let sharedInstance = AttentionAPIClient()
-
+    
     func getAttentionItems(latitude: Double, longitude: Double, radius: Double) -> Task<Float, [AttentionResponseItem], NSError> {
         return Task<Float, [AttentionResponseItem], NSError>(promiseInitClosure: { (fulfill, reject) in
             let request = GetItemsRequest()
@@ -24,9 +24,9 @@ public class AttentionAPIClient: NSObject {
                     }).map({ (item) -> AttentionResponseItem in
                         item!
                     })
-                    print(items)
+                    debugPrint(items)
                     fulfill(items)
-
+                    
                 case .Failure(let error):
                     debugPrint(error)
                     reject(NSError(domain: "", code: 0, userInfo: nil))
@@ -34,10 +34,20 @@ public class AttentionAPIClient: NSObject {
             }
         })
     }
-
+    
     func createNewAttentionItem(item: AttentionItem) -> Task<Float, PostResult, NSError> {
         return Task<Float, PostResult, NSError>(promiseInitClosure: { (fulfill, reject) in
-            let request = PostItemRequest()
+            let request = PostItemRequest(item: item)
+            Session.sendRequest(request) { (result) in
+                debugPrint(result)
+                switch result {
+                case .Success(let response):
+                    fulfill(response)
+                case .Failure(let error):
+                    debugPrint(error)
+                    reject(NSError(domain: "", code: 0, userInfo: nil))
+                }
+            }
         })
     }
 }

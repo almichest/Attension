@@ -15,13 +15,13 @@ class AttentionItemDataSource: NSObject {
     static let sharedInstance = AttentionItemDataSource()
     private let realm = try! Realm()
     private var realmToken: NotificationToken?
-
+    
     deinit {
         realmToken?.stop()
     }
-
+    
     private var receivers: [AttentionItemDataSourceReceiver] = []
-
+    
     func subscribe(receiver: AttentionItemDataSourceReceiver) {
         if receivers.count == 0 {
             realmToken = self.realm.addNotificationBlock {[weak self] (notification, realm) in
@@ -31,21 +31,21 @@ class AttentionItemDataSource: NSObject {
                 }
             }
         }
-
+        
         guard !receivers.contains({$0 === receiver}) else {return}
         receivers.append(receiver)
     }
-
+    
     func unsubscribe(receiver: AttentionItemDataSourceReceiver) {
         if let index = receivers.indexOf({$0 === receiver}) {
             receivers.removeAtIndex(index)
         }
-
+        
         if receivers.count == 0 {
             realmToken?.stop()
         }
     }
-
+    
     //TODO: filter
     func query(latitude: CLLocationDegrees, longtitude: CLLocationDegrees, radius: Double) -> Task<Float, [AttentionItem], NSError> {
         return Task<Float, [AttentionItem], NSError>{ fulfill, reject in
@@ -53,11 +53,11 @@ class AttentionItemDataSource: NSObject {
             fulfill(result)
         }
     }
-
+    
     func addAttentionItems(items: [AttentionItem]) {
         try! realm.write {
             items.forEach({ (item) in
-                item.identifier = createIdentifier(item)
+                item.identifier = item.createIdentifier()
                 realm.add(item, update: true)
             })
         }
@@ -75,10 +75,6 @@ class AttentionItemDataSource: NSObject {
         try! realm.write {
             realm.deleteAll()
         }
-    }
-
-    private func createIdentifier(item: AttentionItem) -> String {
-        return String(item.latitude) + String(item.longtitude)
     }
 }
 

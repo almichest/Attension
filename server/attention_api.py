@@ -10,20 +10,25 @@ class Get(object):
 
     _OK = '0'
     _INVALID_QUERY = '1'
+    _ok_dic = {"error_code" : 0}
 
     def on_get(self, req, resp):
+        if hasattr(req, 'query_string'):
+            print('get : ' + req.query_string)
+        else:
+            print('get')
 
         if hasattr(req, 'query_string') and req.query_string.count('debug=true'):
-            items = _database.get_items()
-        else:
             items = _debug_database.get_items()
+        else:
+            items = _database.get_items()
 
         if hasattr(req, 'query_string') and 0 < len(req.query_string):
             print('query = ' + req.query_string)
             validation = self.validate_query(req.query_string)
             if validation[0] == '400':
                 resp.status = falcon.HTTP_400
-                error = '{error_code : ' + validation[1] + '}'
+                error = '{"error_code" : ' + validation[1] + '}'
                 resp.body = error
                 return
 
@@ -50,18 +55,19 @@ class Post(object):
     _INVALID_CONTENT_LENGTH = '2'
     _INVALID_CONTENT_BODY = '3'
     _SAME_IDENTIFIER_ALREADY_EXISTS = '4'
+    _ok_dic = {"error_code" : 0}
 
     def on_post(self, req, resp):
 
         if hasattr(req, 'query_string') and req.query_string.count('debug=true'):
-            database = _database
-        else:
             database = _debug_database
+        else:
+            database = _database
 
         validation = self.validate_post_request_header(req)
         if validation[0] == '400':
             resp.status = falcon.HTTP_400
-            error = '{error_code : ' + validation[1] + '}'
+            error = '{"error_code" : ' + validation[1] + '}'
             resp.body = error
             return
 
@@ -82,14 +88,15 @@ class Post(object):
         validation = self.validate_post_request_body(dic)
         if validation[0] == '400':
             resp.status = falcon.HTTP_400
-            error = '{error_code : ' + validation[1] + '}'
+            error = '{"error_code" : ' + validation[1] + '}'
             resp.body = error
             return
 
         self.add_item(dic, database)
 
         resp.status = falcon.HTTP_200
-        resp.body = ''
+        print(json.dumps(self._ok_dic))
+        resp.body = json.dumps(self._ok_dic)
 
     def add_item(self, dic, database):
         item = AttentionItem()

@@ -5,7 +5,7 @@ import urllib3
 
 def main():
     identifier = sys.argv[1]
-    url = 'http://localhost:8000/api/add'
+    url = 'http://localhost:8000/api/add?debug=true'
 
     post_data = json.dumps({
         'identifier': identifier,

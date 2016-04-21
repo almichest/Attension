@@ -9,6 +9,13 @@
 import APIKit
 
 class PostItemRequest: AttentionRequestType {
+    
+    let item: AttentionItem
+    
+    init(item: AttentionItem) {
+        self.item = item
+    }
+    
     typealias Response = PostResult
     
     var method: HTTPMethod {
@@ -16,7 +23,15 @@ class PostItemRequest: AttentionRequestType {
     }
     
     var path: String {
-        return ""
+        return "add/"
+    }
+    
+    var requestBodyBuilder: RequestBodyBuilder {
+        return .JSON(writingOptions: .PrettyPrinted)
+    }
+    
+    var parameters: [String : AnyObject] {
+        return item.toDictionary()
     }
     
     func responseFromObject(object: AnyObject, URLResponse: NSHTTPURLResponse) -> Response? {

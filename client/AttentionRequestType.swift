@@ -15,4 +15,16 @@ extension AttentionRequestType {
     var baseURL: NSURL {
         return NSURL(string: "http://localhost:8000/api/")!
     }
+    
+    var HTTPHeaderFields: [String : String] {
+        return ["Content-Type" : "application/json"]
+    }
+    
+    var parameters: [String : AnyObject] {
+        return ["debug" : true]
+    }
+    
+    var acceptableStatusCodes: Set<Int> {
+        return Set(200..<500)
+    }
 }
