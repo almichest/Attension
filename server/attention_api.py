@@ -4,6 +4,7 @@ from attention_item import AttentionItem
 from db.db import AttentionDatabase
 
 _database = AttentionDatabase(db_name='db.sqlite3')
+_debug_database = AttentionDatabase(db_name='debug_db.sqlite3')
 
 class Get(object):
 
@@ -11,7 +12,11 @@ class Get(object):
     _INVALID_QUERY = '1'
 
     def on_get(self, req, resp):
-        items = _database.get_items()
+
+        if hasattr(req, 'query_string') and req.query_string.count('debug=true'):
+            items = _database.get_items()
+        else:
+            items = _debug_database.get_items()
 
         if hasattr(req, 'query_string') and 0 < len(req.query_string):
             print('query = ' + req.query_string)
@@ -48,6 +53,11 @@ class Post(object):
 
     def on_post(self, req, resp):
 
+        if hasattr(req, 'query_string') and req.query_string.count('debug=true'):
+            database = _database
+        else:
+            database = _debug_database
+
         validation = self.validate_post_request_header(req)
         if validation[0] == '400':
             resp.status = falcon.HTTP_400
@@ -76,12 +86,12 @@ class Post(object):
             resp.body = error
             return
 
-        self.add_item(dic)
+        self.add_item(dic, database)
 
         resp.status = falcon.HTTP_200
         resp.body = ''
 
-    def add_item(self, dic):
+    def add_item(self, dic, database):
         item = AttentionItem()
         item.identifier = dic['identifier']
         if 'place_name' in dic:
@@ -93,7 +103,7 @@ class Post(object):
         if 'longitude' in dic:
             item.longitude = dic['longitude']
 
-        _database.insert(item)
+        database.insert(item)
 
     def validate_post_request_header(self, req):
         if req.content_type != 'application/json':

@@ -9,23 +9,21 @@
 import APIKit
 
 class PostItemRequest: AttentionRequestType {
-    typealias Response = 
-
+    typealias Response = PostResult
+    
     var method: HTTPMethod {
         return .POST
     }
-
+    
     var path: String {
         return ""
     }
-
+    
     func responseFromObject(object: AnyObject, URLResponse: NSHTTPURLResponse) -> Response? {
-        guard let result = object as? [[String : AnyObject]] else {
+        guard let result = object as? [String : AnyObject] else {
             return nil
         }
-
-        return result.map {(dictionary) in
-            try? AttentionResponseItem.decodeValue(dictionary)
-        }
+        
+        return try? PostResult.decodeValue(result)
     }
 }

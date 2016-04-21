@@ -34,4 +34,10 @@ public class AttentionAPIClient: NSObject {
             }
         })
     }
+
+    func createNewAttentionItem(item: AttentionItem) -> Task<Float, PostResult, NSError> {
+        return Task<Float, PostResult, NSError>(promiseInitClosure: { (fulfill, reject) in
+            let request = PostItemRequest()
+        })
+    }
 }
