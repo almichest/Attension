@@ -34,6 +34,8 @@
 		42A0DEBC1CC667480098C41A /* AttentionResponseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEBB1CC667480098C41A /* AttentionResponseItem.swift */; };
 		42A0DEBE1CC66A170098C41A /* AttentionAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEBD1CC66A170098C41A /* AttentionAPIClient.swift */; };
 		42A0DEC01CC66F2D0098C41A /* AttentionAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */; };
+		42A0DEC31CC902290098C41A /* PostItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEC21CC902290098C41A /* PostItemRequest.swift */; };
+		42A0DEC51CC902EA0098C41A /* PostResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEC41CC902EA0098C41A /* PostResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		42A0DEBB1CC667480098C41A /* AttentionResponseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionResponseItem.swift; sourceTree = "<group>"; };
 		42A0DEBD1CC66A170098C41A /* AttentionAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionAPIClient.swift; sourceTree = "<group>"; };
 		42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionAPITests.swift; sourceTree = "<group>"; };
+		42A0DEC21CC902290098C41A /* PostItemRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItemRequest.swift; sourceTree = "<group>"; };
+		42A0DEC41CC902EA0098C41A /* PostResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostResult.swift; sourceTree = "<group>"; };
 		6E024979BF18D315370E7E0D /* Pods_Attension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Attension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79444ABCA0915F5FFC1112EC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D636FFC6387FE4AB2BAADF63 /* Pods-Attension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Attension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Attension/Pods-Attension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -210,10 +214,12 @@
 		42A0DEB61CC662960098C41A /* API */ = {
 			isa = PBXGroup;
 			children = (
+				42A0DEBD1CC66A170098C41A /* AttentionAPIClient.swift */,
 				42A0DEB91CC663320098C41A /* AttentionRequestType.swift */,
 				42A0DEB71CC662C70098C41A /* GetItemsRequest.swift */,
+				42A0DEC21CC902290098C41A /* PostItemRequest.swift */,
 				42A0DEBB1CC667480098C41A /* AttentionResponseItem.swift */,
-				42A0DEBD1CC66A170098C41A /* AttentionAPIClient.swift */,
+				42A0DEC41CC902EA0098C41A /* PostResult.swift */,
 			);
 			name = API;
 			path = ..;
@@ -443,6 +449,8 @@
 				42A0DEBC1CC667480098C41A /* AttentionResponseItem.swift in Sources */,
 				426343B61CBE8FD300D39185 /* AttentionItemDataSource.swift in Sources */,
 				421F1E541CB2B911008307A5 /* LocationManager.swift in Sources */,
+				42A0DEC51CC902EA0098C41A /* PostResult.swift in Sources */,
+				42A0DEC31CC902290098C41A /* PostItemRequest.swift in Sources */,
 				426343B51CBE8FD300D39185 /* AttentionItem.swift in Sources */,
 				422F2E961CB931A200F74FBF /* LocationSelectViewController.swift in Sources */,
 				42A0DEBA1CC663320098C41A /* AttentionRequestType.swift in Sources */,
