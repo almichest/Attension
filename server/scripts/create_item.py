@@ -9,8 +9,8 @@ def main():
 
     post_data = json.dumps({
         'identifier': identifier,
-        'attention_body': '$BEj9F%F%9%H(B',
-        'place_name':  '$B?7=I1XElFn8}(B',
+        'attention_body': '投稿テスト',
+        'place_name':  '新宿駅東南口',
         'latitude': 35.6899585624,
         'longitude': 139.7004931789
     })
