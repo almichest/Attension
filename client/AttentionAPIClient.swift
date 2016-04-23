@@ -6,7 +6,6 @@
 //  Copyright © 2016年 Hiraku Ohno. All rights reserved.
 //
 
-import APIKit
 import SwiftTask
 import Firebase
 
