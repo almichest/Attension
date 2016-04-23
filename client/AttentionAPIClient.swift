@@ -9,21 +9,24 @@
 import SwiftTask
 import Firebase
 
+let APIErrorDomain = "APIError"
+enum APIErrorCode: Int {
+    case GeneralError
+}
+
 public class AttentionAPIClient: NSObject {
 
-    static let sharedClient = AttentionAPIClient()
+    public static let sharedClient = AttentionAPIClient()
 
     private let firebase = Firebase(url: firebaseUrl)
 
-    public static let sharedInstance = AttentionAPIClient()
-    
     func getAttentionItems(latitude: Double, longitude: Double, radius: Double) -> Task<Float, [AttentionResponseItem], NSError> {
         print("fetch - \(latitude), \(longitude), \(radius)")
         return Task<Float, [AttentionResponseItem], NSError>(promiseInitClosure: { (fulfill, reject) in
             self.firebase.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 print("fetch result - \(snapshot.value)")
-                guard let value = snapshot.value as? Dictionary<String, Dictionary<String, AnyObject>>else {
-                    fulfill([])
+                guard let value = snapshot.value as? Dictionary<String, Dictionary<String, AnyObject>> else {
+                    reject(NSError(domain: APIErrorDomain, code: APIErrorCode.GeneralError.rawValue, userInfo: nil))
                     return
                 }
 
@@ -40,15 +43,17 @@ public class AttentionAPIClient: NSObject {
         })
     }
 
-    func createNewAttentionItem(item: AttentionItem) -> Task<Float, PostResult, NSError> {
-        return Task<Float, PostResult, NSError>(promiseInitClosure: { (fulfill, reject) in
+    func createNewAttentionItem(item: AttentionItem) -> Task<Float, AttentionItem, NSError> {
+        return Task<Float, AttentionItem, NSError>(promiseInitClosure: { (fulfill, reject) in
             let attentionsRef = self.firebase.childByAppendingPath("attentions/")
-            let item = item.toDictionary(false)
-            attentionsRef.childByAutoId().setValue(item) { (error, firebase) in
-                if let error = error {
-                    reject(error)
+            let dic = item.toDictionary(false)
+            attentionsRef.childByAutoId().setValue(dic) { (error, firebase) in
+                print("create complete. key = \(firebase.key)")
+                if let key = firebase.key {
+                    item.identifier = key
+                    fulfill(item)
                 } else {
-                    fulfill(.OK)
+                    reject(NSError(domain: APIErrorDomain, code: APIErrorCode.GeneralError.rawValue, userInfo: nil))
                 }
             }
         })

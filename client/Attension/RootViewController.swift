@@ -56,7 +56,7 @@ class RootViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-//        searchItems()
+        searchItems()
     }
     private func searchLocation(locationName: String) {
         GeoLocationProvider.sharedInstance.searchLocation(locationName).on(success: {[weak self] (mapItems) in
@@ -74,7 +74,6 @@ class RootViewController: UIViewController {
                 region.center = mapItem.placemark.coordinate
                 region.span = MKCoordinateSpanMake(0.005, 0.005)
                 self.mapView.setRegion(region, animated: true)
-                self.searchItems()
             })
         }
         let nav = UINavigationController(rootViewController: vc)
@@ -88,7 +87,7 @@ class RootViewController: UIViewController {
     }
     
     private func searchItems() {
-        AttentionAPIClient.sharedInstance.getAttentionItems(0, longitude: 0, radius: 0).on(success: { response in
+        AttentionAPIClient.sharedClient.getAttentionItems(0, longitude: 0, radius: 0).on(success: { response in
             let items = response.map({ (resItem) -> AttentionItem in
                 let item = AttentionItem()
                 item.identifier = resItem.identifier
@@ -160,6 +159,10 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
         let vc = UIAlertController(title: "Please Share.", message: "Please share this helpful information with others.", preferredStyle: .Alert)
 
         vc.addAction(UIAlertAction(title: "Yes", style: .Default) { (action) in
+            AttentionAPIClient.sharedClient.createNewAttentionItem(item).on(success: { (item) in
+                AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+            }, failure: { (error, isCancelled) in
+            })
         })
 
         vc.addAction(UIAlertAction(title: "No", style: .Default) { (action) in
