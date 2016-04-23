@@ -9,22 +9,8 @@
 import UIKit
 import Himotoki
 
-enum PostError: Int {
-    case OK = 0
-    case Duplicate = 1
-    case GeneralError = 2
-}
-
-struct PostResult: Decodable {
-    private let errorCode: Int
-    
-    var error: PostError {
-        return PostError(rawValue: errorCode) ?? .GeneralError
-    }
-    
-    static func decode(e: Extractor) throws -> PostResult {
-        return try PostResult (
-            errorCode: e <| "error_code"
-        )
-    }
+enum PostResult: Int {
+    case OK
+    case Duplicate
+    case Error
 }

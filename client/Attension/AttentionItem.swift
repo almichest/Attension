@@ -30,13 +30,16 @@ extension AttentionItem {
     }
     
     /* onServer should be in response only. */
-    func toDictionary() -> [String : AnyObject] {
-        return ["identifier"     : identifier,
-                "latitude"       : latitude,
-                "longitude"      : longtitude,
-                "attention_body" : attentionBody,
-                "place_name"     : placeName]
-        
+    func toDictionary(includeIdentifier: Bool = true) -> [String : AnyObject] {
+        var ret: [String : AnyObject] = ["latitude"       : latitude,
+                                         "longitude"      : longtitude,
+                                         "attention_body" : attentionBody,
+                                         "place_name"     : placeName]
+
+        if includeIdentifier {
+            ret["identifier"] = identifier
+        }
+        return ret
     }
 }
 

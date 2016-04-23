@@ -23,6 +23,7 @@ Pods/*
 *.swp
 !.gitkeep
 .DS_Store
+Config.swift
 
 # R.swift
 *.generated.swift

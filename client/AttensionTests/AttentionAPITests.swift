@@ -31,7 +31,7 @@ class AttentionAPITests: XCTestCase {
         let date = NSDate()
         item.identifier = "hogehoge\(UInt(date.timeIntervalSince1970))"
         AttentionAPIClient.sharedInstance.createNewAttentionItem(item).on(success: { (result) in
-            XCTAssert(result.error == .OK)
+            XCTAssert(result == .OK)
             expectation.fulfill()
         }) { (error, isCancelled) in
             XCTFail()

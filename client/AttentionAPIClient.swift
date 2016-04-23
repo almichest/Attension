@@ -8,44 +8,48 @@
 
 import APIKit
 import SwiftTask
+import Firebase
 
 public class AttentionAPIClient: NSObject {
-    
+
+    static let sharedClient = AttentionAPIClient()
+
+    private let firebase = Firebase(url: firebaseUrl)
+
     public static let sharedInstance = AttentionAPIClient()
     
     func getAttentionItems(latitude: Double, longitude: Double, radius: Double) -> Task<Float, [AttentionResponseItem], NSError> {
+        print("fetch - \(latitude), \(longitude), \(radius)")
         return Task<Float, [AttentionResponseItem], NSError>(promiseInitClosure: { (fulfill, reject) in
-            let request = GetItemsRequest()
-            Session.sendRequest(request) { (result) in
-                switch result {
-                case .Success(let responseItems):
-                    let items = responseItems.filter({(item) in
-                        item != nil
-                    }).map({ (item) -> AttentionResponseItem in
-                        item!
-                    })
-                    debugPrint(items)
-                    fulfill(items)
-                    
-                case .Failure(let error):
-                    debugPrint(error)
-                    reject(NSError(domain: "", code: 0, userInfo: nil))
+            self.firebase.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                print("fetch result - \(snapshot.value)")
+                guard let value = snapshot.value as? Dictionary<String, Dictionary<String, AnyObject>>else {
+                    fulfill([])
+                    return
                 }
-            }
+
+                let items = value.map({ (key, dic) -> AttentionResponseItem? in
+                    var copy = dic
+                    copy["identifier"] = key
+
+                    return try? AttentionResponseItem.decodeValue(copy)
+
+                }).filter({ $0 != nil }).map({$0!})
+
+                fulfill(items)
+            })
         })
     }
-    
+
     func createNewAttentionItem(item: AttentionItem) -> Task<Float, PostResult, NSError> {
         return Task<Float, PostResult, NSError>(promiseInitClosure: { (fulfill, reject) in
-            let request = PostItemRequest(item: item)
-            Session.sendRequest(request) { (result) in
-                debugPrint(result)
-                switch result {
-                case .Success(let response):
-                    fulfill(response)
-                case .Failure(let error):
-                    debugPrint(error)
-                    reject(NSError(domain: "", code: 0, userInfo: nil))
+            let attentionsRef = self.firebase.childByAppendingPath("attentions/")
+            let item = item.toDictionary(false)
+            attentionsRef.childByAutoId().setValue(item) { (error, firebase) in
+                if let error = error {
+                    reject(error)
+                } else {
+                    fulfill(.OK)
                 }
             }
         })
