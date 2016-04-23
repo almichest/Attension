@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		257A9130E860FAD480EE2B0B /* Pods_Attension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E024979BF18D315370E7E0D /* Pods_Attension.framework */; };
+		420DC28E1CCBB75F00D28EA1 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420DC28D1CCBB75F00D28EA1 /* Config.swift */; };
 		421F1E4B1CB16C0D008307A5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421F1E4A1CB16C0D008307A5 /* MapKit.framework */; };
 		421F1E541CB2B911008307A5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421F1E531CB2B911008307A5 /* LocationManager.swift */; };
 		422F2E8F1CB6948F00F74FBF /* GeoLocationSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422F2E8E1CB6948F00F74FBF /* GeoLocationSearchBar.swift */; };
@@ -29,12 +30,9 @@
 		4287D5291CB14ACC00E78E47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4287D5281CB14ACC00E78E47 /* Assets.xcassets */; };
 		4287D52C1CB14ACC00E78E47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4287D52A1CB14ACC00E78E47 /* LaunchScreen.storyboard */; };
 		4287D5371CB14ACC00E78E47 /* AttensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287D5361CB14ACC00E78E47 /* AttensionTests.swift */; };
-		42A0DEB81CC662C70098C41A /* GetItemsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEB71CC662C70098C41A /* GetItemsRequest.swift */; };
-		42A0DEBA1CC663320098C41A /* AttentionRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEB91CC663320098C41A /* AttentionRequestType.swift */; };
 		42A0DEBC1CC667480098C41A /* AttentionResponseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEBB1CC667480098C41A /* AttentionResponseItem.swift */; };
 		42A0DEBE1CC66A170098C41A /* AttentionAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEBD1CC66A170098C41A /* AttentionAPIClient.swift */; };
 		42A0DEC01CC66F2D0098C41A /* AttentionAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */; };
-		42A0DEC31CC902290098C41A /* PostItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEC21CC902290098C41A /* PostItemRequest.swift */; };
 		42A0DEC51CC902EA0098C41A /* PostResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEC41CC902EA0098C41A /* PostResult.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		1A337B5E77ED82F4DFC9479E /* Pods-Attension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Attension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Attension/Pods-Attension.release.xcconfig"; sourceTree = "<group>"; };
+		420DC28D1CCBB75F00D28EA1 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		421F1E4A1CB16C0D008307A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		421F1E4E1CB2B793008307A5 /* Attension-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Attension-Bridging-Header.h"; sourceTree = "<group>"; };
 		421F1E531CB2B911008307A5 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -79,12 +78,9 @@
 		4287D5321CB14ACC00E78E47 /* AttensionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AttensionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4287D5361CB14ACC00E78E47 /* AttensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttensionTests.swift; sourceTree = "<group>"; };
 		4287D5381CB14ACC00E78E47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		42A0DEB71CC662C70098C41A /* GetItemsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetItemsRequest.swift; sourceTree = "<group>"; };
-		42A0DEB91CC663320098C41A /* AttentionRequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionRequestType.swift; sourceTree = "<group>"; };
 		42A0DEBB1CC667480098C41A /* AttentionResponseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionResponseItem.swift; sourceTree = "<group>"; };
 		42A0DEBD1CC66A170098C41A /* AttentionAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionAPIClient.swift; sourceTree = "<group>"; };
 		42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionAPITests.swift; sourceTree = "<group>"; };
-		42A0DEC21CC902290098C41A /* PostItemRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItemRequest.swift; sourceTree = "<group>"; };
 		42A0DEC41CC902EA0098C41A /* PostResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostResult.swift; sourceTree = "<group>"; };
 		6E024979BF18D315370E7E0D /* Pods_Attension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Attension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79444ABCA0915F5FFC1112EC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,11 +211,9 @@
 			isa = PBXGroup;
 			children = (
 				42A0DEBD1CC66A170098C41A /* AttentionAPIClient.swift */,
-				42A0DEB91CC663320098C41A /* AttentionRequestType.swift */,
-				42A0DEB71CC662C70098C41A /* GetItemsRequest.swift */,
-				42A0DEC21CC902290098C41A /* PostItemRequest.swift */,
 				42A0DEBB1CC667480098C41A /* AttentionResponseItem.swift */,
 				42A0DEC41CC902EA0098C41A /* PostResult.swift */,
+				420DC28D1CCBB75F00D28EA1 /* Config.swift */,
 			);
 			name = API;
 			path = ..;
@@ -439,21 +433,19 @@
 				426343CA1CBFD68C00D39185 /* AddingItemViewController.swift in Sources */,
 				422F2E9B1CB932FA00F74FBF /* R.generated.swift in Sources */,
 				4287D5241CB14ACC00E78E47 /* RootViewController.swift in Sources */,
+				420DC28E1CCBB75F00D28EA1 /* Config.swift in Sources */,
 				42A0DEBE1CC66A170098C41A /* AttentionAPIClient.swift in Sources */,
 				426343D21CC1561000D39185 /* AnnotationBodyViewController.swift in Sources */,
 				4287D5221CB14ACC00E78E47 /* AppDelegate.swift in Sources */,
 				426343D01CC153CF00D39185 /* AttentionAnnotation.swift in Sources */,
-				42A0DEB81CC662C70098C41A /* GetItemsRequest.swift in Sources */,
 				422F2E911CB6B79900F74FBF /* GeoLocationProvider.swift in Sources */,
 				422F2E9F1CB95CAB00F74FBF /* UIBarButtonItem+BKWrapper.m in Sources */,
 				42A0DEBC1CC667480098C41A /* AttentionResponseItem.swift in Sources */,
 				426343B61CBE8FD300D39185 /* AttentionItemDataSource.swift in Sources */,
 				421F1E541CB2B911008307A5 /* LocationManager.swift in Sources */,
 				42A0DEC51CC902EA0098C41A /* PostResult.swift in Sources */,
-				42A0DEC31CC902290098C41A /* PostItemRequest.swift in Sources */,
 				426343B51CBE8FD300D39185 /* AttentionItem.swift in Sources */,
 				422F2E961CB931A200F74FBF /* LocationSelectViewController.swift in Sources */,
-				42A0DEBA1CC663320098C41A /* AttentionRequestType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
