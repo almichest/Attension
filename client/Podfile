@@ -11,4 +11,5 @@ target 'Attension' do
     pod 'R.swift'
     pod 'APIKit'
     pod 'Himotoki'
+    pod 'Firebase'
 end

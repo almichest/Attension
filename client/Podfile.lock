@@ -17,6 +17,7 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - Firebase (2.5.1)
   - Himotoki (2.0.0)
   - INTULocationManager (4.2.0)
   - R.swift (2.1.0):
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - Alamofire
   - APIKit
   - BlocksKit
+  - Firebase
   - Himotoki
   - INTULocationManager
   - R.swift
@@ -44,6 +46,7 @@ SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   APIKit: 14c0233ad090ae2dcfc9f642bc8158ff7ad50a4b
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   Himotoki: 77fb61dbd6cd5dae033af630b591fec383eece28
   INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
   R.swift: efff131531b5cf142e28fd94957806ff71ccbcf2
