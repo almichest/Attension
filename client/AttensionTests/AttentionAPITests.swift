@@ -13,7 +13,7 @@ class AttentionAPITests: XCTestCase {
     
     func testGetAPI() {
         let expectation = self.expectationWithDescription("Wait for API response")
-        AttentionAPIClient.sharedInstance.getAttentionItems(0, longitude: 0, radius: 0).on(success: { (items) in
+        AttentionAPIClient.sharedClient.getAttentionItems(0, longitude: 0, radius: 0).on(success: { (items) in
             XCTAssert(0 < items.count)
             expectation.fulfill()
             
@@ -30,8 +30,8 @@ class AttentionAPITests: XCTestCase {
         let item = AttentionItem()
         let date = NSDate()
         item.identifier = "hogehoge\(UInt(date.timeIntervalSince1970))"
-        AttentionAPIClient.sharedInstance.createNewAttentionItem(item).on(success: { (result) in
-            XCTAssert(result == .OK)
+        AttentionAPIClient.sharedClient.createNewAttentionItem(item).on(success: { (item) in
+            XCTAssert(0 < item.identifier.characters.count)
             expectation.fulfill()
         }) { (error, isCancelled) in
             XCTFail()

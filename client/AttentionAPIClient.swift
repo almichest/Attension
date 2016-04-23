@@ -30,15 +30,22 @@ public class AttentionAPIClient: NSObject {
                     return
                 }
 
-                let items = value.map({ (key, dic) -> AttentionResponseItem? in
-                    var copy = dic
+                guard let dic = value["attentions"] else {
+                    reject(NSError(domain: APIErrorDomain, code: APIErrorCode.GeneralError.rawValue, userInfo: nil))
+                    return
+                }
+                let items = Array(dic.keys).map({ (key) -> AttentionResponseItem? in
+                    guard var copy = dic[key] as? [String : AnyObject] else {
+                        return nil
+                    }
                     copy["identifier"] = key
 
                     return try? AttentionResponseItem.decodeValue(copy)
 
-                }).filter({ $0 != nil }).map({$0!})
+                }).filter{$0 != nil}.map{$0!}
 
                 fulfill(items)
+
             })
         })
     }
