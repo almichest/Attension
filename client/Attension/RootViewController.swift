@@ -56,22 +56,7 @@ class RootViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        AttentionAPIClient.sharedInstance.getAttentionItems(0, longitude: 0, radius: 0).on(success: { response in
-            let items = response.map({ (resItem) -> AttentionItem in
-                let item = AttentionItem()
-                item.identifier = resItem.identifier
-                item.latitude = resItem.latitude
-                item.longtitude = resItem.longitude
-                item.attentionBody = resItem.attentionBody
-                item.placeName = resItem.placeName
-                item.onServer = true
-                return item
-            })
-            AttentionItemDataSource.sharedInstance.addAttentionItems(items)
-            
-        }) { (error, isCancelled) in
-            debugPrint("fail")
-        }
+//        searchItems()
     }
     private func searchLocation(locationName: String) {
         GeoLocationProvider.sharedInstance.searchLocation(locationName).on(success: {[weak self] (mapItems) in
@@ -103,21 +88,21 @@ class RootViewController: UIViewController {
     }
     
     private func searchItems() {
-        //        AttentionAPIClient.sharedInstance.getAttentionItems(0, longitude: 0, radius: 0).on(success: { response in
-        //            let items = response.map({ (resItem) -> AttentionItem in
-        //                let item = AttentionItem()
-        //                item.identifier = resItem.identifier
-        //                item.latitude = resItem.latitude
-        //                item.longtitude = resItem.longitude
-        //                item.attentionBody = resItem.attentionBody
-        //                item.placeName = resItem.placeName
-        //                return item
-        //            })
-        //            AttentionItemDataSource.sharedInstance.addAttentionItems(items)
-        //
-        //        }) { (error, isCancelled) in
-        //            debugPrint("fail")
-        //        }
+        AttentionAPIClient.sharedInstance.getAttentionItems(0, longitude: 0, radius: 0).on(success: { response in
+            let items = response.map({ (resItem) -> AttentionItem in
+                let item = AttentionItem()
+                item.identifier = resItem.identifier
+                item.latitude = resItem.latitude
+                item.longtitude = resItem.longitude
+                item.attentionBody = resItem.attentionBody
+                item.placeName = resItem.placeName
+                return item
+            })
+            AttentionItemDataSource.sharedInstance.addAttentionItems(items)
+            
+        }) { (error, isCancelled) in
+            debugPrint("fail")
+        }
     }
     
     
@@ -149,6 +134,7 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
             // viewがloadされてからじゃないとエラーになる
             vc.doneButton.bk_addEventHandler({[weak self] (sender) in
                 let item = AttentionItem()
+                let completion: (() -> Void)
                 if let coordinater = self?.mapView.convertPoint(location, toCoordinateFromView: self!.mapView) {
                     item.latitude = coordinater.latitude
                     item.longtitude = coordinater.longitude
@@ -159,18 +145,34 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
                         item.attentionBody = whatText
                     }
                     annotation.attentionItem = item
-                    self?.registerItem(item)
+                    completion = {self?.registerItem(item)}
+                } else {
+                    completion = {}
                 }
                 
-                self?.dismissViewControllerAnimated(true, completion: nil)
-                }, forControlEvents: .TouchUpInside)
+                self?.dismissViewControllerAnimated(true, completion: completion)
+
+            }, forControlEvents: .TouchUpInside)
         }
     }
-    
+
     private func registerItem(item: AttentionItem) {
-        AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+        let vc = UIAlertController(title: "Please Share.", message: "Please share this helpful information with others.", preferredStyle: .Alert)
+
+        vc.addAction(UIAlertAction(title: "Yes", style: .Default) { (action) in
+        })
+
+        vc.addAction(UIAlertAction(title: "No", style: .Default) { (action) in
+            self.dismissViewControllerAnimated(true, completion: nil)
+            AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+        })
+
+        vc.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        presentViewController(vc, animated: true, completion: nil)
     }
-    
+
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
     }

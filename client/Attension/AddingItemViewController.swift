@@ -17,7 +17,7 @@ class AddingItemViewController: UIViewController {
     
     private lazy var placeHolderLabel: UILabel = {
         let label = UILabel()
-        label.text = "ex) めっちゃ人多い"
+        label.text = "例) 階段だらけ"
         label.sizeToFit()
         label.font = UIFont.systemFontOfSize(14)
         label.alpha = 0.2
@@ -40,6 +40,8 @@ class AddingItemViewController: UIViewController {
         whatTextView.delegate = self
         
         whatTextView.addSubview(placeHolderLabel)
+
+        whereTextField.placeholder = "例) イノセントワールド"
     }
     
     override func viewDidLayoutSubviews() {
