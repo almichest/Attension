@@ -171,9 +171,47 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
         })
 
         vc.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismissViewControllerAnimated(false, completion: nil)
+            self.showAddingItemPopoverWithItem(item)
         })
         presentViewController(vc, animated: true, completion: nil)
+    }
+
+    private func showAddingItemPopoverWithItem(item: AttentionItem) {
+        let vc = AddingItemViewController.viewController()
+        vc.modalPresentationStyle = .Popover
+        vc.popoverPresentationController?.permittedArrowDirections = [.Up, .Down]
+        let coordinate = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longtitude)
+        let location = mapView.convertCoordinate(coordinate, toPointToView: mapView)
+        vc.popoverPresentationController?.sourceRect = CGRect(x: location.x, y: location.y, width: 0, height: 0)
+        vc.popoverPresentationController?.sourceView = mapView
+        vc.popoverPresentationController?.delegate = self
+        vc.preferredContentSize = CGSize(width: view.bounds.width, height: 200)
+        presentViewController(vc, animated: true) {
+            // viewがloadされてからじゃないとエラーになる
+            vc.whatTextView.text = item.attentionBody
+            vc.whereTextField.text = item.placeName
+            vc.hidePlaceHolderIfNeeded()
+            vc.doneButton.bk_addEventHandler({[weak self] (sender) in
+                let completion: (() -> Void)
+                if let coordinater = self?.mapView.convertPoint(location, toCoordinateFromView: self!.mapView) {
+                    item.latitude = coordinater.latitude
+                    item.longtitude = coordinater.longitude
+                    if let whereText = vc.whereTextField.text {
+                        item.placeName = whereText
+                    }
+                    if let whatText = vc.whatTextView.text {
+                        item.attentionBody = whatText
+                    }
+                    completion = {self?.registerItem(item)}
+                } else {
+                    completion = {}
+                }
+                
+                self?.dismissViewControllerAnimated(true, completion: completion)
+
+            }, forControlEvents: .TouchUpInside)
+        }
     }
 
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {

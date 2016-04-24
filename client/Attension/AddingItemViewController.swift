@@ -49,10 +49,14 @@ class AddingItemViewController: UIViewController {
         placeHolderLabel.frame.origin.x = 8
         placeHolderLabel.frame.origin.y = 4
     }
+
+    func hidePlaceHolderIfNeeded() {
+        placeHolderLabel.hidden = (0 < whatTextView.text.characters.count)
+    }
 }
 
 extension AddingItemViewController: UITextViewDelegate {
     func textViewDidChange(textView: UITextView) {
-        placeHolderLabel.hidden = (0 < textView.text.characters.count)
+        hidePlaceHolderIfNeeded()
     }
 }
