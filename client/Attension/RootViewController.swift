@@ -37,6 +37,7 @@ class RootViewController: UIViewController {
 
         let tap = UITapGestureRecognizer.bk_recognizerWithHandler {[weak self] (recognizer, state, point) in
             self?.hideMapItems(true)
+            self?.searchBar.resignFirstResponder()
         } as! UITapGestureRecognizer
         mapView.addGestureRecognizer(tap)
         
