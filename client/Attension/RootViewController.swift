@@ -40,10 +40,12 @@ class RootViewController: UIViewController {
         } as! UITapGestureRecognizer
         mapView.addGestureRecognizer(tap)
         
-        searchBar.searchButtonHandler = {(searchBar) in
+        searchBar.searchHandler = {(searchBar) in
             guard let text = searchBar.text else {return}
             self.searchLocation(text)
         }
+
+        searchBar.startHandler = {(searchBar) in self.showLocationSearchResultView()}
         
         LocationManager.sharedInstance.requestLocation().on(success: { (location) in
             var region = self.mapView.region
@@ -63,24 +65,19 @@ class RootViewController: UIViewController {
         super.viewDidAppear(animated)
         searchItems()
     }
+
     private func searchLocation(locationName: String) {
-        GeoLocationProvider.sharedInstance.searchLocation(locationName).on(success: {[weak self] (mapItems) in
-            self?.showMapItems(mapItems)
-        })
+        GeoLocationProvider.sharedInstance.searchLocation(locationName).on(success: {[weak self] (items) in
+            self?.updateMapItems(items)
+        }) {[weak self] (error, isCancelled) in
+            self?.updateMapItems([])
+        }
     }
 
     private var locationSelectViewController: LocationSelectViewController?
-    private func showMapItems(mapItems: [MKMapItem]) {
-        let animate: Bool
-        if let _ = locationSelectViewController {
-            hideMapItems(false)
-            animate = false
-        } else {
-            animate = true
-        }
+    private func showLocationSearchResultView() {
 
-
-        let vc = LocationSelectViewController.viewController(mapItems)
+        let vc = LocationSelectViewController.viewController()
         vc.mapItemSelectionHandler = {(mapItem) in
             var region = self.mapView.region
             region.center = mapItem.placemark.coordinate
@@ -94,15 +91,15 @@ class RootViewController: UIViewController {
         vc.didMoveToParentViewController(self)
         locationSelectViewController = vc
 
-        if animate {
-            vc.view.frame = CGRect(x: 0, y: view.bounds.size.height, width: view.bounds.size.width, height: 150)
-            UIView.animateWithDuration(0.5, animations: {
-                vc.view.frame = CGRect(x: 0, y: self.view.bounds.size.height - 150, width: self.view.bounds.size.width, height: 150)
-            })
-        } else {
-            vc.view.frame = CGRect(x: 0, y: view.bounds.size.height - 150, width: view.bounds.size.width, height: 150)
-        }
+        vc.view.frame = CGRect(x: 0, y: view.bounds.size.height, width: view.bounds.size.width, height: 150)
+        UIView.animateWithDuration(0.5, animations: {
+            vc.view.frame = CGRect(x: 0, y: self.view.bounds.size.height - 150, width: self.view.bounds.size.width, height: 150)
+        })
+    }
 
+    private func updateMapItems(mapItems: [MKMapItem]) {
+        guard let vc = locationSelectViewController else {return}
+        vc.mapItems = mapItems
     }
 
     private func hideMapItems(animated: Bool) {

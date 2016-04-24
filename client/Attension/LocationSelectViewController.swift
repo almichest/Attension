@@ -10,16 +10,19 @@ import UIKit
 import MapKit
 
 class LocationSelectViewController: UIViewController {
-    static func viewController(mapItems: [MKMapItem]) -> LocationSelectViewController {
+    static func viewController() -> LocationSelectViewController {
         guard let vc = R.storyboard.locationSelectViewController.initialViewController() else {
             fatalError()
         }
         
-        vc.mapItems = mapItems
         return vc
     }
-    
-    private var mapItems: [MKMapItem]?
+
+    var mapItems: [MKMapItem]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     var mapItemSelectionHandler: ((MKMapItem) -> ())?
     
