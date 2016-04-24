@@ -19,7 +19,7 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tap = UILongPressGestureRecognizer.bk_recognizerWithHandler {[weak self] (sender, state, location) in
+        let longPress = UILongPressGestureRecognizer.bk_recognizerWithHandler {[weak self] (sender, state, location) in
             
             guard self != nil && state == .Began else {return}
             
@@ -32,8 +32,13 @@ class RootViewController: UIViewController {
             
             } as! UILongPressGestureRecognizer
         
-        mapView.addGestureRecognizer(tap)
+        mapView.addGestureRecognizer(longPress)
         mapView.delegate = self
+
+        let tap = UITapGestureRecognizer.bk_recognizerWithHandler {[weak self] (recognizer, state, point) in
+            self?.hideMapItems(true)
+        } as! UITapGestureRecognizer
+        mapView.addGestureRecognizer(tap)
         
         searchBar.searchButtonHandler = {(searchBar) in
             guard let text = searchBar.text else {return}
@@ -65,25 +70,61 @@ class RootViewController: UIViewController {
             self?.showNoResultError()
         }
     }
-    
+
+    private var locationSelectViewController: LocationSelectViewController?
     private func showMapItems(mapItems: [MKMapItem]) {
+        let animate: Bool
+        if let _ = locationSelectViewController {
+            hideMapItems(false)
+            animate = false
+        } else {
+            animate = true
+        }
+
+
         let vc = LocationSelectViewController.viewController(mapItems)
         vc.mapItemSelectionHandler = {(mapItem) in
-            self.dismissViewControllerAnimated(true, completion: {
-                var region = self.mapView.region
-                region.center = mapItem.placemark.coordinate
-                region.span = MKCoordinateSpanMake(0.005, 0.005)
-                self.mapView.setRegion(region, animated: true)
+            var region = self.mapView.region
+            region.center = mapItem.placemark.coordinate
+            region.span = MKCoordinateSpanMake(0.005, 0.005)
+            self.mapView.setRegion(region, animated: true)
+        }
+
+        vc.view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
+        view.addSubview(vc.view)
+        addChildViewController(vc)
+        vc.didMoveToParentViewController(self)
+        locationSelectViewController = vc
+
+        if animate {
+            vc.view.frame = CGRect(x: 0, y: view.bounds.size.height, width: view.bounds.size.width, height: 150)
+            UIView.animateWithDuration(0.5, animations: {
+                vc.view.frame = CGRect(x: 0, y: self.view.bounds.size.height - 150, width: self.view.bounds.size.width, height: 150)
             })
+        } else {
+            vc.view.frame = CGRect(x: 0, y: view.bounds.size.height - 150, width: view.bounds.size.width, height: 150)
         }
-        let nav = UINavigationController(rootViewController: vc)
-        let cancelButton = UIBarButtonItem(systemItem: .Cancel) { (sender) in
-            self.dismissViewControllerAnimated(true, completion: nil)
+
+    }
+
+    private func hideMapItems(animated: Bool) {
+        guard let vc = locationSelectViewController else {return}
+        if animated {
+            UIView.animateWithDuration(0.5, animations: {
+                vc.view.frame =  CGRect(x: 0, y: self.view.bounds.size.height, width: self.view.bounds.size.width, height: 150)
+            }, completion: { (finised) in
+                vc.willMoveToParentViewController(nil)
+                vc.removeFromParentViewController()
+                vc.view.removeFromSuperview()
+                self.locationSelectViewController = nil
+            })
+
+        } else {
+            vc.willMoveToParentViewController(nil)
+            vc.removeFromParentViewController()
+            vc.view.removeFromSuperview()
+            locationSelectViewController = nil
         }
-        cancelButton.title = "Cancel"
-        vc.navigationItem.rightBarButtonItem = cancelButton
-        vc.navigationItem.title = "Search Result"
-        self.presentViewController(nav, animated: true, completion: nil)
     }
     
     private func searchItems() {
