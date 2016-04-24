@@ -7,13 +7,14 @@
 //
 
 import XCTest
+import SwiftTask
 @testable import Attension
 
 class AttentionAPITests: XCTestCase {
     
     func testGetAPI() {
         let expectation = self.expectationWithDescription("Wait for API response")
-        AttentionAPIClient.sharedClient.getAttentionItems(0, longitude: 0, radius: 0).on(success: { (items) in
+        AttentionAPIClient.sharedClient.fetchItems(0, longitude: 0, radius: 0).on(success: { (items) in
             XCTAssert(0 < items.count)
             expectation.fulfill()
             
@@ -30,7 +31,7 @@ class AttentionAPITests: XCTestCase {
         let item = AttentionItem()
         let date = NSDate()
         item.identifier = "hogehoge\(UInt(date.timeIntervalSince1970))"
-        AttentionAPIClient.sharedClient.createNewAttentionItem(item).on(success: { (item) in
+        AttentionAPIClient.sharedClient.createNewItem(item).on(success: { (item) in
             XCTAssert(0 < item.identifier.characters.count)
             expectation.fulfill()
         }) { (error, isCancelled) in
@@ -39,6 +40,28 @@ class AttentionAPITests: XCTestCase {
         }
         
         waitForExpectationsWithTimeout(5, handler: nil)
+    }
+
+    func testUpdateAPI() {
+        let expectation = self.expectationWithDescription("Wait for API response")
+        let item = AttentionItem()
+        item.attentionBody = "before"
+        var key = ""
+        AttentionAPIClient.sharedClient.createNewItem(item).then { (item,error) -> Task<Float, AttentionItem, NSError> in
+            XCTAssertEqual(item?.attentionBody, "before")
+            item?.attentionBody = "after"
+            key = item!.identifier
+            return AttentionAPIClient.sharedClient.updateItem(item!)
+        }.on(success: {(item) in
+            XCTAssertEqual(item.attentionBody, "after")
+            XCTAssertEqual(item.identifier, key)
+            expectation.fulfill()
+        }) { (error, isCancelled) in
+            XCTFail()
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(10, handler: nil)
     }
     
 }

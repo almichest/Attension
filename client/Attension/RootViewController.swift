@@ -124,7 +124,7 @@ class RootViewController: UIViewController {
     }
     
     private func searchItems() {
-        AttentionAPIClient.sharedClient.getAttentionItems(0, longitude: 0, radius: 0).on(success: { response in
+        AttentionAPIClient.sharedClient.fetchItems(0, longitude: 0, radius: 0).on(success: { response in
             let items = response.map({ (resItem) -> AttentionItem in
                 let item = AttentionItem()
                 item.identifier = resItem.identifier
@@ -190,31 +190,34 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
                 vc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel) { (action) in
                     self.dismissViewControllerAnimated(false, completion: nil)
                     self.showAddingItemPopoverWithItem(item)
-                    })
+                })
             })
             return
         }
 
+        if item.shared {
 
-        let vc = UIAlertController(title: NSLocalizedString("please.share.title", comment: ""), message: NSLocalizedString("please.share.body", comment: ""), preferredStyle: .Alert)
+        } else {
+            let vc = UIAlertController(title: NSLocalizedString("please.share.title", comment: ""), message: NSLocalizedString("please.share.body", comment: ""), preferredStyle: .Alert)
 
-        vc.addAction(UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .Default) { (action) in
-            AttentionAPIClient.sharedClient.createNewAttentionItem(item).on(success: { (item) in
-                AttentionItemDataSource.sharedInstance.addAttentionItems([item])
-            }, failure: { (error, isCancelled) in
+            vc.addAction(UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .Default) { (action) in
+                AttentionAPIClient.sharedClient.createNewItem(item).on(success: { (item) in
+                    AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+                }, failure: { (error, isCancelled) in
+                })
             })
-        })
 
-        vc.addAction(UIAlertAction(title: NSLocalizedString("no", comment: ""), style: .Default) { (action) in
-            self.dismissViewControllerAnimated(true, completion: nil)
-            AttentionItemDataSource.sharedInstance.addAttentionItems([item])
-        })
+            vc.addAction(UIAlertAction(title: NSLocalizedString("no", comment: ""), style: .Default) { (action) in
+                self.dismissViewControllerAnimated(true, completion: nil)
+                AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+            })
 
-        vc.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .Cancel) { (action) in
-            self.dismissViewControllerAnimated(false, completion: nil)
-            self.showAddingItemPopoverWithItem(item)
-        })
-        presentViewController(vc, animated: true, completion: nil)
+            vc.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .Cancel) { (action) in
+                self.dismissViewControllerAnimated(false, completion: nil)
+                self.showAddingItemPopoverWithItem(item)
+            })
+            presentViewController(vc, animated: true, completion: nil)
+        }
     }
 
     private func showAddingItemPopoverWithItem(item: AttentionItem) {

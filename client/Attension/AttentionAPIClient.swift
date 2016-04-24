@@ -20,7 +20,7 @@ public class AttentionAPIClient: NSObject {
 
     private let firebase = Firebase(url: FIRE_BASE_URL)
 
-    func getAttentionItems(latitude: Double, longitude: Double, radius: Double) -> Task<Float, [AttentionResponseItem], NSError> {
+    func fetchItems(latitude: Double, longitude: Double, radius: Double) -> Task<Float, [AttentionResponseItem], NSError> {
         print("fetch - \(latitude), \(longitude), \(radius)")
         return Task<Float, [AttentionResponseItem], NSError>(promiseInitClosure: { (fulfill, reject) in
             self.firebase.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
@@ -50,7 +50,7 @@ public class AttentionAPIClient: NSObject {
         })
     }
 
-    func createNewAttentionItem(item: AttentionItem) -> Task<Float, AttentionItem, NSError> {
+    func createNewItem(item: AttentionItem) -> Task<Float, AttentionItem, NSError> {
         return Task<Float, AttentionItem, NSError>(promiseInitClosure: { (fulfill, reject) in
             let attentionsRef = self.firebase.childByAppendingPath("attentions/")
             let dic = item.toDictionary(false)
@@ -64,6 +64,20 @@ public class AttentionAPIClient: NSObject {
                     reject(NSError(domain: APIErrorDomain, code: APIErrorCode.GeneralError.rawValue, userInfo: nil))
                 }
             }
+        })
+    }
+
+    func updateItem(item: AttentionItem) -> Task<Float, AttentionItem, NSError> {
+        return Task<Float, AttentionItem, NSError>(promiseInitClosure: { (fulfill, reject) in
+            let attentionsRef = self.firebase.childByAppendingPath("attentions/" + item.identifier)
+            let dic = item.toDictionary(false)
+            attentionsRef.updateChildValues(dic, withCompletionBlock: { (error, firebase) in
+                if let _ = error {
+                    reject(NSError(domain: APIErrorDomain, code: APIErrorCode.GeneralError.rawValue, userInfo: nil))
+                } else {
+                    fulfill(item)
+                }
+            })
         })
     }
 }
