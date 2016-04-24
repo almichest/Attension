@@ -15,7 +15,7 @@ class AttentionItem: Object {
     dynamic var longtitude: CLLocationDegrees = 0.0
     dynamic var attentionBody: String = ""
     dynamic var placeName: String = ""
-    dynamic var onServer: Bool = false
+    dynamic var shared: Bool = false
     
     override class func primaryKey() -> String? {
         return "identifier"
@@ -23,12 +23,6 @@ class AttentionItem: Object {
 }
 
 extension AttentionItem {
-    func createIdentifier() -> String {
-        let latString = String(latitude).stringByReplacingOccurrencesOfString(".", withString: "")
-        let lonString = String(longtitude).stringByReplacingOccurrencesOfString(".", withString: "")
-        return latString + lonString
-    }
-    
     /* onServer should be in response only. */
     func toDictionary(includeIdentifier: Bool = true) -> [String : AnyObject] {
         var ret: [String : AnyObject] = ["latitude"       : latitude,

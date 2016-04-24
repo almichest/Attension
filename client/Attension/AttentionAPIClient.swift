@@ -58,6 +58,7 @@ public class AttentionAPIClient: NSObject {
                 print("create complete. key = \(firebase.key)")
                 if let key = firebase.key {
                     item.identifier = key
+                    item.shared = true
                     fulfill(item)
                 } else {
                     reject(NSError(domain: APIErrorDomain, code: APIErrorCode.GeneralError.rawValue, userInfo: nil))

@@ -10,10 +10,13 @@
 "example.attentionbody" = "例) でかい亀が一緒じゃないと行けない";
 "OK" = "OK";
 
-"please.share.title" = "ぜひ共有してください！";
-"please.share.body" = "この情報をぜひみんなと共有してください！";
+"please.share.title" = "ぜひ公開してください！";
+"please.share.body" = "この情報をぜひ他の方に公開してください！";
 "no.information" = "情報無し";
 
 "yes" = "はい";
 "no" = "いいえ";
 "cancel" = "キャンセル";
+
+"shared" = "公開済み";
+"notshared" = "非公開";

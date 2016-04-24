@@ -57,7 +57,6 @@ class AttentionItemDataSource: NSObject {
     func addAttentionItems(items: [AttentionItem]) {
         try! realm.write {
             items.forEach({ (item) in
-                item.identifier = item.createIdentifier()
                 realm.add(item, update: true)
             })
         }

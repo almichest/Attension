@@ -132,6 +132,7 @@ class RootViewController: UIViewController {
                 item.longtitude = resItem.longitude
                 item.attentionBody = resItem.attentionBody
                 item.placeName = resItem.placeName
+                item.shared = true
                 return item
             })
             AttentionItemDataSource.sharedInstance.addAttentionItems(items)
@@ -268,16 +269,8 @@ extension RootViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         guard let attentionAnnotation = view.annotation as? AttentionAnnotation else { return }
         
-        let vc = AnnotationBodyViewController.viewController()
-        let _ = vc.view
-        if let item = attentionAnnotation.attentionItem {
-            vc.placeName = item.placeName
-            vc.bodyText = item.attentionBody
-        } else {
-            vc.placeName = NSLocalizedString("no.information", comment: "")
-            vc.bodyText = NSLocalizedString("no.information", comment: "")
-        }
-        
+        let vc = AnnotationBodyViewController.viewController(attentionAnnotation.attentionItem)
+
         vc.modalPresentationStyle = .Popover
         vc.popoverPresentationController?.permittedArrowDirections = [.Up, .Down]
         vc.popoverPresentationController?.sourceRect = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: 0, height: 0)
@@ -293,6 +286,7 @@ extension RootViewController: MKMapViewDelegate {
 
 extension RootViewController: AttentionItemDataSourceReceiver {
     func datasetDidChange(dataSource: AttentionItemDataSource) {
+        mapView.removeAnnotations(mapView.annotations)
         dataSource.query(0, longtitude: 0, radius: 0).on(success: { (items) in
             items.forEach({ (item) in
                 let coordinate = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longtitude)
@@ -301,6 +295,6 @@ extension RootViewController: AttentionItemDataSourceReceiver {
                 annotation.coordinate = coordinate
                 self.mapView.addAnnotation(annotation)
             })
-            }, failure: nil)
+        }, failure: nil)
     }
 }

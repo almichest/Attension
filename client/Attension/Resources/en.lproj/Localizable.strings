@@ -17,3 +17,6 @@
 "yes" = "Yes";
 "no" = "No";
 "cancel" = "Cancel";
+
+"shared" = "Shared";
+"notshared" = "Not Shared";
