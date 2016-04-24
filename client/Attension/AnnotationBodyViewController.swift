@@ -10,9 +10,10 @@ import UIKit
 
 class AnnotationBodyViewController: UIViewController {
 
-    @IBOutlet private(set) weak var titleContainerScrollView: UIScrollView!
-    @IBOutlet private(set) weak var bodyContainerScrollView: UIScrollView!
-    @IBOutlet private(set) weak var sharedStatusLabel: UILabel!
+    @IBOutlet private weak var titleContainerScrollView: UIScrollView!
+    @IBOutlet private weak var bodyContainerScrollView: UIScrollView!
+    @IBOutlet private weak var sharedStatusLabel: UILabel!
+    @IBOutlet private(set) weak var editButton: UIButton!
 
     private var item: AttentionItem!
 
