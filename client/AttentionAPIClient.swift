@@ -18,7 +18,7 @@ public class AttentionAPIClient: NSObject {
 
     public static let sharedClient = AttentionAPIClient()
 
-    private let firebase = Firebase(url: firebaseUrl)
+    private let firebase = Firebase(url: FIRE_BASE_URL)
 
     func getAttentionItems(latitude: Double, longitude: Double, radius: Double) -> Task<Float, [AttentionResponseItem], NSError> {
         print("fetch - \(latitude), \(longitude), \(radius)")

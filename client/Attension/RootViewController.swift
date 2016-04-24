@@ -156,7 +156,20 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
     }
 
     private func registerItem(item: AttentionItem) {
-        let vc = UIAlertController(title: "Please Share.", message: "Please share this helpful information with others.", preferredStyle: .Alert)
+
+        if MAX_PLACENAME_COUNT < item.placeName.characters.count || MAX_ATTENTION_COUNT < item.attentionBody.characters.count {
+            let vc = UIAlertController(title: "Error.", message: "'Sorry. Where' must be smaller than 20 letters, and 'What' must be smaller than 100 letters.", preferredStyle: .Alert)
+            presentViewController(vc, animated: true, completion: {
+                vc.addAction(UIAlertAction(title: "OK", style: .Cancel) { (action) in
+                    self.dismissViewControllerAnimated(false, completion: nil)
+                    self.showAddingItemPopoverWithItem(item)
+                    })
+            })
+            return
+        }
+
+
+        let vc = UIAlertController(title: "Please Share.", message: "Please share this helpful information with others!", preferredStyle: .Alert)
 
         vc.addAction(UIAlertAction(title: "Yes", style: .Default) { (action) in
             AttentionAPIClient.sharedClient.createNewAttentionItem(item).on(success: { (item) in
