@@ -16,39 +16,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEH-Ob-YJF">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qXD-Nm-JT8" userLabel="Title Container">
                                 <rect key="frame" x="10" y="10" width="580" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="8hP-L1-QRC"/>
+                                    <constraint firstAttribute="height" constant="30" id="Jk5-58-W7l"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpz-ZB-MWt">
+                            </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FGw-EI-dbs" userLabel="Body Container">
                                 <rect key="frame" x="10" y="50" width="580" height="140"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="XEH-Ob-YJF" secondAttribute="trailing" constant="10" id="PSm-pV-9ar"/>
-                            <constraint firstAttribute="trailing" secondItem="gpz-ZB-MWt" secondAttribute="trailing" constant="10" id="Pkh-5v-zwG"/>
-                            <constraint firstItem="gpz-ZB-MWt" firstAttribute="top" secondItem="XEH-Ob-YJF" secondAttribute="bottom" constant="10" id="RkM-d3-29J"/>
-                            <constraint firstItem="XEH-Ob-YJF" firstAttribute="top" secondItem="Tyg-HS-bII" secondAttribute="bottom" constant="10" id="gc8-o0-udT"/>
-                            <constraint firstItem="lrz-1i-KAp" firstAttribute="top" secondItem="gpz-ZB-MWt" secondAttribute="bottom" constant="10" id="tRI-2G-TsI"/>
-                            <constraint firstItem="gpz-ZB-MWt" firstAttribute="leading" secondItem="CAu-g2-Gel" secondAttribute="leading" constant="10" id="vkl-Zf-YtK"/>
-                            <constraint firstItem="XEH-Ob-YJF" firstAttribute="leading" secondItem="CAu-g2-Gel" secondAttribute="leading" constant="10" id="vn0-f1-DtQ"/>
+                            <constraint firstItem="FGw-EI-dbs" firstAttribute="leading" secondItem="CAu-g2-Gel" secondAttribute="leading" constant="10" id="B0c-1e-e6U"/>
+                            <constraint firstItem="qXD-Nm-JT8" firstAttribute="leading" secondItem="CAu-g2-Gel" secondAttribute="leading" constant="10" id="EBQ-Ix-52G"/>
+                            <constraint firstItem="qXD-Nm-JT8" firstAttribute="top" secondItem="Tyg-HS-bII" secondAttribute="bottom" constant="10" id="MYJ-f3-nYW"/>
+                            <constraint firstItem="FGw-EI-dbs" firstAttribute="top" secondItem="qXD-Nm-JT8" secondAttribute="bottom" constant="10" id="STh-vJ-4Rc"/>
+                            <constraint firstAttribute="trailing" secondItem="qXD-Nm-JT8" secondAttribute="trailing" constant="10" id="aGf-oy-sRs"/>
+                            <constraint firstAttribute="trailing" secondItem="FGw-EI-dbs" secondAttribute="trailing" constant="10" id="fhP-qu-VsM"/>
+                            <constraint firstItem="lrz-1i-KAp" firstAttribute="top" secondItem="FGw-EI-dbs" secondAttribute="bottom" constant="10" id="q4q-eF-i5Y"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="200"/>
                     <connections>
-                        <outlet property="bodyLabel" destination="gpz-ZB-MWt" id="bKd-yx-k4b"/>
-                        <outlet property="titleLabel" destination="XEH-Ob-YJF" id="4kb-r4-w0R"/>
+                        <outlet property="bodyContainerScrollView" destination="FGw-EI-dbs" id="iU7-fL-73Q"/>
+                        <outlet property="titleContainerScrollView" destination="qXD-Nm-JT8" id="lLT-mv-ZbJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="izU-mC-WCt" userLabel="First Responder" sceneMemberID="firstResponder"/>

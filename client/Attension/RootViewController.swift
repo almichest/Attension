@@ -273,11 +273,11 @@ extension RootViewController: MKMapViewDelegate {
         let vc = AnnotationBodyViewController.viewController()
         let _ = vc.view
         if let item = attentionAnnotation.attentionItem {
-            vc.titleLabel.text = item.placeName
-            vc.bodyLabel.text = item.attentionBody
+            vc.placeName = item.placeName
+            vc.bodyText = item.attentionBody
         } else {
-            vc.titleLabel.text = NSLocalizedString("no.information", comment: "")
-            vc.bodyLabel.text = NSLocalizedString("no.information", comment: "")
+            vc.placeName = NSLocalizedString("no.information", comment: "")
+            vc.bodyText = NSLocalizedString("no.information", comment: "")
         }
         
         vc.modalPresentationStyle = .Popover
