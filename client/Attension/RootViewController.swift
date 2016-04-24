@@ -66,9 +66,7 @@ class RootViewController: UIViewController {
     private func searchLocation(locationName: String) {
         GeoLocationProvider.sharedInstance.searchLocation(locationName).on(success: {[weak self] (mapItems) in
             self?.showMapItems(mapItems)
-        }) {[weak self] (error, isCancelled) in
-            self?.showNoResultError()
-        }
+        })
     }
 
     private var locationSelectViewController: LocationSelectViewController?
@@ -144,17 +142,6 @@ class RootViewController: UIViewController {
             debugPrint("fail")
         }
     }
-    
-    
-    private func showNoResultError() {
-        let alert = UIAlertController(title: "No Result", message: "No result found. Please try for another location name.", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Cancel) { (action) in
-            self.dismissViewControllerAnimated(true, completion: nil)
-            }
-        )
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
 }
 
 //MARK: Popover
@@ -199,9 +186,9 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
     private func registerItem(item: AttentionItem) {
 
         if MAX_PLACENAME_COUNT < item.placeName.characters.count || MAX_ATTENTION_COUNT < item.attentionBody.characters.count {
-            let vc = UIAlertController(title: "Error.", message: "'Sorry. Where' must be smaller than 20 letters, and 'What' must be smaller than 100 letters.", preferredStyle: .Alert)
+            let vc = UIAlertController(title: NSLocalizedString("error", comment: ""), message: NSLocalizedString("alert.textlength", comment: ""), preferredStyle: .Alert)
             presentViewController(vc, animated: true, completion: {
-                vc.addAction(UIAlertAction(title: "OK", style: .Cancel) { (action) in
+                vc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel) { (action) in
                     self.dismissViewControllerAnimated(false, completion: nil)
                     self.showAddingItemPopoverWithItem(item)
                     })
@@ -210,7 +197,7 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
         }
 
 
-        let vc = UIAlertController(title: "Please Share.", message: "Please share this helpful information with others!", preferredStyle: .Alert)
+        let vc = UIAlertController(title: NSLocalizedString("please.share.title", comment: ""), message: NSLocalizedString("please.share.body", comment: ""), preferredStyle: .Alert)
 
         vc.addAction(UIAlertAction(title: "Yes", style: .Default) { (action) in
             AttentionAPIClient.sharedClient.createNewAttentionItem(item).on(success: { (item) in
@@ -289,8 +276,8 @@ extension RootViewController: MKMapViewDelegate {
             vc.titleLabel.text = item.placeName
             vc.bodyLabel.text = item.attentionBody
         } else {
-            vc.titleLabel.text = "No information"
-            vc.bodyLabel.text = "No information"
+            vc.titleLabel.text = NSLocalizedString("no.information", comment: "")
+            vc.bodyLabel.text = NSLocalizedString("no.information", comment: "")
         }
         
         vc.modalPresentationStyle = .Popover

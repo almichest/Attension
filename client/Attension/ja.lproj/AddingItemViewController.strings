@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "What?"; ObjectID = "1lf-MH-SW0"; */
+"1lf-MH-SW0.text" = "内容";
+
+/* Class = "UILabel"; text = "Where?"; ObjectID = "IlQ-6T-xoO"; */
+"IlQ-6T-xoO.text" = "場所";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "pau-Vv-yea"; */
+"pau-Vv-yea.normalTitle" = "完了";

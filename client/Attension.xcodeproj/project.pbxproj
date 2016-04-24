@@ -20,10 +20,11 @@
 		425F12041CCC98EB0092B7B6 /* AttentionResponseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425F12001CCC98EB0092B7B6 /* AttentionResponseItem.swift */; };
 		425F12051CCC98EB0092B7B6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425F12011CCC98EB0092B7B6 /* Config.swift */; };
 		425F12061CCC98EB0092B7B6 /* PostResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425F12021CCC98EB0092B7B6 /* PostResult.swift */; };
+		425F120A1CCC99580092B7B6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 425F120C1CCC99580092B7B6 /* Localizable.strings */; };
+		425F120E1CCC9C550092B7B6 /* AddingItemViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 425F12101CCC9C550092B7B6 /* AddingItemViewController.storyboard */; };
 		426343B51CBE8FD300D39185 /* AttentionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426343B31CBE8FD300D39185 /* AttentionItem.swift */; };
 		426343B61CBE8FD300D39185 /* AttentionItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426343B41CBE8FD300D39185 /* AttentionItemDataSource.swift */; };
 		426343CA1CBFD68C00D39185 /* AddingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426343C91CBFD68C00D39185 /* AddingItemViewController.swift */; };
-		426343CC1CBFD6A100D39185 /* AddingItemViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 426343CB1CBFD6A100D39185 /* AddingItemViewController.storyboard */; };
 		426343D01CC153CF00D39185 /* AttentionAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426343CF1CC153CF00D39185 /* AttentionAnnotation.swift */; };
 		426343D21CC1561000D39185 /* AnnotationBodyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426343D11CC1561000D39185 /* AnnotationBodyViewController.swift */; };
 		426343D41CC1562600D39185 /* AnnotationBodyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 426343D31CC1562600D39185 /* AnnotationBodyViewController.storyboard */; };
@@ -64,10 +65,14 @@
 		425F12001CCC98EB0092B7B6 /* AttentionResponseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttentionResponseItem.swift; path = Attension/AttentionResponseItem.swift; sourceTree = "<group>"; };
 		425F12011CCC98EB0092B7B6 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Attension/Config.swift; sourceTree = "<group>"; };
 		425F12021CCC98EB0092B7B6 /* PostResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostResult.swift; path = Attension/PostResult.swift; sourceTree = "<group>"; };
+		425F120B1CCC99580092B7B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		425F120D1CCC995C0092B7B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		425F12131CCC9C5F0092B7B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AddingItemViewController.storyboard; sourceTree = "<group>"; };
+		425F12151CCC9CA90092B7B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AddingItemViewController.strings; sourceTree = "<group>"; };
+		425F12171CCC9CAF0092B7B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/AddingItemViewController.strings; sourceTree = "<group>"; };
 		426343B31CBE8FD300D39185 /* AttentionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionItem.swift; sourceTree = "<group>"; };
 		426343B41CBE8FD300D39185 /* AttentionItemDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionItemDataSource.swift; sourceTree = "<group>"; };
 		426343C91CBFD68C00D39185 /* AddingItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingItemViewController.swift; sourceTree = "<group>"; };
-		426343CB1CBFD6A100D39185 /* AddingItemViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddingItemViewController.storyboard; sourceTree = "<group>"; };
 		426343CF1CC153CF00D39185 /* AttentionAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionAnnotation.swift; sourceTree = "<group>"; };
 		426343D11CC1561000D39185 /* AnnotationBodyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationBodyViewController.swift; sourceTree = "<group>"; };
 		426343D31CC1562600D39185 /* AnnotationBodyViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AnnotationBodyViewController.storyboard; sourceTree = "<group>"; };
@@ -132,7 +137,7 @@
 				422F2E951CB931A200F74FBF /* LocationSelectViewController.swift */,
 				422F2E981CB9323D00F74FBF /* LocationSelectViewController.storyboard */,
 				426343C91CBFD68C00D39185 /* AddingItemViewController.swift */,
-				426343CB1CBFD6A100D39185 /* AddingItemViewController.storyboard */,
+				425F12101CCC9C550092B7B6 /* AddingItemViewController.storyboard */,
 				426343D11CC1561000D39185 /* AnnotationBodyViewController.swift */,
 				426343D31CC1562600D39185 /* AnnotationBodyViewController.storyboard */,
 			);
@@ -146,6 +151,14 @@
 				422F2E9E1CB95CAB00F74FBF /* UIBarButtonItem+BKWrapper.m */,
 			);
 			name = Others;
+			sourceTree = "<group>";
+		};
+		425F12071CCC99400092B7B6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				425F120C1CCC99580092B7B6 /* Localizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		426343B21CBE8FC500D39185 /* DataBase */ = {
@@ -180,6 +193,7 @@
 		4287D5201CB14ACC00E78E47 /* Attension */ = {
 			isa = PBXGroup;
 			children = (
+				425F12071CCC99400092B7B6 /* Resources */,
 				42A0DEB61CC662960098C41A /* API */,
 				426343B21CBE8FC500D39185 /* DataBase */,
 				422F2E9C1CB95C8A00F74FBF /* Others */,
@@ -312,6 +326,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 4287D5151CB14ACC00E78E47;
 			productRefGroup = 4287D51F1CB14ACC00E78E47 /* Products */;
@@ -329,9 +344,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				426343CC1CBFD6A100D39185 /* AddingItemViewController.storyboard in Resources */,
+				425F120E1CCC9C550092B7B6 /* AddingItemViewController.storyboard in Resources */,
 				4287D52C1CB14ACC00E78E47 /* LaunchScreen.storyboard in Resources */,
 				4287D5291CB14ACC00E78E47 /* Assets.xcassets in Resources */,
+				425F120A1CCC99580092B7B6 /* Localizable.strings in Resources */,
 				422F2E991CB9323D00F74FBF /* LocationSelectViewController.storyboard in Resources */,
 				426343D41CC1562600D39185 /* AnnotationBodyViewController.storyboard in Resources */,
 				4287D5271CB14ACC00E78E47 /* Main.storyboard in Resources */,
@@ -469,6 +485,25 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		425F120C1CCC99580092B7B6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				425F120B1CCC99580092B7B6 /* en */,
+				425F120D1CCC995C0092B7B6 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		425F12101CCC9C550092B7B6 /* AddingItemViewController.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				425F12131CCC9C5F0092B7B6 /* Base */,
+				425F12151CCC9CA90092B7B6 /* en */,
+				425F12171CCC9CAF0092B7B6 /* ja */,
+			);
+			name = AddingItemViewController.storyboard;
+			sourceTree = "<group>";
+		};
 		4287D5251CB14ACC00E78E47 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
