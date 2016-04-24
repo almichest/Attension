@@ -199,19 +199,19 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
 
         let vc = UIAlertController(title: NSLocalizedString("please.share.title", comment: ""), message: NSLocalizedString("please.share.body", comment: ""), preferredStyle: .Alert)
 
-        vc.addAction(UIAlertAction(title: "Yes", style: .Default) { (action) in
+        vc.addAction(UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .Default) { (action) in
             AttentionAPIClient.sharedClient.createNewAttentionItem(item).on(success: { (item) in
                 AttentionItemDataSource.sharedInstance.addAttentionItems([item])
             }, failure: { (error, isCancelled) in
             })
         })
 
-        vc.addAction(UIAlertAction(title: "No", style: .Default) { (action) in
+        vc.addAction(UIAlertAction(title: NSLocalizedString("no", comment: ""), style: .Default) { (action) in
             self.dismissViewControllerAnimated(true, completion: nil)
             AttentionItemDataSource.sharedInstance.addAttentionItems([item])
         })
 
-        vc.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+        vc.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .Cancel) { (action) in
             self.dismissViewControllerAnimated(false, completion: nil)
             self.showAddingItemPopoverWithItem(item)
         })

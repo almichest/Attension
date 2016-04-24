@@ -5,3 +5,15 @@
   Created by Hiraku Ohno on 2016/04/24.
   Copyright © 2016年 Hiraku Ohno. All rights reserved.
 */
+
+"example.placename" = "例) 竜宮城";
+"example.attentionbody" = "例) でかい亀が一緒じゃないと行けない";
+"OK" = "OK";
+
+"please.share.title" = "ぜひ共有してください！";
+"please.share.body" = "この情報をぜひみんなと共有してください！";
+"no.information" = "情報無し";
+
+"yes" = "はい";
+"no" = "いいえ";
+"cancel" = "キャンセル";

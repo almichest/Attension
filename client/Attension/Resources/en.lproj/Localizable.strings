@@ -5,3 +5,15 @@
   Created by Hiraku Ohno on 2016/04/24.
   Copyright © 2016年 Hiraku Ohno. All rights reserved.
 */
+
+"example.placename" = "ex) Ryugu - castle.";
+"example.attentionbody" = "ex) Cannot reach here without big turtle.";
+"OK" = "OK";
+
+"please.share.title" = "Please Share";
+"please.share.body" = "Please share this useful information with others!.";
+"no.information" = "No information.";
+
+"yes" = "Yes";
+"no" = "No";
+"cancel" = "Cancel";

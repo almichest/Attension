@@ -17,10 +17,11 @@ class AddingItemViewController: UIViewController {
     
     private lazy var placeHolderLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("example.placename", comment: "")
+        label.text = NSLocalizedString("example.attentionbody", comment: "")
         label.sizeToFit()
         label.font = UIFont.systemFontOfSize(14)
         label.alpha = 0.2
+        label.numberOfLines = 0
         return label
     }()
     
@@ -38,14 +39,16 @@ class AddingItemViewController: UIViewController {
         whatTextView.layer.borderWidth = 1.0
         whatTextView.layer.cornerRadius = 5.0
         whatTextView.delegate = self
-        
+
         whatTextView.addSubview(placeHolderLabel)
 
-        whereTextField.placeholder = NSLocalizedString("example.attentionbody", comment: "")
+        whereTextField.placeholder = NSLocalizedString("example.placename", comment: "")
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        placeHolderLabel.bounds = CGRect(x: 0, y: 0, width: CGRectGetWidth(whatTextView.bounds), height: 0)
+        placeHolderLabel.sizeToFit()
         placeHolderLabel.frame.origin.x = 8
         placeHolderLabel.frame.origin.y = 4
     }
