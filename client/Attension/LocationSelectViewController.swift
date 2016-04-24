@@ -54,10 +54,23 @@ extension LocationSelectViewController: UITableViewDataSource {
             fatalError()
         }
         if let item = mapItems?[indexPath.row] {
-            cell.textLabel?.text = item.name
+            cell.textLabel?.text = item.placemark.name
+            cell.detailTextLabel?.text = LocationSelectViewController.parseAddress(item.placemark)
         }
         
         return cell
+    }
+
+    private static func parseAddress(mark: MKPlacemark) -> String {
+
+        let comma = mark.locality != nil ? ", " : ""
+        let addressLine = String(
+            format:"%@%@%@",
+            mark.locality ?? "",
+            comma,
+            mark.administrativeArea ?? ""
+        )
+        return addressLine
     }
 }
 
@@ -67,6 +80,7 @@ extension LocationSelectViewController: UITableViewDelegate {
         if let mapItem = mapItems?[indexPath.row], handler = mapItemSelectionHandler {
             handler(mapItem)
         }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
