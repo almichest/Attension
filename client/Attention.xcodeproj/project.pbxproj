@@ -86,7 +86,7 @@
 		422D33301CCD2E780094A877 /* UIBarButtonItem+BKWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+BKWrapper.h"; sourceTree = "<group>"; };
 		422D33311CCD2E780094A877 /* UIBarButtonItem+BKWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+BKWrapper.m"; sourceTree = "<group>"; };
 		4287D51E1CB14ACC00E78E47 /* Attention.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attention.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4287D5321CB14ACC00E78E47 /* Attention.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Attention.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4287D5321CB14ACC00E78E47 /* AttentionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AttentionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4287D5361CB14ACC00E78E47 /* AttensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttensionTests.swift; sourceTree = "<group>"; };
 		4287D5381CB14ACC00E78E47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionAPITests.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				4287D51E1CB14ACC00E78E47 /* Attention.app */,
-				4287D5321CB14ACC00E78E47 /* Attention.xctest */,
+				4287D5321CB14ACC00E78E47 /* AttentionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,7 +255,7 @@
 			);
 			name = AttentionTests;
 			productName = AttensionTests;
-			productReference = 4287D5321CB14ACC00E78E47 /* Attention.xctest */;
+			productReference = 4287D5321CB14ACC00E78E47 /* AttentionTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -650,7 +650,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hira.AttensionTests;
-				PRODUCT_NAME = Attention;
+				PRODUCT_NAME = AttentionTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Attention.app/Attention";
 				USER_HEADER_SEARCH_PATHS = "Pods/BlocksKit/** Pods/INTULocationManager/**";
 			};
@@ -663,7 +663,7 @@
 				INFOPLIST_FILE = AttensionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hira.AttensionTests;
-				PRODUCT_NAME = Attention;
+				PRODUCT_NAME = AttentionTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Attention.app/Attention";
 				USER_HEADER_SEARCH_PATHS = "Pods/BlocksKit/** Pods/INTULocationManager/**";
 			};

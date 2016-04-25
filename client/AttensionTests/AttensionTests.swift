@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Attension
+@testable import Attention
 
 class AttensionTests: XCTestCase {
     

@@ -8,7 +8,7 @@
 
 import XCTest
 import SwiftTask
-@testable import Attension
+@testable import Attention
 
 class AttentionAPITests: XCTestCase {
     
