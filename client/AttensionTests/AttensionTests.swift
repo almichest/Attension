@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import SwiftTask
+import RealmSwift
 @testable import Attention
 
 class AttensionTests: XCTestCase {
@@ -41,6 +43,24 @@ class AttensionTests: XCTestCase {
         }, failure: nil)
 
         self.waitForExpectationsWithTimeout(1, handler: nil)
+    }
+
+    func testDeletingItem() {
+        let expectation = self.expectationWithDescription("delete")
+        let item = AttentionItem()
+        item.identifier = "deletetest"
+        AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+        AttentionItemDataSource.sharedInstance.query("deletetest").then { (item, error) -> Task<Float, AttentionItem?, NSError> in
+            XCTAssert(item! != nil)
+            XCTAssert(item!!.identifier == "deletetest")
+            AttentionItemDataSource.sharedInstance.deleteAttentionItems([item!!])
+            return AttentionItemDataSource.sharedInstance.query("deletetest")
+        }.on(success: { (item) in
+            XCTAssert(item == nil)
+            expectation.fulfill()
+        }, failure: nil)
+
+        self.waitForExpectationsWithTimeout(2, handler: nil)
     }
 }
 

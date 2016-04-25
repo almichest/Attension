@@ -56,7 +56,7 @@ class AttentionItemDataSource: NSObject {
 
     func query(identifier: String) -> Task<Float, AttentionItem?, NSError> {
         return Task<Float, AttentionItem?, NSError>(promiseInitClosure: { (fulfill, reject) in
-            let result = self.realm.objects(AttentionItem).filter("identifier = 'identifier'")
+            let result = self.realm.objects(AttentionItem).filter("identifier = identifier")
             fulfill(result.first)
         })
     }
