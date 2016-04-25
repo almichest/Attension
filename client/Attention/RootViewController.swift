@@ -208,7 +208,9 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
         }
 
         if item.shared {
-            AttentionAPIClient.sharedClient.updateItem(item)
+            AttentionAPIClient.sharedClient.updateItem(item).on(success: { (item) in
+                AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+            }, failure: nil)
         } else {
             let vc = UIAlertController(title: NSLocalizedString("please.share.title", comment: ""), message: NSLocalizedString("please.share.body", comment: ""), preferredStyle: .Alert)
 
@@ -253,15 +255,18 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
             vc.doneButton.bk_addEventHandler({[weak self] (sender) in
                 let completion: (() -> Void)
                 if let coordinater = self?.mapView.convertPoint(location, toCoordinateFromView: self!.mapView) {
-                    item.latitude = coordinater.latitude
-                    item.longtitude = coordinater.longitude
+                    let newItem = AttentionItem()
+                    newItem.latitude = coordinater.latitude
+                    newItem.longtitude = coordinater.longitude
                     if let whereText = vc.whereTextField.text {
-                        item.placeName = whereText
+                        newItem.placeName = whereText
                     }
                     if let whatText = vc.whatTextView.text {
-                        item.attentionBody = whatText
+                        newItem.attentionBody = whatText
                     }
-                    completion = {self?.registerItem(item)}
+                    newItem.identifier = item.identifier
+                    newItem.shared = item.shared
+                    completion = {self?.registerItem(newItem)}
                 } else {
                     completion = {}
                 }
