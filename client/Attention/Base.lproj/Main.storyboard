@@ -42,7 +42,7 @@
                                     <constraint firstAttribute="bottom" secondItem="A1n-bt-4OP" secondAttribute="bottom" id="gMN-OC-vNs"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="roV-Gv-tng">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="roV-Gv-tng" customClass="AttentionMapView" customModule="Attention" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="506"/>
                             </mapView>
                         </subviews>

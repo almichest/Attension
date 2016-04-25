@@ -12,7 +12,7 @@ import BlocksKit
 
 class RootViewController: UIViewController {
     
-    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var mapView: AttentionMapView!
     @IBOutlet private weak var searchBar: GeoLocationSearchBar!
     @IBOutlet private weak var currentLocationButton: UIButton!
     
@@ -34,7 +34,7 @@ class RootViewController: UIViewController {
             } as! UILongPressGestureRecognizer
         
         mapView.addGestureRecognizer(longPress)
-        mapView.delegate = self
+        mapView.attentionDelegate = self
 
         let tap = UITapGestureRecognizer.bk_recognizerWithHandler {[weak self] (recognizer, state, point) in
             self?.hideMapItems(true)
@@ -273,22 +273,39 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
     }
 }
 
-extension RootViewController: MKMapViewDelegate {
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+extension RootViewController: AttentionMapViewDelegate {
+    func mapView(mapView: AttentionMapView, didSelectAnnotationView view: MKAnnotationView) {
         guard let attentionAnnotation = view.annotation as? AttentionAnnotation else { return }
+        guard let item = attentionAnnotation.attentionItem else {return}
         
-        let vc = AnnotationBodyViewController.viewController(attentionAnnotation.attentionItem)
+        var region = self.mapView.region
+        region.center = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longtitude)
+        region.span = MKCoordinateSpanMake(0.005, 0.005)
+        let completion = {[weak self] in
+            guard self != nil else {return}
+            let vc = AnnotationBodyViewController.viewController(attentionAnnotation.attentionItem)
 
-        vc.modalPresentationStyle = .Popover
-        vc.popoverPresentationController?.permittedArrowDirections = [.Up, .Down]
-        vc.popoverPresentationController?.sourceRect = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: 0, height: 0)
-        vc.popoverPresentationController?.sourceView = mapView
-        vc.popoverPresentationController?.delegate = self
-        vc.preferredContentSize = CGSize(width: self.view.bounds.width, height: 200)
-        
-        presentViewController(vc, animated: true) {
-            self.mapView.deselectAnnotation(attentionAnnotation, animated: true)
+            vc.modalPresentationStyle = .Popover
+            vc.popoverPresentationController?.permittedArrowDirections = [.Up, .Down]
+            vc.popoverPresentationController?.sourceRect = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: 0, height: 0)
+            vc.popoverPresentationController?.sourceView = mapView
+            vc.popoverPresentationController?.delegate = self
+            vc.preferredContentSize = CGSize(width: self!.view.bounds.width, height: 200)
+            
+            self?.presentViewController(vc, animated: true) {
+                self?.mapView.deselectAnnotation(attentionAnnotation, animated: true)
+            }
         }
+
+        guard DBL_EPSILON < region.center.latitude - mapView.region.center.latitude ||
+              DBL_EPSILON < region.center.longitude - mapView.region.center.longitude ||
+              DBL_EPSILON < region.span.latitudeDelta - 0.005 ||
+              DBL_EPSILON < region.span.longitudeDelta - 0.005 else {
+                completion()
+                return
+        }
+
+        self.mapView.setRegion(region, animated: true, completion: completion)
     }
 }
 
