@@ -7,7 +7,7 @@
         <!--Annotation Body View Controller-->
         <scene sceneID="tMI-To-sah">
             <objects>
-                <viewController id="rbw-5W-0tc" customClass="AnnotationBodyViewController" customModule="Attension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rbw-5W-0tc" customClass="AnnotationBodyViewController" customModule="Attention" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tyg-HS-bII"/>
                         <viewControllerLayoutGuide type="bottom" id="lrz-1i-KAp"/>
@@ -32,9 +32,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tlf-h3-Kic">
-                                <rect key="frame" x="549" y="198" width="41" height="28"/>
+                                <rect key="frame" x="560" y="198" width="30" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Edit"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -57,7 +57,7 @@
                     <size key="freeformSize" width="600" height="230"/>
                     <connections>
                         <outlet property="bodyContainerScrollView" destination="FGw-EI-dbs" id="iU7-fL-73Q"/>
-                        <outlet property="editButton" destination="tlf-h3-Kic" id="gPr-NU-m3r"/>
+                        <outlet property="editButton" destination="tlf-h3-Kic" id="PVo-cU-bKT"/>
                         <outlet property="sharedStatusLabel" destination="86W-Hf-Ytb" id="mGi-Ik-8Rz"/>
                         <outlet property="titleContainerScrollView" destination="qXD-Nm-JT8" id="lLT-mv-ZbJ"/>
                     </connections>

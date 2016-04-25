@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		421F1E4B1CB16C0D008307A5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421F1E4A1CB16C0D008307A5 /* MapKit.framework */; };
 		422D33321CCD2E780094A877 /* AddingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330A1CCD2E780094A877 /* AddingItemViewController.swift */; };
-		422D33331CCD2E780094A877 /* AnnotationBodyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 422D330B1CCD2E780094A877 /* AnnotationBodyViewController.storyboard */; };
 		422D33341CCD2E780094A877 /* AnnotationBodyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330C1CCD2E780094A877 /* AnnotationBodyViewController.swift */; };
 		422D33351CCD2E780094A877 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330D1CCD2E780094A877 /* AppDelegate.swift */; };
 		422D33361CCD2E780094A877 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 422D330E1CCD2E780094A877 /* Assets.xcassets */; };
@@ -39,6 +38,7 @@
 		4287D5371CB14ACC00E78E47 /* AttensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287D5361CB14ACC00E78E47 /* AttensionTests.swift */; };
 		42A0DEC01CC66F2D0098C41A /* AttentionAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */; };
 		42E86D351CCE4ACE005E4EC0 /* AttentionMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E86D341CCE4ACE005E4EC0 /* AttentionMapView.swift */; };
+		42E86D361CCE5D4C005E4EC0 /* AnnotationBodyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42E86D381CCE5D4C005E4EC0 /* AnnotationBodyViewController.storyboard */; };
 		B58625FEC8348572F2893A72 /* Pods_Attention.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B16AE828EE2171AF9F29BF1 /* Pods_Attention.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +55,6 @@
 /* Begin PBXFileReference section */
 		421F1E4A1CB16C0D008307A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		422D330A1CCD2E780094A877 /* AddingItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingItemViewController.swift; sourceTree = "<group>"; };
-		422D330B1CCD2E780094A877 /* AnnotationBodyViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AnnotationBodyViewController.storyboard; sourceTree = "<group>"; };
 		422D330C1CCD2E780094A877 /* AnnotationBodyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationBodyViewController.swift; sourceTree = "<group>"; };
 		422D330D1CCD2E780094A877 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		422D330E1CCD2E780094A877 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,6 +91,9 @@
 		4287D5381CB14ACC00E78E47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionAPITests.swift; sourceTree = "<group>"; };
 		42E86D341CCE4ACE005E4EC0 /* AttentionMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionMapView.swift; sourceTree = "<group>"; };
+		42E86D371CCE5D4C005E4EC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AnnotationBodyViewController.storyboard; sourceTree = "<group>"; };
+		42E86D3A1CCE5D50005E4EC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AnnotationBodyViewController.strings; sourceTree = "<group>"; };
+		42E86D3C1CCE5D51005E4EC0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/AnnotationBodyViewController.strings; sourceTree = "<group>"; };
 		5B16AE828EE2171AF9F29BF1 /* Pods_Attention.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Attention.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		642FA8926857A91A7BA543F1 /* Pods-Attention.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Attention.release.xcconfig"; path = "Pods/Target Support Files/Pods-Attention/Pods-Attention.release.xcconfig"; sourceTree = "<group>"; };
 		79444ABCA0915F5FFC1112EC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				422D330A1CCD2E780094A877 /* AddingItemViewController.swift */,
-				422D330B1CCD2E780094A877 /* AnnotationBodyViewController.storyboard */,
+				42E86D381CCE5D4C005E4EC0 /* AnnotationBodyViewController.storyboard */,
 				422D330C1CCD2E780094A877 /* AnnotationBodyViewController.swift */,
 				422D330D1CCD2E780094A877 /* AppDelegate.swift */,
 				422D330E1CCD2E780094A877 /* Assets.xcassets */,
@@ -133,10 +135,10 @@
 				422D33131CCD2E780094A877 /* AttentionItemDataSource.swift */,
 				422D33141CCD2E780094A877 /* AttentionResponseItem.swift */,
 				422D33151CCD2E780094A877 /* AddingItemViewController.storyboard */,
+				422D331C1CCD2E780094A877 /* AddingItemViewController.strings */,
 				422D33171CCD2E780094A877 /* LaunchScreen.storyboard */,
 				422D33191CCD2E780094A877 /* Main.storyboard */,
 				422D331B1CCD2E780094A877 /* Config.swift */,
-				422D331C1CCD2E780094A877 /* AddingItemViewController.strings */,
 				422D331E1CCD2E780094A877 /* GeoLocationProvider.swift */,
 				422D331F1CCD2E780094A877 /* GeoLocationSearchBar.swift */,
 				422D33201CCD2E780094A877 /* Info.plist */,
@@ -312,7 +314,7 @@
 				422D333D1CCD2E780094A877 /* LaunchScreen.storyboard in Resources */,
 				422D33361CCD2E780094A877 /* Assets.xcassets in Resources */,
 				422D33401CCD2E780094A877 /* AddingItemViewController.strings in Resources */,
-				422D33331CCD2E780094A877 /* AnnotationBodyViewController.storyboard in Resources */,
+				42E86D361CCE5D4C005E4EC0 /* AnnotationBodyViewController.storyboard in Resources */,
 				422D33431CCD2E780094A877 /* Info.plist in Resources */,
 				422D33471CCD2E780094A877 /* LocationSelectViewController.storyboard in Resources */,
 				422D33441CCD2E780094A877 /* LaunchScreen.strings in Resources */,
@@ -507,6 +509,16 @@
 				422D332E1CCD2E780094A877 /* ja */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		42E86D381CCE5D4C005E4EC0 /* AnnotationBodyViewController.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42E86D371CCE5D4C005E4EC0 /* Base */,
+				42E86D3A1CCE5D50005E4EC0 /* en */,
+				42E86D3C1CCE5D51005E4EC0 /* ja */,
+			);
+			name = AnnotationBodyViewController.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

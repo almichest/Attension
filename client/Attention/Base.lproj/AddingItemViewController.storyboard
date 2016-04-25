@@ -7,7 +7,7 @@
         <!--Adding Item View Controller-->
         <scene sceneID="HiO-Ax-PZ1">
             <objects>
-                <viewController id="lgf-9k-QQ3" customClass="AddingItemViewController" customModule="Attension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lgf-9k-QQ3" customClass="AddingItemViewController" customModule="Attention" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mnp-GC-Trr"/>
                         <viewControllerLayoutGuide type="bottom" id="fRd-hd-XBS"/>

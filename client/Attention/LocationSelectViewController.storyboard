@@ -8,7 +8,7 @@
         <!--Location Select View Controller-->
         <scene sceneID="o1k-4w-aW2">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="sVx-9H-nNn" customClass="LocationSelectViewController" customModule="Attension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="sVx-9H-nNn" customClass="LocationSelectViewController" customModule="Attention" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vps-dx-wdR"/>
                         <viewControllerLayoutGuide type="bottom" id="gAM-fT-8dg"/>
