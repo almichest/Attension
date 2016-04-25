@@ -51,6 +51,15 @@ class RootViewController: UIViewController {
 
         searchBar.startHandler = {(searchBar) in self.showLocationSearchResultView()}
         
+        AttentionItemDataSource.sharedInstance.subscribe(self)
+
+        currentLocationButton.bk_addEventHandler({[weak self] (button) in
+            self?.focusOnUserLocation()
+        }, forControlEvents: .TouchUpInside)
+
+    }
+
+    private func focusOnUserLocation() {
         LocationManager.sharedInstance.requestLocation().on(success: { (location) in
             var region = self.mapView.region
             region.center = location.coordinate
@@ -61,15 +70,11 @@ class RootViewController: UIViewController {
                 debugPrint(error)
             }
         )
-        
-        AttentionItemDataSource.sharedInstance.subscribe(self)
-
-        let trackingButton = MKUserTrackingBarButtonItem(mapView: mapView)
-        self.setToolbarItems([trackingButton], animated: false)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        focusOnUserLocation()
         searchItems()
     }
 
