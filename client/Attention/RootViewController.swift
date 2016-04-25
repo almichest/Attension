@@ -238,9 +238,8 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
         vc.preferredContentSize = CGSize(width: view.bounds.width, height: 200)
         presentViewController(vc, animated: true) {
             // viewがloadされてからじゃないとエラーになる
-            vc.whatTextView.text = item.attentionBody
+            vc.whatTextView.insertText(item.attentionBody)
             vc.whereTextField.text = item.placeName
-            vc.hidePlaceHolderIfNeeded()
             vc.doneButton.bk_addEventHandler({[weak self] (sender) in
                 let completion: (() -> Void)
                 if let coordinater = self?.mapView.convertPoint(location, toCoordinateFromView: self!.mapView) {

@@ -14,6 +14,7 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - Bond (4.3.1)
   - Firebase (2.5.1)
   - Himotoki (2.0.0)
   - INTULocationManager (4.2.0)
@@ -29,6 +30,7 @@ PODS:
 
 DEPENDENCIES:
   - BlocksKit
+  - Bond
   - Firebase
   - Himotoki
   - INTULocationManager
@@ -38,6 +40,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  Bond: 55903fc67f09e8e49791a657163cabba1d6fb29d
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   Himotoki: 77fb61dbd6cd5dae033af630b591fec383eece28
   INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998

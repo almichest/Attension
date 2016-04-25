@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Bond
 
 class AddingItemViewController: UIViewController {
 
@@ -38,7 +39,9 @@ class AddingItemViewController: UIViewController {
         whatTextView.layer.borderColor = UIColor(red: 225.0 / 255.0, green: 225.0 / 255.0, blue: 225.0 / 255.0, alpha: 1.0).CGColor
         whatTextView.layer.borderWidth = 1.0
         whatTextView.layer.cornerRadius = 5.0
-        whatTextView.delegate = self
+        whatTextView.bnd_text.observe { (event) in
+            self.hidePlaceHolderIfNeeded()
+        }
 
         whatTextView.addSubview(placeHolderLabel)
 
@@ -53,13 +56,8 @@ class AddingItemViewController: UIViewController {
         placeHolderLabel.frame.origin.y = 4
     }
 
-    func hidePlaceHolderIfNeeded() {
+    private func hidePlaceHolderIfNeeded() {
         placeHolderLabel.hidden = (0 < whatTextView.text.characters.count)
     }
 }
 
-extension AddingItemViewController: UITextViewDelegate {
-    func textViewDidChange(textView: UITextView) {
-        hidePlaceHolderIfNeeded()
-    }
-}
