@@ -302,10 +302,10 @@ extension RootViewController: AttentionMapViewDelegate {
             }
         }
 
-        guard DBL_EPSILON < region.center.latitude - mapView.region.center.latitude ||
-              DBL_EPSILON < region.center.longitude - mapView.region.center.longitude ||
-              DBL_EPSILON < region.span.latitudeDelta - 0.005 ||
-              DBL_EPSILON < region.span.longitudeDelta - 0.005 else {
+        guard DBL_EPSILON < abs(region.center.latitude - mapView.region.center.latitude) ||
+              DBL_EPSILON < abs(region.center.longitude - mapView.region.center.longitude) ||
+              DBL_EPSILON < abs(region.span.latitudeDelta - 0.005) ||
+              DBL_EPSILON < abs(region.span.longitudeDelta - 0.005) else {
                 completion()
                 return
         }
