@@ -35,8 +35,18 @@ class AnnotationBodyViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        bodyLabel.bounds.size.width = bodyContainerScrollView.bounds.width
+        bodyLabel.sizeToFit()
+        bodyLabel.frame.origin.x = 0
+        bodyLabel.frame.origin.y = 0
+
+        placeNameLabel.sizeToFit()
+        placeNameLabel.frame.origin.x = 0
+        placeNameLabel.frame.origin.y = 0
+
         titleContainerScrollView.contentSize = placeNameLabel.bounds.size
         bodyContainerScrollView.contentSize = bodyLabel.bounds.size
+
     }
 
     private var placeNameLabel: UILabel!
@@ -46,9 +56,6 @@ class AnnotationBodyViewController: UIViewController {
         label.text = item.placeName
         label.font = UIFont.boldSystemFontOfSize(14)
         label.numberOfLines = 1
-        label.sizeToFit()
-        label.frame.origin.x = 0
-        label.frame.origin.y = 0
         placeNameLabel = label
         titleContainerScrollView.addSubview(label)
     }
@@ -59,11 +66,8 @@ class AnnotationBodyViewController: UIViewController {
         let label = UILabel()
         label.text = item.attentionBody
         label.font = UIFont.systemFontOfSize(14)
-        label.bounds.size.width = bodyContainerScrollView.bounds.width
         label.numberOfLines = 0
-        label.sizeToFit()
-        label.frame.origin.x = 0
-        label.frame.origin.y = 0
+
         bodyLabel = label
         bodyContainerScrollView.addSubview(label)
     }
