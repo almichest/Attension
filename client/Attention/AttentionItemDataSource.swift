@@ -53,7 +53,14 @@ class AttentionItemDataSource: NSObject {
             fulfill(result)
         }
     }
-    
+
+    func query(identifier: String) -> Task<Float, AttentionItem?, NSError> {
+        return Task<Float, AttentionItem?, NSError>(promiseInitClosure: { (fulfill, reject) in
+            let result = self.realm.objects(AttentionItem).filter("identifier = 'identifier'")
+            fulfill(result.first)
+        })
+    }
+
     func addAttentionItems(items: [AttentionItem]) {
         try! realm.write {
             items.forEach({ (item) in
@@ -69,7 +76,7 @@ class AttentionItemDataSource: NSObject {
             })
         }
     }
-    
+
     func deleteAll() {
         try! realm.write {
             realm.deleteAll()

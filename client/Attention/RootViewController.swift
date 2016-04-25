@@ -216,8 +216,18 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
 
             vc.addAction(UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .Default) { (action) in
                 AttentionAPIClient.sharedClient.createNewItem(item).on(success: { (item) in
-                    AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+                    AttentionItemDataSource.sharedInstance.query(item.identifier).on(success: { (result) in
+                        if let result = result {
+                            AttentionItemDataSource.sharedInstance.deleteAttentionItems([result])
+                            AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+                        } else {
+                            AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+                        }
+                    }, failure: { (error, isCancelled) in
+                            AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+                    })
                 }, failure: { (error, isCancelled) in
+
                 })
             })
 
