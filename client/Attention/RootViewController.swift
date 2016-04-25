@@ -12,8 +12,9 @@ import BlocksKit
 
 class RootViewController: UIViewController {
     
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var searchBar: GeoLocationSearchBar!
+    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var searchBar: GeoLocationSearchBar!
+    @IBOutlet private weak var currentLocationButton: UIButton!
     
     private var currentAnnotation: MKAnnotation?
     override func viewDidLoad() {
@@ -40,7 +41,9 @@ class RootViewController: UIViewController {
             self?.searchBar.resignFirstResponder()
         } as! UITapGestureRecognizer
         mapView.addGestureRecognizer(tap)
-        
+
+        mapView.showsUserLocation = true
+
         searchBar.searchHandler = {(searchBar) in
             guard let text = searchBar.text else {return}
             self.searchLocation(text)
@@ -60,6 +63,9 @@ class RootViewController: UIViewController {
         )
         
         AttentionItemDataSource.sharedInstance.subscribe(self)
+
+        let trackingButton = MKUserTrackingBarButtonItem(mapView: mapView)
+        self.setToolbarItems([trackingButton], animated: false)
     }
     
     override func viewDidAppear(animated: Bool) {
