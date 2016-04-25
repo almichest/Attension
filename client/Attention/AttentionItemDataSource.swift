@@ -75,6 +75,10 @@ class AttentionItemDataSource: NSObject {
             realm.deleteAll()
         }
     }
+
+    static func createLocalIdentifier(item: AttentionItem) -> String {
+        return (String(item.latitude) + String(item.longtitude)).stringByReplacingOccurrencesOfString(".", withString: "")
+    }
 }
 
 protocol AttentionItemDataSourceReceiver: class {

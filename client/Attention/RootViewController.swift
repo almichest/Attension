@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import BlocksKit
+import RealmSwift
 
 class RootViewController: UIViewController {
     
@@ -207,7 +208,7 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
         }
 
         if item.shared {
-
+            AttentionAPIClient.sharedClient.updateItem(item)
         } else {
             let vc = UIAlertController(title: NSLocalizedString("please.share.title", comment: ""), message: NSLocalizedString("please.share.body", comment: ""), preferredStyle: .Alert)
 
@@ -220,6 +221,10 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
 
             vc.addAction(UIAlertAction(title: NSLocalizedString("no", comment: ""), style: .Default) { (action) in
                 self.dismissViewControllerAnimated(true, completion: nil)
+                /* 新規作成時はidentifierが空文字列 */
+                if item.identifier == "" {
+                    item.identifier = AttentionItemDataSource.createLocalIdentifier(item)
+                }
                 AttentionItemDataSource.sharedInstance.addAttentionItems([item])
             })
 
@@ -285,30 +290,34 @@ extension RootViewController: AttentionMapViewDelegate {
         
         var region = self.mapView.region
         region.center = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longtitude)
-        region.span = MKCoordinateSpanMake(0.005, 0.005)
         let completion = {[weak self] in
             guard self != nil else {return}
-            let vc = AnnotationBodyViewController.viewController(attentionAnnotation.attentionItem)
+            let vc = AnnotationBodyViewController.viewController(item)
+            let point = self!.mapView.convertCoordinate(CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longtitude), toPointToView: self!.mapView)
 
             vc.modalPresentationStyle = .Popover
             vc.popoverPresentationController?.permittedArrowDirections = [.Up, .Down]
-            vc.popoverPresentationController?.sourceRect = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: 0, height: 0)
+            vc.popoverPresentationController?.sourceRect = CGRect(x: point.x, y: point.y, width: 0, height: 0)
             vc.popoverPresentationController?.sourceView = mapView
             vc.popoverPresentationController?.delegate = self
             vc.preferredContentSize = CGSize(width: self!.view.bounds.width, height: 200)
-            
+
             self?.presentViewController(vc, animated: true) {
                 self?.mapView.deselectAnnotation(attentionAnnotation, animated: true)
+                vc.editButton.bk_addEventHandler({[weak self] (button) in
+                    self?.dismissViewControllerAnimated(true, completion: {
+                        self?.showAddingItemPopoverWithItem(item)
+                    })
+                }, forControlEvents: .TouchUpInside)
             }
         }
 
-        guard DBL_EPSILON < abs(region.center.latitude - mapView.region.center.latitude) ||
-              DBL_EPSILON < abs(region.center.longitude - mapView.region.center.longitude) ||
-              DBL_EPSILON < abs(region.span.latitudeDelta - 0.005) ||
-              DBL_EPSILON < abs(region.span.longitudeDelta - 0.005) else {
-                completion()
-                return
+        guard 0.01 < region.span.latitudeDelta && 0.01 < region.span.longitudeDelta else {
+            completion()
+            return
         }
+
+        region.span = MKCoordinateSpanMake(0.005, 0.005)
 
         self.mapView.setRegion(region, animated: true, completion: completion)
     }
