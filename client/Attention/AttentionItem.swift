@@ -35,6 +35,12 @@ extension AttentionItem {
         }
         return ret
     }
+
+    override var description: String {
+        var dic = toDictionary(true)
+        dic["shared"] = shared
+        return String(dic)
+    }
 }
 
 func ==(left: AttentionItem, right: AttentionItem) -> Bool {
