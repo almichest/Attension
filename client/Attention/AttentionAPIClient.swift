@@ -19,22 +19,26 @@ enum APIErrorCode: Int {
     }
 }
 
+typealias LoginTask = Task<Float, FAuthData, NSError>
+typealias FetchTask = Task<Float, [AttentionResponseItem], NSError>
+typealias PushTask = Task<Float, AttentionItem, NSError>
+
 public class AttentionAPIClient: NSObject {
 
     public static let sharedClient = AttentionAPIClient()
 
     private let firebase = Firebase(url: FIRE_BASE_URL)
-    private let authTask: Task<Float, AnyObject, NSError>
+    private let authTask: Task<Float, FAuthData, NSError>
 
     override init() {
-        self.authTask = Task<Float, AnyObject, NSError>(promiseInitClosure: { (fulfill, reject) in
+        self.authTask = LoginTask(promiseInitClosure: { (fulfill, reject) in
             let firebase = Firebase(url: FIRE_BASE_URL)
             firebase.authWithCustomToken(FIRE_BASE_AUTH_TOKEN) { (error, data) in
                 if let data = data {
-                    debugPrint("Log in complete")
+                    debugPrint("***** Log in complete *****")
                     fulfill(data)
                 } else {
-                    debugPrint("Log in Failed")
+                    debugPrint("***** Log in Failed *****")
                     reject(APIErrorCode.LoginError.createError())
                 }
             }
@@ -42,10 +46,13 @@ public class AttentionAPIClient: NSObject {
         super.init()
     }
 
-    func fetchItems(latitude: Double, longitude: Double, radius: Double) -> Task<Float, [AttentionResponseItem], NSError> {
-        return authTask.then{(token, errorInfo) -> Task<Float, [AttentionResponseItem], NSError> in
+    func fetchItems(latitude: Double, longitude: Double, radius: Double) -> FetchTask {
+        return authTask.then{(token, errorInfo) -> FetchTask in
+            guard let _ = token else {
+                return FetchTask(error: APIErrorCode.LoginError.createError())
+            }
             debugPrint("fetch - \(latitude), \(longitude), \(radius)")
-            return Task<Float, [AttentionResponseItem], NSError>(promiseInitClosure: { (fulfill, reject) in
+            return FetchTask(promiseInitClosure: { (fulfill, reject) in
                 self.firebase.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                     debugPrint("fetch result - \(snapshot.value)")
                     guard let value = snapshot.value as? Dictionary<String, Dictionary<String, AnyObject>> else {
@@ -74,10 +81,13 @@ public class AttentionAPIClient: NSObject {
         }
     }
 
-    func createNewItem(item: AttentionItem) -> Task<Float, AttentionItem, NSError> {
-        return authTask.then{(token, errorInfo) -> Task<Float, AttentionItem, NSError> in
+    func createNewItem(item: AttentionItem) -> PushTask {
+        return authTask.then{(token, errorInfo) -> PushTask in
+            guard let _ = token else {
+                return PushTask(error: APIErrorCode.LoginError.createError())
+            }
             debugPrint("create item: \(item)")
-            return Task<Float, AttentionItem, NSError>(promiseInitClosure: { (fulfill, reject) in
+            return PushTask(promiseInitClosure: { (fulfill, reject) in
                 let attentionsRef = self.firebase.childByAppendingPath("attentions/")
                 let dic = item.toDictionary(false)
                 attentionsRef.childByAutoId().setValue(dic) { (error, firebase) in
@@ -94,10 +104,13 @@ public class AttentionAPIClient: NSObject {
         }
     }
 
-    func updateItem(item: AttentionItem) -> Task<Float, AttentionItem, NSError> {
+    func updateItem(item: AttentionItem) -> PushTask {
         return authTask.then{(token, errorInfo) -> Task<Float, AttentionItem, NSError> in
+            guard let _ = token else {
+                return PushTask(error: APIErrorCode.LoginError.createError())
+            }
             debugPrint("update item: \(item)")
-            return Task<Float, AttentionItem, NSError>(promiseInitClosure: { (fulfill, reject) in
+            return PushTask(promiseInitClosure: { (fulfill, reject) in
                 let attentionsRef = self.firebase.childByAppendingPath("attentions/" + item.identifier)
                 let dic = item.toDictionary(false)
                 attentionsRef.updateChildValues(dic, withCompletionBlock: { (error, firebase) in
