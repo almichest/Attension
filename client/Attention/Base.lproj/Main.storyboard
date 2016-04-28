@@ -3,6 +3,11 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="WebHostingHub-Glyphs.ttf">
+            <string>WebHostingHub-Glyphs</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Root View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -26,13 +31,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2r-F1-N3r">
                                 <rect key="frame" x="0.0" y="570" width="600" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1n-bt-4OP" userLabel="currentLocation">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1n-bt-4OP" userLabel="currentLocation">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="gmu-Sw-aS2"/>
                                             <constraint firstAttribute="height" constant="30" id="ogV-zE-uWB"/>
                                         </constraints>
-                                        <state key="normal" image="arrow"/>
+                                        <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="14"/>
+                                        <state key="normal" title="chevronup"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -77,7 +83,4 @@
             <point key="canvasLocation" x="434" y="306"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="arrow" width="100" height="106"/>
-    </resources>
 </document>

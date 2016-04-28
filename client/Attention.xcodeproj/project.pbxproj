@@ -39,6 +39,8 @@
 		42A0DEC01CC66F2D0098C41A /* AttentionAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */; };
 		42E86D351CCE4ACE005E4EC0 /* AttentionMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E86D341CCE4ACE005E4EC0 /* AttentionMapView.swift */; };
 		42E86D361CCE5D4C005E4EC0 /* AnnotationBodyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42E86D381CCE5D4C005E4EC0 /* AnnotationBodyViewController.storyboard */; };
+		42E86D3E1CD25249005E4EC0 /* WebHostingHub-Glyphs.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42E86D3D1CD25249005E4EC0 /* WebHostingHub-Glyphs.ttf */; };
+		42E86D3F1CD25249005E4EC0 /* WebHostingHub-Glyphs.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42E86D3D1CD25249005E4EC0 /* WebHostingHub-Glyphs.ttf */; };
 		B58625FEC8348572F2893A72 /* Pods_Attention.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B16AE828EE2171AF9F29BF1 /* Pods_Attention.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +96,7 @@
 		42E86D371CCE5D4C005E4EC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AnnotationBodyViewController.storyboard; sourceTree = "<group>"; };
 		42E86D3A1CCE5D50005E4EC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AnnotationBodyViewController.strings; sourceTree = "<group>"; };
 		42E86D3C1CCE5D51005E4EC0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/AnnotationBodyViewController.strings; sourceTree = "<group>"; };
+		42E86D3D1CD25249005E4EC0 /* WebHostingHub-Glyphs.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WebHostingHub-Glyphs.ttf"; sourceTree = "<group>"; };
 		5B16AE828EE2171AF9F29BF1 /* Pods_Attention.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Attention.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		642FA8926857A91A7BA543F1 /* Pods-Attention.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Attention.release.xcconfig"; path = "Pods/Target Support Files/Pods-Attention/Pods-Attention.release.xcconfig"; sourceTree = "<group>"; };
 		79444ABCA0915F5FFC1112EC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +164,7 @@
 		422D332B1CCD2E780094A877 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				42E86D3D1CD25249005E4EC0 /* WebHostingHub-Glyphs.ttf */,
 				422D332C1CCD2E780094A877 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -308,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				422D33451CCD2E780094A877 /* Main.strings in Resources */,
+				42E86D3E1CD25249005E4EC0 /* WebHostingHub-Glyphs.ttf in Resources */,
 				422D333C1CCD2E780094A877 /* AddingItemViewController.storyboard in Resources */,
 				422D334B1CCD2E780094A877 /* Localizable.strings in Resources */,
 				422D333E1CCD2E780094A877 /* Main.storyboard in Resources */,
@@ -325,6 +330,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42E86D3F1CD25249005E4EC0 /* WebHostingHub-Glyphs.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
