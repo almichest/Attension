@@ -6,6 +6,8 @@
     <customFonts key="customFonts">
         <mutableArray key="WebHostingHub-Glyphs.ttf">
             <string>WebHostingHub-Glyphs</string>
+            <string>WebHostingHub-Glyphs</string>
+            <string>WebHostingHub-Glyphs</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -51,24 +53,40 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="roV-Gv-tng" customClass="AttentionMapView" customModule="Attention" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="506"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6J-J2-8hN">
+                                <rect key="frame" x="565" y="536" width="30" height="34"/>
+                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="20"/>
+                                <state key="normal" title="zoomout"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJ8-9O-AcH">
+                                <rect key="frame" x="565" y="502" width="30" height="34"/>
+                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="20"/>
+                                <state key="normal" title="zoomin"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="c2r-F1-N3r" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="08r-Rt-aWh"/>
                             <constraint firstItem="c2r-F1-N3r" firstAttribute="top" secondItem="roV-Gv-tng" secondAttribute="bottom" id="6xc-12-dvp"/>
+                            <constraint firstItem="TJ8-9O-AcH" firstAttribute="centerX" secondItem="g6J-J2-8hN" secondAttribute="centerX" id="942-ks-0K9"/>
+                            <constraint firstAttribute="trailing" secondItem="g6J-J2-8hN" secondAttribute="trailing" constant="5" id="BKg-8u-WBx"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="roV-Gv-tng" secondAttribute="bottom" id="FG8-Er-qMa"/>
                             <constraint firstItem="roV-Gv-tng" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="H7t-7l-Miz"/>
                             <constraint firstAttribute="bottom" secondItem="c2r-F1-N3r" secondAttribute="bottom" id="HHX-Ap-H1Z"/>
+                            <constraint firstItem="c2r-F1-N3r" firstAttribute="top" secondItem="g6J-J2-8hN" secondAttribute="bottom" id="MBk-JJ-uOm"/>
                             <constraint firstAttribute="trailing" secondItem="c2r-F1-N3r" secondAttribute="trailing" id="VVp-m9-Ggm"/>
                             <constraint firstItem="roV-Gv-tng" firstAttribute="top" secondItem="dcc-LH-loY" secondAttribute="bottom" id="WFJ-hT-q54"/>
+                            <constraint firstAttribute="trailing" secondItem="TJ8-9O-AcH" secondAttribute="trailing" constant="5" id="XBk-gc-qA9"/>
                             <constraint firstItem="dcc-LH-loY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dXn-Bw-Opy"/>
                             <constraint firstAttribute="trailing" secondItem="dcc-LH-loY" secondAttribute="trailing" id="e5B-DG-435"/>
                             <constraint firstItem="dcc-LH-loY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="jpE-cJ-4wq"/>
                             <constraint firstAttribute="trailing" secondItem="roV-Gv-tng" secondAttribute="trailing" id="n7Y-Gs-zny"/>
+                            <constraint firstItem="g6J-J2-8hN" firstAttribute="top" secondItem="TJ8-9O-AcH" secondAttribute="bottom" id="wB6-S1-rJB"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="FG8-Er-qMa"/>
+                                <exclude reference="XBk-gc-qA9"/>
                             </mask>
                         </variation>
                     </view>
@@ -76,6 +94,8 @@
                         <outlet property="currentLocationButton" destination="A1n-bt-4OP" id="TqV-2p-2PC"/>
                         <outlet property="mapView" destination="roV-Gv-tng" id="UYW-U3-GJg"/>
                         <outlet property="searchBar" destination="dcc-LH-loY" id="zQp-ox-vMU"/>
+                        <outlet property="zoomInButton" destination="TJ8-9O-AcH" id="S91-pl-1Mg"/>
+                        <outlet property="zoomOutButton" destination="g6J-J2-8hN" id="LeE-Kx-qDa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -16,6 +16,8 @@ class RootViewController: UIViewController {
     @IBOutlet private weak var mapView: AttentionMapView!
     @IBOutlet private weak var searchBar: GeoLocationSearchBar!
     @IBOutlet private weak var currentLocationButton: UIButton!
+    @IBOutlet weak var zoomInButton: UIButton!
+    @IBOutlet weak var zoomOutButton: UIButton!
     
     private var currentAnnotation: MKAnnotation?
     override func viewDidLoad() {
@@ -58,6 +60,29 @@ class RootViewController: UIViewController {
             self?.focusOnUserLocation()
         }, forControlEvents: .TouchUpInside)
 
+        zoomInButton.bk_addEventHandler({[weak self] (button) in
+            self?.zoom(true)
+        }, forControlEvents: .TouchUpInside)
+
+        zoomOutButton.bk_addEventHandler({[weak self] (button) in
+            self?.zoom(false)
+        }, forControlEvents: .TouchUpInside)
+
+    }
+
+    private func zoom(zoomIn: Bool) {
+        var region = self.mapView.region
+        let span = region.span
+        if zoomIn {
+            region.span = MKCoordinateSpan(latitudeDelta: span.latitudeDelta / 1.25, longitudeDelta: span.longitudeDelta / 1.25)
+        } else {
+            region.span = MKCoordinateSpan(latitudeDelta: span.latitudeDelta * 1.25, longitudeDelta: span.longitudeDelta * 1.25)
+
+        }
+
+        UIView.animateWithDuration(0.1) { 
+            self.mapView.setRegion(region, animated: true)
+        }
     }
 
     private func focusOnUserLocation() {
