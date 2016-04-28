@@ -28,23 +28,36 @@ public class AttentionAPIClient: NSObject {
     public static let sharedClient = AttentionAPIClient()
 
     private let firebase = Firebase(url: FIRE_BASE_URL)
-    private let authTask: Task<Float, FAuthData, NSError>
+    private var authTask: Task<Float, FAuthData, NSError>!
 
     override init() {
-        self.authTask = LoginTask(promiseInitClosure: { (fulfill, reject) in
+        super.init()
+        auth()
+    }
+
+    private static let maxLoginTry = 5
+    private var loginTryCount = 0
+    private func auth() {
+        authTask = LoginTask(promiseInitClosure:{[weak self] (fulfill, reject) in
             let firebase = Firebase(url: FIRE_BASE_URL)
             firebase.authWithCustomToken(FIRE_BASE_AUTH_TOKEN) { (error, data) in
                 if let data = data {
                     debugPrint("***** Log in complete *****")
                     fulfill(data)
                 } else {
-                    debugPrint("***** Log in Failed *****")
-                    reject(APIErrorCode.LoginError.createError())
+                    if self?.loginTryCount < AttentionAPIClient.maxLoginTry {
+                        debugPrint("***** Log in Failed ***** : \(self?.loginTryCount)")
+                        self?.loginTryCount += 1
+                        self?.auth()
+                    } else {
+                        debugPrint("***** Log in Completely Failed ... *****")
+                        reject(APIErrorCode.LoginError.createError())
+                    }
                 }
             }
         })
-        super.init()
     }
+
 
     func fetchItems(latitude: Double, longitude: Double, radius: Double) -> FetchTask {
         return authTask.then{(token, errorInfo) -> FetchTask in
