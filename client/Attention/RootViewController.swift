@@ -196,7 +196,7 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
 
     private func registerItem(item: AttentionItem) {
 
-        if MAX_PLACENAME_COUNT < item.placeName.characters.count || MAX_ATTENTION_COUNT < item.attentionBody.characters.count {
+        if MAX_PLACENAME_LENGTH < item.placeName.characters.count || MAX_ATTENTION_LENGTH < item.attentionBody.characters.count {
             let vc = UIAlertController(title: NSLocalizedString("error", comment: ""), message: NSLocalizedString("alert.textlength", comment: ""), preferredStyle: .Alert)
             presentViewController(vc, animated: true, completion: {
                 vc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel) { (action) in

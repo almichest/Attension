@@ -13,6 +13,7 @@
 "please.share.title" = "Please Share";
 "please.share.body" = "Please share this useful information with others!.";
 "no.information" = "No information.";
+"alert.textlength" = "Sorry. 'Where' must be less than 50 letters, and 'What' must be less than 200 letters.";
 
 "yes" = "Yes";
 "no" = "No";
