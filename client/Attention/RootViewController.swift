@@ -68,6 +68,28 @@ class RootViewController: UIViewController {
             self?.zoom(false)
         }, forControlEvents: .TouchUpInside)
 
+        NSNotificationCenter.defaultCenter().bnd_notification(UIKeyboardWillShowNotification, object: nil).observe {[weak self] (notification) in
+            guard let userInfo = notification.userInfo else {return}
+            guard let vc = self?.locationSelectViewController else {return}
+            guard let frame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() else {return}
+            guard let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double else {return}
+
+            UIView.animateWithDuration(duration, animations: {
+                guard let originalFrame = self?.locationSelectViewOriginalFrame else {return}
+                vc.view.frame = originalFrame
+                vc.view.frame.origin.y -= frame.size.height
+            })
+        }.disposeIn(bnd_bag)
+        NSNotificationCenter.defaultCenter().bnd_notification(UIKeyboardWillHideNotification, object: nil).observe {[weak self] (notification) in
+            guard let userInfo = notification.userInfo else {return}
+            guard let vc = self?.locationSelectViewController else {return}
+            guard let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double else {return}
+
+            UIView.animateWithDuration(duration, animations: {
+                guard let originalFrame = self?.locationSelectViewOriginalFrame else {return}
+                vc.view.frame = originalFrame
+            })
+        }.disposeIn(bnd_bag)
     }
 
     private func zoom(zoomIn: Bool) {
@@ -77,7 +99,6 @@ class RootViewController: UIViewController {
             region.span = MKCoordinateSpan(latitudeDelta: span.latitudeDelta / 1.25, longitudeDelta: span.longitudeDelta / 1.25)
         } else {
             region.span = MKCoordinateSpan(latitudeDelta: span.latitudeDelta * 1.25, longitudeDelta: span.longitudeDelta * 1.25)
-
         }
 
         UIView.animateWithDuration(0.1) { 
@@ -113,7 +134,13 @@ class RootViewController: UIViewController {
     }
 
     private var locationSelectViewController: LocationSelectViewController?
+    private lazy var locationSelectViewOriginalFrame: CGRect = {
+        CGRect(x: 0, y: self.view.bounds.size.height - 150, width: self.view.bounds.size.width, height: 150)
+    }()
     private func showLocationSearchResultView() {
+        if locationSelectViewController != nil {
+            hideMapItems(false)
+        }
 
         let vc = LocationSelectViewController.viewController()
         vc.mapItemSelectionHandler = {(mapItem) in
@@ -131,7 +158,7 @@ class RootViewController: UIViewController {
 
         vc.view.frame = CGRect(x: 0, y: view.bounds.size.height, width: view.bounds.size.width, height: 150)
         UIView.animateWithDuration(0.5, animations: {
-            vc.view.frame = CGRect(x: 0, y: self.view.bounds.size.height - 150, width: self.view.bounds.size.width, height: 150)
+            vc.view.frame = self.locationSelectViewOriginalFrame
         })
     }
 
