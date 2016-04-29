@@ -13,3 +13,13 @@ target 'Attention' do
     pod 'Bond'
     pod 'SVProgressHUD'
 end
+
+post_install do | installer |
+require 'fileutils'
+
+FileUtils.cp_r('Pods/Target Support Files/Pods-Attention/Pods-Attention-acknowledgements.plist', 'Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+
+# エラー
+#FileUtils.cp_r('Pods/Pods-acknowledgements.plist', 'TESTSettings/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+
+end
