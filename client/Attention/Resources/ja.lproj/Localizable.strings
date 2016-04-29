@@ -13,6 +13,7 @@
 "please.share.title" = "ぜひ公開してください！";
 "please.share.body" = "この情報をぜひ他の方に公開してください！";
 "no.information" = "情報無し";
+"alert.notext " = "場所、内容ともに1文字以上入力してください。";
 "alert.textlength" = "場所は50文字以下、内容は200文字以下で入力してください。";
 
 "yes" = "はい";

@@ -19,8 +19,10 @@ class RootViewController: UIViewController {
     @IBOutlet private weak var currentLocationButton: UIButton!
     @IBOutlet weak var zoomInButton: UIButton!
     @IBOutlet weak var zoomOutButton: UIButton!
-    
+
+    private var locationSelectViewController: LocationSelectViewController?
     private var currentAnnotation: MKAnnotation?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -93,6 +95,12 @@ class RootViewController: UIViewController {
         }.disposeIn(bnd_bag)
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        focusOnUserLocation()
+        searchItems()
+    }
+
     private func zoom(zoomIn: Bool) {
         var region = self.mapView.region
         let span = region.span
@@ -120,24 +128,35 @@ class RootViewController: UIViewController {
         )
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        focusOnUserLocation()
-        searchItems()
-    }
-
-    private func searchLocation(locationName: String) {
-        GeoLocationProvider.sharedInstance.searchLocation(locationName).on(success: {[weak self] (items) in
-            self?.updateMapItems(items)
-        }) {[weak self] (error, isCancelled) in
-            self?.updateMapItems([])
-        }
-    }
-
-    private var locationSelectViewController: LocationSelectViewController?
     private lazy var locationSelectViewOriginalFrame: CGRect = {
         CGRect(x: 0, y: self.view.bounds.size.height - 150, width: self.view.bounds.size.width, height: 150)
     }()
+
+    private func searchItems() {
+        showProgess(NSLocalizedString("search.items", comment: ""))
+        AttentionAPIClient.sharedClient.fetchItems(0, longitude: 0, radius: 0).on(success: {[weak self] response in
+            let items = response.map({ (resItem) -> AttentionItem in
+                let item = AttentionItem()
+                item.identifier = resItem.identifier
+                item.latitude = resItem.latitude
+                item.longtitude = resItem.longitude
+                item.attentionBody = resItem.attentionBody
+                item.placeName = resItem.placeName
+                item.shared = true
+                return item
+            })
+            AttentionItemDataSource.sharedInstance.addAttentionItems(items)
+            self?.dismissProgress()
+
+        }) {[weak self] (error, isCancelled) in
+            self?.showError(NSLocalizedString("search.items.failed", comment: ""))
+            self?.datasetDidChange(AttentionItemDataSource.sharedInstance)
+        }
+    }
+}
+
+//MARK: - Search places
+extension RootViewController {
     private func showLocationSearchResultView() {
         if locationSelectViewController != nil {
             hideMapItems(false)
@@ -161,6 +180,14 @@ class RootViewController: UIViewController {
         UIView.animateWithDuration(0.5, animations: {
             vc.view.frame = self.locationSelectViewOriginalFrame
         })
+    }
+
+    private func searchLocation(locationName: String) {
+        GeoLocationProvider.sharedInstance.searchLocation(locationName).on(success: {[weak self] (items) in
+            self?.updateMapItems(items)
+        }) {[weak self] (error, isCancelled) in
+            self?.updateMapItems([])
+        }
     }
 
     private func updateMapItems(mapItems: [MKMapItem]) {
@@ -187,33 +214,11 @@ class RootViewController: UIViewController {
             locationSelectViewController = nil
         }
     }
-    
-    private func searchItems() {
-        showProgess(NSLocalizedString("search.items", comment: ""))
-        AttentionAPIClient.sharedClient.fetchItems(0, longitude: 0, radius: 0).on(success: {[weak self] response in
-            let items = response.map({ (resItem) -> AttentionItem in
-                let item = AttentionItem()
-                item.identifier = resItem.identifier
-                item.latitude = resItem.latitude
-                item.longtitude = resItem.longitude
-                item.attentionBody = resItem.attentionBody
-                item.placeName = resItem.placeName
-                item.shared = true
-                return item
-            })
-            AttentionItemDataSource.sharedInstance.addAttentionItems(items)
-            self?.dismissProgress()
 
-        }) {[weak self] (error, isCancelled) in
-            self?.showError(NSLocalizedString("search.items.failed", comment: ""))
-            self?.datasetDidChange(AttentionItemDataSource.sharedInstance)
-        }
-    }
 }
 
-//MARK: Popover
-extension RootViewController: UIPopoverPresentationControllerDelegate {
-    
+//MARK: - Add Item
+extension RootViewController {
     private func showPopupForAddingAttentionItem(location: CGPoint, annotation: AttentionAnnotation) {
         let vc = AddingItemViewController.viewController()
         
@@ -250,71 +255,6 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
                 self?.dismissViewControllerAnimated(true, completion: completion)
 
             }, forControlEvents: .TouchUpInside)
-        }
-    }
-
-    private func registerItem(item: AttentionItem) {
-
-        if MAX_PLACENAME_LENGTH < item.placeName.characters.count || MAX_ATTENTION_LENGTH < item.attentionBody.characters.count {
-            let vc = UIAlertController(title: NSLocalizedString("error", comment: ""), message: NSLocalizedString("alert.textlength", comment: ""), preferredStyle: .Alert)
-            presentViewController(vc, animated: true, completion: {
-                vc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel) { (action) in
-                    self.dismissViewControllerAnimated(false, completion: nil)
-                    self.showAddingItemPopoverWithItem(item)
-                })
-            })
-            return
-        }
-
-        if item.shared {
-            self.showProgess(NSLocalizedString("update.item", comment: ""))
-            AttentionAPIClient.sharedClient.updateItem(item).on(success: {[weak self] (item) in
-                AttentionItemDataSource.sharedInstance.addAttentionItems([item])
-                self?.dismissProgress()
-            }, failure:{[weak self] (error, canceld) in
-                self?.showError("update.item.failed")
-            })
-
-        } else {
-            let vc = UIAlertController(title: NSLocalizedString("please.share.title", comment: ""), message: NSLocalizedString("please.share.body", comment: ""), preferredStyle: .Alert)
-
-            vc.addAction(UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .Default) { (action) in
-                self.showProgess(NSLocalizedString("create.item", comment: ""))
-                AttentionAPIClient.sharedClient.createNewItem(item).on(success: { (newItem) in
-                    AttentionItemDataSource.sharedInstance.query(item.identifier).on(success: {[weak self] (result) in
-                        if let result = result where 0 < result.identifier.characters.count {
-                            print(result.identifier)
-                            AttentionItemDataSource.sharedInstance.deleteAttentionItems([result])
-                            AttentionItemDataSource.sharedInstance.addAttentionItems([newItem])
-                        } else {
-                            AttentionItemDataSource.sharedInstance.addAttentionItems([newItem])
-                        }
-                        self?.dismissProgress()
-                    }, failure: {[weak self] (error, isCancelled) in
-                        AttentionItemDataSource.sharedInstance.addAttentionItems([newItem])
-                        self?.dismissProgress()
-                    })
-                }, failure: {[weak self] (error, isCancelled) in
-                    /* 通信に失敗しても、とりあえずローカルのデータベースには保存しておく */
-                    AttentionItemDataSource.sharedInstance.addAttentionItems([item])
-                    self?.showError(NSLocalizedString("create.item.failed", comment: ""))
-                })
-            })
-
-            vc.addAction(UIAlertAction(title: NSLocalizedString("no", comment: ""), style: .Default) { (action) in
-                self.dismissViewControllerAnimated(true, completion: nil)
-                /* 新規作成時はidentifierが空文字列 */
-                if item.identifier == "" {
-                    item.identifier = AttentionItemDataSource.createLocalIdentifier(item)
-                }
-                AttentionItemDataSource.sharedInstance.addAttentionItems([item])
-            })
-
-            vc.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .Cancel) { (action) in
-                self.dismissViewControllerAnimated(false, completion: nil)
-                self.showAddingItemPopoverWithItem(item)
-            })
-            presentViewController(vc, animated: true, completion: nil)
         }
     }
 
@@ -357,6 +297,96 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
         }
     }
 
+    private func registerItem(item: AttentionItem) {
+
+        let errorText: String? = {
+            if item.placeName.characters.count == 0 || item.attentionBody.characters.count == 0 {
+                return NSLocalizedString("alert.notext", comment: "")
+            } else if MAX_PLACENAME_LENGTH < item.placeName.characters.count || MAX_ATTENTION_LENGTH < item.attentionBody.characters.count {
+                return NSLocalizedString("alert.textlength", comment: "")
+            } else {
+                return nil
+            }
+
+        }()
+
+        if let errorText = errorText {
+            let vc = UIAlertController(title: NSLocalizedString("error", comment: ""), message: errorText, preferredStyle: .Alert)
+            presentViewController(vc, animated: true, completion: {
+                vc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel) { (action) in
+                    self.dismissViewControllerAnimated(false, completion: nil)
+                    self.showAddingItemPopoverWithItem(item)
+                })
+            })
+            return
+        }
+
+        if item.shared {
+            self.updateItem(item)
+        } else {
+            self.createItem(item)
+        }
+    }
+
+    private func updateItem(item: AttentionItem) {
+        self.showProgess(NSLocalizedString("update.item", comment: ""))
+        AttentionAPIClient.sharedClient.updateItem(item).on(success: {[weak self] (item) in
+            AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+            self?.dismissProgress()
+        }, failure:{[weak self] (error, canceld) in
+            self?.showError("update.item.failed")
+        })
+    }
+
+    private func createItem(item: AttentionItem) {
+            let vc = UIAlertController(title: NSLocalizedString("please.share.title", comment: ""), message: NSLocalizedString("please.share.body", comment: ""), preferredStyle: .Alert)
+
+            vc.addAction(UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .Default) { (action) in
+                self.showProgess(NSLocalizedString("create.item", comment: ""))
+                AttentionAPIClient.sharedClient.createNewItem(item).on(success: { (newItem) in
+                    AttentionItemDataSource.sharedInstance.query(item.identifier).on(success: {[weak self] (result) in
+                        if let result = result where 0 < result.identifier.characters.count {
+                            print(result.identifier)
+                            AttentionItemDataSource.sharedInstance.deleteAttentionItems([result])
+                            AttentionItemDataSource.sharedInstance.addAttentionItems([newItem])
+                        } else {
+                            AttentionItemDataSource.sharedInstance.addAttentionItems([newItem])
+                        }
+                        self?.dismissProgress()
+                    }, failure: {[weak self] (error, isCancelled) in
+                        AttentionItemDataSource.sharedInstance.addAttentionItems([newItem])
+                        self?.dismissProgress()
+                    })
+                }, failure: {[weak self] (error, isCancelled) in
+                    /* 通信に失敗しても、とりあえずローカルのデータベースには保存しておく */
+                    AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+                    self?.showError(NSLocalizedString("create.item.failed", comment: ""))
+                })
+            })
+
+            vc.addAction(UIAlertAction(title: NSLocalizedString("no", comment: ""), style: .Default) { (action) in
+                self.dismissViewControllerAnimated(true, completion: nil)
+                /* 新規作成時はidentifierが空文字列 */
+                if item.identifier == "" {
+                    item.identifier = AttentionItemDataSource.createLocalIdentifier(item)
+                }
+                AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+            })
+
+            vc.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .Cancel) { (action) in
+                self.dismissViewControllerAnimated(false, completion: nil)
+                self.showAddingItemPopoverWithItem(item)
+            })
+            presentViewController(vc, animated: true, completion: nil)
+
+    }
+
+
+}
+
+//MARK: Popover
+extension RootViewController: UIPopoverPresentationControllerDelegate {
+    
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
     }
@@ -368,6 +398,7 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
     }
 }
 
+//MARK: - AttentionMapViewDelegate
 extension RootViewController: AttentionMapViewDelegate {
     func mapView(mapView: AttentionMapView, didSelectAnnotationView view: MKAnnotationView) {
         guard let attentionAnnotation = view.annotation as? AttentionAnnotation else { return }
@@ -408,6 +439,7 @@ extension RootViewController: AttentionMapViewDelegate {
     }
 }
 
+//MARK: - AttentionItemDataSourceReceiver
 extension RootViewController: AttentionItemDataSourceReceiver {
     func datasetDidChange(dataSource: AttentionItemDataSource) {
         mapView.removeAnnotations(mapView.annotations)
@@ -423,6 +455,7 @@ extension RootViewController: AttentionItemDataSourceReceiver {
     }
 }
 
+//MARK: - Progress
 extension RootViewController {
     private func showProgess(message: String) {
         SVProgressHUD.setDefaultMaskType(.Clear)
