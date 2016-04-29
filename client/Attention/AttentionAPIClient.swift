@@ -106,9 +106,15 @@ public class AttentionAPIClient: NSObject {
                 attentionsRef.childByAutoId().setValue(dic) { (error, firebase) in
                     debugPrint("create complete. key = \(firebase.key)")
                     if let key = firebase.key {
-                        item.identifier = key
-                        item.shared = true
-                        fulfill(item)
+                        let newItem = AttentionItem()
+                        newItem.latitude = item.latitude
+                        newItem.longtitude = item.longtitude
+                        newItem.placeName = item.placeName
+                        newItem.attentionBody = item.attentionBody
+                        newItem.identifier = key
+                        newItem.shared = true
+
+                        fulfill(newItem)
                     } else {
                         reject(NSError(domain: APIErrorDomain, code: APIErrorCode.GeneralError.rawValue, userInfo: nil))
                     }

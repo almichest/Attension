@@ -206,6 +206,7 @@ class RootViewController: UIViewController {
 
         }) {[weak self] (error, isCancelled) in
             self?.showError(NSLocalizedString("search.items.failed", comment: ""))
+            self?.datasetDidChange(AttentionItemDataSource.sharedInstance)
         }
     }
 }
@@ -242,6 +243,9 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
                 } else {
                     completion = {}
                 }
+                if item.identifier.characters.count == 0 {
+                    item.identifier = AttentionItemDataSource.createLocalIdentifier(item)
+                }
                 
                 self?.dismissViewControllerAnimated(true, completion: completion)
 
@@ -276,17 +280,18 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
 
             vc.addAction(UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .Default) { (action) in
                 self.showProgess(NSLocalizedString("create.item", comment: ""))
-                AttentionAPIClient.sharedClient.createNewItem(item).on(success: { (item) in
+                AttentionAPIClient.sharedClient.createNewItem(item).on(success: { (newItem) in
                     AttentionItemDataSource.sharedInstance.query(item.identifier).on(success: {[weak self] (result) in
-                        if let result = result {
+                        if let result = result where 0 < result.identifier.characters.count {
+                            print(result.identifier)
                             AttentionItemDataSource.sharedInstance.deleteAttentionItems([result])
-                            AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+                            AttentionItemDataSource.sharedInstance.addAttentionItems([newItem])
                         } else {
-                            AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+                            AttentionItemDataSource.sharedInstance.addAttentionItems([newItem])
                         }
                         self?.dismissProgress()
                     }, failure: {[weak self] (error, isCancelled) in
-                        AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+                        AttentionItemDataSource.sharedInstance.addAttentionItems([newItem])
                         self?.dismissProgress()
                     })
                 }, failure: {[weak self] (error, isCancelled) in
