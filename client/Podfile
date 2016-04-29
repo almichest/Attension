@@ -11,4 +11,5 @@ target 'Attention' do
     pod 'Himotoki'
     pod 'Firebase'
     pod 'Bond'
+    pod 'SVProgressHUD'
 end

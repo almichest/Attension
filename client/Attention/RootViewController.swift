@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import BlocksKit
 import RealmSwift
+import SVProgressHUD
 
 class RootViewController: UIViewController {
     
@@ -188,7 +189,8 @@ class RootViewController: UIViewController {
     }
     
     private func searchItems() {
-        AttentionAPIClient.sharedClient.fetchItems(0, longitude: 0, radius: 0).on(success: { response in
+        showProgess(NSLocalizedString("search.items", comment: ""))
+        AttentionAPIClient.sharedClient.fetchItems(0, longitude: 0, radius: 0).on(success: {[weak self] response in
             let items = response.map({ (resItem) -> AttentionItem in
                 let item = AttentionItem()
                 item.identifier = resItem.identifier
@@ -200,9 +202,10 @@ class RootViewController: UIViewController {
                 return item
             })
             AttentionItemDataSource.sharedInstance.addAttentionItems(items)
-            
-        }) { (error, isCancelled) in
-            debugPrint("fail")
+            self?.dismissProgress()
+
+        }) {[weak self] (error, isCancelled) in
+            self?.showError(NSLocalizedString("search.items.failed", comment: ""))
         }
     }
 }
@@ -260,26 +263,36 @@ extension RootViewController: UIPopoverPresentationControllerDelegate {
         }
 
         if item.shared {
-            AttentionAPIClient.sharedClient.updateItem(item).on(success: { (item) in
+            self.showProgess(NSLocalizedString("update.item", comment: ""))
+            AttentionAPIClient.sharedClient.updateItem(item).on(success: {[weak self] (item) in
                 AttentionItemDataSource.sharedInstance.addAttentionItems([item])
-            }, failure: nil)
+                self?.dismissProgress()
+            }, failure:{[weak self] (error, canceld) in
+                self?.showError("update.item.failed")
+            })
+
         } else {
             let vc = UIAlertController(title: NSLocalizedString("please.share.title", comment: ""), message: NSLocalizedString("please.share.body", comment: ""), preferredStyle: .Alert)
 
             vc.addAction(UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .Default) { (action) in
+                self.showProgess(NSLocalizedString("create.item", comment: ""))
                 AttentionAPIClient.sharedClient.createNewItem(item).on(success: { (item) in
-                    AttentionItemDataSource.sharedInstance.query(item.identifier).on(success: { (result) in
+                    AttentionItemDataSource.sharedInstance.query(item.identifier).on(success: {[weak self] (result) in
                         if let result = result {
                             AttentionItemDataSource.sharedInstance.deleteAttentionItems([result])
                             AttentionItemDataSource.sharedInstance.addAttentionItems([item])
                         } else {
                             AttentionItemDataSource.sharedInstance.addAttentionItems([item])
                         }
-                    }, failure: { (error, isCancelled) in
-                            AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+                        self?.dismissProgress()
+                    }, failure: {[weak self] (error, isCancelled) in
+                        AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+                        self?.dismissProgress()
                     })
-                }, failure: { (error, isCancelled) in
-
+                }, failure: {[weak self] (error, isCancelled) in
+                    /* 通信に失敗しても、とりあえずローカルのデータベースには保存しておく */
+                    AttentionItemDataSource.sharedInstance.addAttentionItems([item])
+                    self?.showError(NSLocalizedString("create.item.failed", comment: ""))
                 })
             })
 
@@ -402,5 +415,20 @@ extension RootViewController: AttentionItemDataSourceReceiver {
                 self.mapView.addAnnotation(annotation)
             })
         }, failure: nil)
+    }
+}
+
+extension RootViewController {
+    private func showProgess(message: String) {
+        SVProgressHUD.setDefaultMaskType(.Clear)
+        SVProgressHUD.showWithStatus(message)
+    }
+
+    private func showError(message: String) {
+        SVProgressHUD.showErrorWithStatus(message)
+    }
+
+    private func dismissProgress() {
+        SVProgressHUD.dismiss()
     }
 }

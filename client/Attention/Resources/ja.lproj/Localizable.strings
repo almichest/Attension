@@ -21,3 +21,10 @@
 
 "shared" = "公開済み";
 "notshared" = "非公開";
+
+"search.items" = "情報取得中...";
+"search.items.failed" = "情報取得に失敗しました。後でやり直してください。";
+"update.item" = "更新中...";
+"update.item.failed" = "情報の更新に失敗しました。後でやり直してください。";
+"create.item" = "追加中...";
+"create.item.failed" = "アイテムのアップロードに失敗しましたが、データの保存には成功しました。後でアップロードしてください。";

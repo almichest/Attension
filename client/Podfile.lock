@@ -26,6 +26,7 @@ PODS:
   - Realm/Headers (0.98.7)
   - RealmSwift (0.98.7):
     - Realm (= 0.98.7)
+  - SVProgressHUD (2.0.3)
   - SwiftTask (4.2.1)
 
 DEPENDENCIES:
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - INTULocationManager
   - R.swift
   - RealmSwift (= 0.98.7)
+  - SVProgressHUD
   - SwiftTask
 
 SPEC CHECKSUMS:
@@ -48,6 +50,7 @@ SPEC CHECKSUMS:
   R.swift.Library: 9f4b2d12040daa1ffe336d8f7e1574f73721fd01
   Realm: 46df2178359b6b57812e6cf957956febaba513a5
   RealmSwift: 3056e6d7ad30ed50dd866185a615fccea73db5f5
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftTask: 30423c2499ac69e3fc20c001600ab7de46efeed1
 
 COCOAPODS: 0.39.0

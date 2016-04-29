@@ -21,3 +21,10 @@
 
 "shared" = "Shared";
 "notshared" = "Not Shared";
+
+"search.items" = "Searching information ...";
+"search.items.failed" = "Searching information failed. Please retry later.";
+"update.item" = "Uploading ...";
+"update.item.failed" = "Updating failed. Please retry later.";
+"create.item" = "Uploading ...";
+"create.item.failed" = "Uploading item failed, but saved locally. Please upload later.";
