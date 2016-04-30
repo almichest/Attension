@@ -1,0 +1,22 @@
+//
+//  Config.swift
+//  Attension
+//
+//  Created by Hiraku Ohno on 2016/04/23.
+//  Copyright © 2016年 Hiraku Ohno. All rights reserved.
+//
+
+let FIRE_BASE_URL = "https:/xxxxxxx/"
+let FIRE_BASE_AUTH_TOKEN = "xxxxxx"
+
+let TWITTER_CONSUMER_KEY = "xxxxxx"
+let TWITTER_CONSUMER_SECRET = "xxxxxx"
+
+let TWITTER_ACCESS_TOKEN = "xxxxxx"
+let TWITTER_ACCESS_TOKEN_SECRET = "xxxxxx"
+
+let TWITTER_USER_NAME = "xxxxxx"
+let TWITTER_USER_ID = "000000"
+
+let MAX_PLACENAME_LENGTH = 50
+let MAX_ATTENTION_LENGTH = 200
