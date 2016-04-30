@@ -38,6 +38,7 @@
 		4287D5371CB14ACC00E78E47 /* AttensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287D5361CB14ACC00E78E47 /* AttensionTests.swift */; };
 		42A0DEC01CC66F2D0098C41A /* AttentionAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */; };
 		42BDD03B1CD3E404008E71DA /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 42BDD03A1CD3E404008E71DA /* Settings.bundle */; };
+		42BDD03D1CD4B369008E71DA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BDD03C1CD4B369008E71DA /* Settings.swift */; };
 		42E86D351CCE4ACE005E4EC0 /* AttentionMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E86D341CCE4ACE005E4EC0 /* AttentionMapView.swift */; };
 		42E86D361CCE5D4C005E4EC0 /* AnnotationBodyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42E86D381CCE5D4C005E4EC0 /* AnnotationBodyViewController.storyboard */; };
 		42E86D3E1CD25249005E4EC0 /* WebHostingHub-Glyphs.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42E86D3D1CD25249005E4EC0 /* WebHostingHub-Glyphs.ttf */; };
@@ -94,6 +95,7 @@
 		4287D5381CB14ACC00E78E47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionAPITests.swift; sourceTree = "<group>"; };
 		42BDD03A1CD3E404008E71DA /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		42BDD03C1CD4B369008E71DA /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		42E86D341CCE4ACE005E4EC0 /* AttentionMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionMapView.swift; sourceTree = "<group>"; };
 		42E86D371CCE5D4C005E4EC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AnnotationBodyViewController.storyboard; sourceTree = "<group>"; };
 		42E86D3A1CCE5D50005E4EC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AnnotationBodyViewController.strings; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				422D33301CCD2E780094A877 /* UIBarButtonItem+BKWrapper.h */,
 				422D33311CCD2E780094A877 /* UIBarButtonItem+BKWrapper.m */,
 				42E86D341CCE4ACE005E4EC0 /* AttentionMapView.swift */,
+				42BDD03C1CD4B369008E71DA /* Settings.swift */,
 			);
 			path = Attention;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				422D33321CCD2E780094A877 /* AddingItemViewController.swift in Sources */,
 				422D33341CCD2E780094A877 /* AnnotationBodyViewController.swift in Sources */,
 				422D33381CCD2E780094A877 /* AttentionAPIClient.swift in Sources */,
+				42BDD03D1CD4B369008E71DA /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

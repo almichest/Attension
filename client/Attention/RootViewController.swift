@@ -98,7 +98,16 @@ class RootViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         focusOnUserLocation()
-        searchItems()
+        searchItemsIfNeeded()
+    }
+
+    private static let mininumFetchInterval: NSTimeInterval = 60 * 60 * 24
+    private func searchItemsIfNeeded() {
+        let now = NSDate().timeIntervalSince1970
+        let last = Settings.lastSavedTime
+        if RootViewController.mininumFetchInterval < now - last {
+            searchItems()
+        }
     }
 
     private func zoom(zoomIn: Bool) {
@@ -147,6 +156,7 @@ class RootViewController: UIViewController {
             })
             AttentionItemDataSource.sharedInstance.addAttentionItems(items)
             self?.dismissProgress()
+            Settings.lastSavedTime = NSDate().timeIntervalSince1970
 
         }) {[weak self] (error, isCancelled) in
             self?.showError(NSLocalizedString("search.items.failed", comment: ""))
