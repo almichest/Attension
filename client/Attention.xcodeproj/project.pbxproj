@@ -232,9 +232,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4287D53B1CB14ACC00E78E47 /* Build configuration list for PBXNativeTarget "Attention" */;
 			buildPhases = (
-				BDAA506934CDF0239621DC7F /* Check Pods Manifest.lock */,
 				AF4B21ECF37F9D7D630A802A /* 📦 Check Pods Manifest.lock */,
 				422F2E971CB9320100F74FBF /* Run R.swift generator */,
+				42BDD03E1CD4D007008E71DA /* Fabric */,
+				42BDD03F1CD4D1DF008E71DA /* Twitter */,
 				4287D51A1CB14ACC00E78E47 /* Sources */,
 				4287D51B1CB14ACC00E78E47 /* Frameworks */,
 				4287D51C1CB14ACC00E78E47 /* Resources */,
@@ -358,6 +359,34 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT/Attention\"";
 		};
+		42BDD03E1CD4D007008E71DA /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" 23c4f5ae3a5ffb60bcc26701982059b0828af09f 642f809255f631ca3d20f322736662021ec9391f8e0366d3274f38ce34084f55\n";
+		};
+		42BDD03F1CD4D1DF008E71DA /* Twitter */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Twitter;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Pods/Fabric.framework/run 23c4f5ae3a5ffb60bcc26701982059b0828af09f 642f809255f631ca3d20f322736662021ec9391f8e0366d3274f38ce34084f55";
+		};
 		4F2320602EFAB78D2C52C751 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -381,21 +410,6 @@
 			inputPaths = (
 			);
 			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		BDAA506934CDF0239621DC7F /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -627,6 +641,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods",
+				);
 				INFOPLIST_FILE = Attention/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -645,6 +663,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods",
+				);
 				INFOPLIST_FILE = Attention/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

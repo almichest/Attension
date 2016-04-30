@@ -15,6 +15,9 @@ PODS:
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
   - Bond (4.3.1)
+  - Crashlytics (3.7.0):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.7)
   - Firebase (2.5.1)
   - Himotoki (2.0.0)
   - INTULocationManager (4.2.0)
@@ -28,10 +31,16 @@ PODS:
     - Realm (= 0.99.1)
   - SVProgressHUD (2.0.3)
   - SwiftTask (4.2.1)
+  - TwitterCore (2.0.2):
+    - Fabric
+  - TwitterKit (2.0.2):
+    - TwitterCore (= 2.0.2)
 
 DEPENDENCIES:
   - BlocksKit
   - Bond
+  - Crashlytics
+  - Fabric
   - Firebase
   - Himotoki
   - INTULocationManager
@@ -39,10 +48,13 @@ DEPENDENCIES:
   - RealmSwift
   - SVProgressHUD
   - SwiftTask
+  - TwitterKit
 
 SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Bond: 55903fc67f09e8e49791a657163cabba1d6fb29d
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   Himotoki: 77fb61dbd6cd5dae033af630b591fec383eece28
   INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
@@ -52,5 +64,7 @@ SPEC CHECKSUMS:
   RealmSwift: 1d9c4299ef5dbf575c5da09fc706ed726327cfa0
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftTask: 30423c2499ac69e3fc20c001600ab7de46efeed1
+  TwitterCore: 0f44d8980a6879d5205dcb4e010d15e643e56fa0
+  TwitterKit: c4e40f289a3d7cc9fab9f241edd7502385468b65
 
 COCOAPODS: 0.39.0

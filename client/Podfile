@@ -12,6 +12,9 @@ target 'Attention' do
     pod 'Firebase'
     pod 'Bond'
     pod 'SVProgressHUD'
+    pod 'Fabric'
+    pod 'Crashlytics'
+    pod 'TwitterKit'
 end
 
 post_install do | installer |
