@@ -19,6 +19,7 @@
 "yes" = "Yes";
 "no" = "No";
 "cancel" = "Cancel";
+"error" = "Error";
 
 "shared" = "Shared";
 "notshared" = "Not Shared";
@@ -29,3 +30,6 @@
 "update.item.failed" = "Updating failed. Please retry later.";
 "create.item" = "Uploading ...";
 "create.item.failed" = "Uploading item failed, but saved locally. Please upload later.";
+
+"report.title" = "Report";
+"report.body" = "Is this item needs to be reported?";

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		421F1E4B1CB16C0D008307A5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421F1E4A1CB16C0D008307A5 /* MapKit.framework */; };
+		422484501CD5252B0053A451 /* AttentionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4224844F1CD5252B0053A451 /* AttentionUtil.swift */; };
+		422484561CD52A690053A451 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422484461CD51A490053A451 /* SwifteriOS.framework */; };
 		422D33321CCD2E780094A877 /* AddingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330A1CCD2E780094A877 /* AddingItemViewController.swift */; };
 		422D33341CCD2E780094A877 /* AnnotationBodyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330C1CCD2E780094A877 /* AnnotationBodyViewController.swift */; };
 		422D33351CCD2E780094A877 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330D1CCD2E780094A877 /* AppDelegate.swift */; };
@@ -43,6 +45,8 @@
 		42BDD0491CD4EDAC008E71DA /* TwitterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BDD0481CD4EDAC008E71DA /* TwitterTest.swift */; };
 		42BDD04A1CD4F11F008E71DA /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BDD0461CD4E7EE008E71DA /* TwitterClient.swift */; };
 		42BDD04B1CD4F232008E71DA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D331B1CCD2E780094A877 /* Config.swift */; };
+		42C3019B1CD52CAE0066AC21 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422484461CD51A490053A451 /* SwifteriOS.framework */; };
+		42C3019C1CD52CAE0066AC21 /* SwifteriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 422484461CD51A490053A451 /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42E86D351CCE4ACE005E4EC0 /* AttentionMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E86D341CCE4ACE005E4EC0 /* AttentionMapView.swift */; };
 		42E86D361CCE5D4C005E4EC0 /* AnnotationBodyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42E86D381CCE5D4C005E4EC0 /* AnnotationBodyViewController.storyboard */; };
 		42E86D3E1CD25249005E4EC0 /* WebHostingHub-Glyphs.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42E86D3D1CD25249005E4EC0 /* WebHostingHub-Glyphs.ttf */; };
@@ -94,11 +98,33 @@
 			remoteGlobalIDString = 4287D51D1CB14ACC00E78E47;
 			remoteInfo = Attension;
 		};
+		42C3019D1CD52CAE0066AC21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4224843B1CD51A490053A451 /* Swifter.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B9F50ED1944A5AB00894629;
+			remoteInfo = SwifteriOS;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		42C3019F1CD52CAF0066AC21 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				42C3019C1CD52CAE0066AC21 /* SwifteriOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		421F1E4A1CB16C0D008307A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4224843B1CD51A490053A451 /* Swifter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Swifter.xcodeproj; path = "Swifter-master/Swifter.xcodeproj"; sourceTree = "<group>"; };
+		4224844F1CD5252B0053A451 /* AttentionUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionUtil.swift; sourceTree = "<group>"; };
 		422D330A1CCD2E780094A877 /* AddingItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingItemViewController.swift; sourceTree = "<group>"; };
 		422D330C1CCD2E780094A877 /* AnnotationBodyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationBodyViewController.swift; sourceTree = "<group>"; };
 		422D330D1CCD2E780094A877 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,8 +184,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				422484561CD52A690053A451 /* SwifteriOS.framework in Frameworks */,
 				421F1E4B1CB16C0D008307A5 /* MapKit.framework in Frameworks */,
 				B58625FEC8348572F2893A72 /* Pods_Attention.framework in Frameworks */,
+				42C3019B1CD52CAE0066AC21 /* SwifteriOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +250,7 @@
 				42E86D341CCE4ACE005E4EC0 /* AttentionMapView.swift */,
 				42BDD03C1CD4B369008E71DA /* Settings.swift */,
 				42BDD0461CD4E7EE008E71DA /* TwitterClient.swift */,
+				4224844F1CD5252B0053A451 /* AttentionUtil.swift */,
 			);
 			path = Attention;
 			sourceTree = "<group>";
@@ -306,10 +335,12 @@
 				4287D51C1CB14ACC00E78E47 /* Resources */,
 				F74911ADD27B854444CEA478 /* Embed Pods Frameworks */,
 				4F2320602EFAB78D2C52C751 /* Copy Pods Resources */,
+				42C3019F1CD52CAF0066AC21 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				42C3019E1CD52CAE0066AC21 /* PBXTargetDependency */,
 			);
 			name = Attention;
 			productName = Attension;
@@ -599,6 +630,7 @@
 				42BDD0471CD4E7EE008E71DA /* TwitterClient.swift in Sources */,
 				42E86D351CCE4ACE005E4EC0 /* AttentionMapView.swift in Sources */,
 				422D333A1CCD2E780094A877 /* AttentionItemDataSource.swift in Sources */,
+				422484501CD5252B0053A451 /* AttentionUtil.swift in Sources */,
 				422D33351CCD2E780094A877 /* AppDelegate.swift in Sources */,
 				422D334A1CCD2E780094A877 /* R.generated.swift in Sources */,
 				422D333F1CCD2E780094A877 /* Config.swift in Sources */,
@@ -638,6 +670,11 @@
 			isa = PBXTargetDependency;
 			target = 4287D51D1CB14ACC00E78E47 /* Attention */;
 			targetProxy = 4287D5331CB14ACC00E78E47 /* PBXContainerItemProxy */;
+		};
+		42C3019E1CD52CAE0066AC21 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwifteriOS;
+			targetProxy = 42C3019D1CD52CAE0066AC21 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -802,6 +839,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods",
@@ -824,6 +862,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods",

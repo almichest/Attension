@@ -438,7 +438,9 @@ extension RootViewController: AttentionMapViewDelegate {
                 }, forControlEvents: .TouchUpInside)
 
                 vc.reportButton.bk_addEventHandler({[weak self] (button) in
-                    self?.reportItem(item)
+                    self?.dismissViewControllerAnimated(true, completion: {
+                        self?.reportItem(item)
+                    })
                 }, forControlEvents: .TouchUpInside)
             }
         }
@@ -454,7 +456,21 @@ extension RootViewController: AttentionMapViewDelegate {
     }
 
     private func reportItem(item: AttentionItem) {
+        let vc = UIAlertController(title: NSLocalizedString("report.title", comment: ""), message: NSLocalizedString("report.body", comment: ""), preferredStyle: .ActionSheet)
+        vc.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .Cancel) { (action) in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        vc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .Default) {[weak self] (action) in
+            self?.showProgess(NSLocalizedString("reporting", comment: ""))
+            TwitterClient.sharedClient.post(AttentionUtil.makeReportText(item)).on(success: { (result) in
+                self?.showStatus(NSLocalizedString("report.done", comment: ""))
+            }, failure: { (error, isCancelled) in
+                self?.showError(NSLocalizedString("failed.reporting", comment: ""))
+            })
 
+            self?.dismissViewControllerAnimated(true, completion: nil)
+        })
+        presentViewController(vc, animated: true, completion: nil)
     }
 }
 
@@ -479,6 +495,11 @@ extension RootViewController {
     private func showProgess(message: String) {
         SVProgressHUD.setDefaultMaskType(.Clear)
         SVProgressHUD.showWithStatus(message)
+    }
+
+    private func showStatus(status: String) {
+        SVProgressHUD.setDefaultMaskType(.Clear)
+        SVProgressHUD.showInfoWithStatus(status)
     }
 
     private func showError(message: String) {

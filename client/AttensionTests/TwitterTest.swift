@@ -20,17 +20,17 @@ class TwitterTest: XCTestCase {
 
     //TODO: 動くようにする
     func testPostTweet() {
-//        let expectation = self.expectationWithDescription("Wait for API response")
-//
-//        TwitterClient.sharedClient.post("test").on(success: { (result) in
-//            XCTAssert(result)
-//            expectation.fulfill()
-//        }) { (error, isCancelled) in
-//            XCTFail()
-//            expectation.fulfill()
-//        }
-//
-//        waitForExpectationsWithTimeout(5, handler: nil)
+        let expectation = self.expectationWithDescription("Wait for API response")
+
+        TwitterClient.sharedClient.post("@" + TWITTER_REPORT_DESTINATION + " \(NSDate())").on(success: { (result) in
+            XCTAssert(result)
+            expectation.fulfill()
+        }) { (error, isCancelled) in
+            XCTFail()
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(5, handler: nil)
     }
     
 }
