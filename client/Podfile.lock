@@ -31,10 +31,6 @@ PODS:
     - Realm (= 0.100.0)
   - SVProgressHUD (2.0.3)
   - SwiftTask (4.2.1)
-  - TwitterCore (2.0.2):
-    - Fabric
-  - TwitterKit (2.0.2):
-    - TwitterCore (= 2.0.2)
 
 DEPENDENCIES:
   - BlocksKit
@@ -48,7 +44,6 @@ DEPENDENCIES:
   - RealmSwift
   - SVProgressHUD
   - SwiftTask
-  - TwitterKit
 
 SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
@@ -64,7 +59,5 @@ SPEC CHECKSUMS:
   RealmSwift: 1bb0ba2ceaa06b65d740b4f91bfa06e3fd1b805c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftTask: 30423c2499ac69e3fc20c001600ab7de46efeed1
-  TwitterCore: 0f44d8980a6879d5205dcb4e010d15e643e56fa0
-  TwitterKit: c4e40f289a3d7cc9fab9f241edd7502385468b65
 
 COCOAPODS: 0.39.0
