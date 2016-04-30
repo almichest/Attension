@@ -24,11 +24,11 @@ PODS:
   - R.swift (2.1.0):
     - R.swift.Library (~> 2.0.0)
   - R.swift.Library (2.0.0)
-  - Realm (0.99.1):
-    - Realm/Headers (= 0.99.1)
-  - Realm/Headers (0.99.1)
-  - RealmSwift (0.99.1):
-    - Realm (= 0.99.1)
+  - Realm (0.100.0):
+    - Realm/Headers (= 0.100.0)
+  - Realm/Headers (0.100.0)
+  - RealmSwift (0.100.0):
+    - Realm (= 0.100.0)
   - SVProgressHUD (2.0.3)
   - SwiftTask (4.2.1)
   - TwitterCore (2.0.2):
@@ -60,8 +60,8 @@ SPEC CHECKSUMS:
   INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
   R.swift: efff131531b5cf142e28fd94957806ff71ccbcf2
   R.swift.Library: 9f4b2d12040daa1ffe336d8f7e1574f73721fd01
-  Realm: 522a0cc8e1f8755ee56d7dc16ca0fc380d045766
-  RealmSwift: 1d9c4299ef5dbf575c5da09fc706ed726327cfa0
+  Realm: b13b548e712d28a66678970c45cd245ebb94ba3b
+  RealmSwift: 1bb0ba2ceaa06b65d740b4f91bfa06e3fd1b805c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftTask: 30423c2499ac69e3fc20c001600ab7de46efeed1
   TwitterCore: 0f44d8980a6879d5205dcb4e010d15e643e56fa0
