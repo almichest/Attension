@@ -324,12 +324,11 @@ extension RootViewController {
 
         if let errorText = errorText {
             let vc = UIAlertController(title: NSLocalizedString("error", comment: ""), message: errorText, preferredStyle: .Alert)
-            presentViewController(vc, animated: true, completion: {
-                vc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel) { (action) in
-                    self.dismissViewControllerAnimated(false, completion: nil)
-                    self.showAddingItemPopoverWithItem(item)
-                })
+            vc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel) { (action) in
+                self.dismissViewControllerAnimated(false, completion: nil)
+                self.showAddingItemPopoverWithItem(item)
             })
+            presentViewController(vc, animated: true, completion: nil)
             return
         }
 
