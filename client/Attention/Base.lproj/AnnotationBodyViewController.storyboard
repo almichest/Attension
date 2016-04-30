@@ -36,11 +36,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Edit"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ybt-Se-bq3">
+                                <rect key="frame" x="509" y="198" width="41" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Report"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lrz-1i-KAp" firstAttribute="top" secondItem="tlf-h3-Kic" secondAttribute="bottom" constant="4" id="1ZO-cy-mHj"/>
                             <constraint firstItem="86W-Hf-Ytb" firstAttribute="centerY" secondItem="qXD-Nm-JT8" secondAttribute="centerY" id="23o-pg-Ke6"/>
+                            <constraint firstItem="tlf-h3-Kic" firstAttribute="leading" secondItem="Ybt-Se-bq3" secondAttribute="trailing" constant="10" id="2EY-Im-Cqr"/>
                             <constraint firstItem="tlf-h3-Kic" firstAttribute="top" secondItem="FGw-EI-dbs" secondAttribute="bottom" constant="7" id="60x-xm-GCu"/>
                             <constraint firstItem="FGw-EI-dbs" firstAttribute="leading" secondItem="CAu-g2-Gel" secondAttribute="leading" constant="10" id="B0c-1e-e6U"/>
                             <constraint firstItem="86W-Hf-Ytb" firstAttribute="trailing" secondItem="FGw-EI-dbs" secondAttribute="trailing" id="CAv-sW-lLM"/>
@@ -50,6 +56,7 @@
                             <constraint firstItem="FGw-EI-dbs" firstAttribute="top" secondItem="qXD-Nm-JT8" secondAttribute="bottom" constant="10" id="STh-vJ-4Rc"/>
                             <constraint firstAttribute="trailing" secondItem="FGw-EI-dbs" secondAttribute="trailing" constant="10" id="fhP-qu-VsM"/>
                             <constraint firstItem="qXD-Nm-JT8" firstAttribute="leading" secondItem="FGw-EI-dbs" secondAttribute="leading" id="wQr-9n-Pal"/>
+                            <constraint firstItem="Ybt-Se-bq3" firstAttribute="top" secondItem="tlf-h3-Kic" secondAttribute="top" id="wwk-Ta-jMW"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -58,6 +65,7 @@
                     <connections>
                         <outlet property="bodyContainerScrollView" destination="FGw-EI-dbs" id="iU7-fL-73Q"/>
                         <outlet property="editButton" destination="tlf-h3-Kic" id="PVo-cU-bKT"/>
+                        <outlet property="reportButton" destination="Ybt-Se-bq3" id="OLj-LF-Lcc"/>
                         <outlet property="sharedStatusLabel" destination="86W-Hf-Ytb" id="mGi-Ik-8Rz"/>
                         <outlet property="titleContainerScrollView" destination="qXD-Nm-JT8" id="lLT-mv-ZbJ"/>
                     </connections>

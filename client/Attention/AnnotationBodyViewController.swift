@@ -14,6 +14,7 @@ class AnnotationBodyViewController: UIViewController {
     @IBOutlet private weak var bodyContainerScrollView: UIScrollView!
     @IBOutlet private weak var sharedStatusLabel: UILabel!
     @IBOutlet private(set) weak var editButton: UIButton!
+    @IBOutlet private(set) weak var reportButton: UIButton!
 
     private var item: AttentionItem!
 

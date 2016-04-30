@@ -107,6 +107,8 @@ class RootViewController: UIViewController {
         let last = Settings.lastSavedTime
         if RootViewController.mininumFetchInterval < now - last {
             searchItems()
+        } else {
+            datasetDidChange(AttentionItemDataSource.sharedInstance)
         }
     }
 
@@ -435,6 +437,10 @@ extension RootViewController: AttentionMapViewDelegate {
                         self?.showAddingItemPopoverWithItem(item)
                     })
                 }, forControlEvents: .TouchUpInside)
+
+                vc.reportButton.bk_addEventHandler({[weak self] (button) in
+                    self?.reportItem(item)
+                }, forControlEvents: .TouchUpInside)
             }
         }
 
@@ -446,6 +452,10 @@ extension RootViewController: AttentionMapViewDelegate {
         region.span = MKCoordinateSpanMake(0.005, 0.005)
 
         self.mapView.setRegion(region, animated: true, completion: completion)
+    }
+
+    private func reportItem(item: AttentionItem) {
+
     }
 }
 
