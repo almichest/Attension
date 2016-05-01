@@ -144,13 +144,15 @@ class RootViewController: UIViewController {
         }
     }
 
+    private static let zoomMagnification = 1.5
     private func zoom(zoomIn: Bool) {
         var region = self.mapView.region
         let span = region.span
+        let magnification = RootViewController.zoomMagnification
         if zoomIn {
-            region.span = MKCoordinateSpan(latitudeDelta: span.latitudeDelta / 1.25, longitudeDelta: span.longitudeDelta / 1.25)
+            region.span = MKCoordinateSpan(latitudeDelta: span.latitudeDelta / magnification, longitudeDelta: span.longitudeDelta / magnification)
         } else {
-            region.span = MKCoordinateSpan(latitudeDelta: span.latitudeDelta * 1.25, longitudeDelta: span.longitudeDelta * 1.25)
+            region.span = MKCoordinateSpan(latitudeDelta: span.latitudeDelta * magnification, longitudeDelta: span.longitudeDelta * magnification)
         }
 
         UIView.animateWithDuration(0.1) { 
