@@ -100,6 +100,16 @@ class RootViewController: UIViewController {
         super.viewDidAppear(animated)
         focusOnUserLocation()
         searchItemsIfNeeded()
+        showGuideView()
+    }
+
+    private func showGuideView() {
+        if let vc = R.storyboard.guideViewController.initialViewController() {
+            vc.view.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(view.bounds), height: CGRectGetHeight(view.bounds))
+            view.addSubview(vc.view)
+            addChildViewController(vc)
+            vc.didMoveToParentViewController(self)
+        }
     }
 
     private static let mininumFetchInterval: NSTimeInterval = 60 * 60 * 24

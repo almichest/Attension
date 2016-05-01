@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		422484501CD5252B0053A451 /* AttentionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4224844F1CD5252B0053A451 /* AttentionUtil.swift */; };
 		4225816B1CD5CF90009BFF64 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422581641CD5CF7C009BFF64 /* SwifteriOS.framework */; };
+		422581791CD5E17F009BFF64 /* GuideViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4225817B1CD5E17F009BFF64 /* GuideViewController.storyboard */; };
 		422D33321CCD2E780094A877 /* AddingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330A1CCD2E780094A877 /* AddingItemViewController.swift */; };
 		422D33341CCD2E780094A877 /* AnnotationBodyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330C1CCD2E780094A877 /* AnnotationBodyViewController.swift */; };
 		422D33351CCD2E780094A877 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330D1CCD2E780094A877 /* AppDelegate.swift */; };
@@ -93,6 +94,9 @@
 		421F1E4A1CB16C0D008307A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4224844F1CD5252B0053A451 /* AttentionUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttentionUtil.swift; sourceTree = "<group>"; };
 		422581591CD5CF7C009BFF64 /* Swifter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Swifter.xcodeproj; path = Swifter/Swifter.xcodeproj; sourceTree = "<group>"; };
+		4225817A1CD5E17F009BFF64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/GuideViewController.storyboard; sourceTree = "<group>"; };
+		4225817D1CD5E188009BFF64 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GuideViewController.strings; sourceTree = "<group>"; };
+		4225817F1CD5E18A009BFF64 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/GuideViewController.strings; sourceTree = "<group>"; };
 		422D330A1CCD2E780094A877 /* AddingItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingItemViewController.swift; sourceTree = "<group>"; };
 		422D330C1CCD2E780094A877 /* AnnotationBodyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationBodyViewController.swift; sourceTree = "<group>"; };
 		422D330D1CCD2E780094A877 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -221,6 +225,7 @@
 				422D33281CCD2E780094A877 /* LocationSelectViewController.swift */,
 				422D33191CCD2E780094A877 /* Main.storyboard */,
 				422D332F1CCD2E780094A877 /* RootViewController.swift */,
+				4225817B1CD5E17F009BFF64 /* GuideViewController.storyboard */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -462,6 +467,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				422581791CD5E17F009BFF64 /* GuideViewController.storyboard in Resources */,
 				422D33451CCD2E780094A877 /* Main.strings in Resources */,
 				42E86D3E1CD25249005E4EC0 /* WebHostingHub-Glyphs.ttf in Resources */,
 				42BDD03B1CD3E404008E71DA /* Settings.bundle in Resources */,
@@ -667,6 +673,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4225817B1CD5E17F009BFF64 /* GuideViewController.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4225817A1CD5E17F009BFF64 /* Base */,
+				4225817D1CD5E188009BFF64 /* en */,
+				4225817F1CD5E18A009BFF64 /* ja */,
+			);
+			name = GuideViewController.storyboard;
+			sourceTree = "<group>";
+		};
 		422D33151CCD2E780094A877 /* AddingItemViewController.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
