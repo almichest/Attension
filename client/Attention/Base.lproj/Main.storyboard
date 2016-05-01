@@ -45,8 +45,8 @@
                                         <state key="normal" title="chevronup"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvX-PC-Xdt">
-                                        <rect key="frame" x="565" y="-2" width="30" height="32"/>
-                                        <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="18"/>
+                                        <rect key="frame" x="565" y="-5" width="30" height="35"/>
+                                        <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="21"/>
                                         <state key="normal" title="questionsign"/>
                                     </button>
                                 </subviews>
@@ -63,18 +63,18 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="506"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6J-J2-8hN">
-                                <rect key="frame" x="565" y="536" width="30" height="34"/>
-                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="20"/>
+                                <rect key="frame" x="565" y="523" width="30" height="37"/>
+                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="23"/>
                                 <state key="normal" title="zoomout"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJ8-9O-AcH">
-                                <rect key="frame" x="565" y="502" width="30" height="34"/>
-                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="20"/>
+                                <rect key="frame" x="565" y="486" width="30" height="37"/>
+                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="23"/>
                                 <state key="normal" title="zoomin"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntI-to-XxS">
-                                <rect key="frame" x="565" y="458" width="30" height="34"/>
-                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="20"/>
+                                <rect key="frame" x="565" y="439" width="30" height="37"/>
+                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="23"/>
                                 <state key="normal" title="placeios"/>
                             </button>
                         </subviews>
@@ -87,7 +87,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="roV-Gv-tng" secondAttribute="bottom" id="FG8-Er-qMa"/>
                             <constraint firstItem="roV-Gv-tng" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="H7t-7l-Miz"/>
                             <constraint firstAttribute="bottom" secondItem="c2r-F1-N3r" secondAttribute="bottom" id="HHX-Ap-H1Z"/>
-                            <constraint firstItem="c2r-F1-N3r" firstAttribute="top" secondItem="g6J-J2-8hN" secondAttribute="bottom" id="MBk-JJ-uOm"/>
+                            <constraint firstItem="c2r-F1-N3r" firstAttribute="top" secondItem="g6J-J2-8hN" secondAttribute="bottom" constant="10" id="MBk-JJ-uOm"/>
                             <constraint firstAttribute="trailing" secondItem="c2r-F1-N3r" secondAttribute="trailing" id="VVp-m9-Ggm"/>
                             <constraint firstItem="roV-Gv-tng" firstAttribute="top" secondItem="dcc-LH-loY" secondAttribute="bottom" id="WFJ-hT-q54"/>
                             <constraint firstAttribute="trailing" secondItem="TJ8-9O-AcH" secondAttribute="trailing" constant="5" id="XBk-gc-qA9"/>

@@ -10,6 +10,8 @@
 		422484501CD5252B0053A451 /* AttentionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4224844F1CD5252B0053A451 /* AttentionUtil.swift */; };
 		4225816B1CD5CF90009BFF64 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422581641CD5CF7C009BFF64 /* SwifteriOS.framework */; };
 		422581791CD5E17F009BFF64 /* GuideViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4225817B1CD5E17F009BFF64 /* GuideViewController.storyboard */; };
+		422581801CD5F0D2009BFF64 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422581641CD5CF7C009BFF64 /* SwifteriOS.framework */; };
+		422581811CD5F0D2009BFF64 /* SwifteriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 422581641CD5CF7C009BFF64 /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		422D33321CCD2E780094A877 /* AddingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330A1CCD2E780094A877 /* AddingItemViewController.swift */; };
 		422D33341CCD2E780094A877 /* AnnotationBodyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330C1CCD2E780094A877 /* AnnotationBodyViewController.swift */; };
 		422D33351CCD2E780094A877 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330D1CCD2E780094A877 /* AppDelegate.swift */; };
@@ -88,7 +90,28 @@
 			remoteGlobalIDString = F6B4D5751C7BAC4500E06514;
 			remoteInfo = SwifterTests;
 		};
+		422581821CD5F0D3009BFF64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 422581591CD5CF7C009BFF64 /* Swifter.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B9F50ED1944A5AB00894629;
+			remoteInfo = SwifteriOS;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		422581841CD5F0D3009BFF64 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				422581811CD5F0D2009BFF64 /* SwifteriOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		421F1E4A1CB16C0D008307A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -157,6 +180,7 @@
 			files = (
 				4225816B1CD5CF90009BFF64 /* SwifteriOS.framework in Frameworks */,
 				B67B0EDCD8D0FA7DF6713FBE /* Pods_Attention.framework in Frameworks */,
+				422581801CD5F0D2009BFF64 /* SwifteriOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,10 +368,12 @@
 				4F2320602EFAB78D2C52C751 /* Copy Pods Resources */,
 				C63BB1D758B28D854A6B8AC2 /* Frameworks */,
 				42BDD03E1CD4D007008E71DA /* Fabric */,
+				422581841CD5F0D3009BFF64 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				422581831CD5F0D3009BFF64 /* PBXTargetDependency */,
 			);
 			name = Attention;
 			productName = Attension;
@@ -671,6 +697,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		422581831CD5F0D3009BFF64 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwifteriOS;
+			targetProxy = 422581821CD5F0D3009BFF64 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4225817B1CD5E17F009BFF64 /* GuideViewController.storyboard */ = {
