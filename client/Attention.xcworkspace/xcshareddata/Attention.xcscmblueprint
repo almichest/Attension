@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "25A84C47B1444AFD004A33580237B5E1886045A8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD" : 0,
+    "25A84C47B1444AFD004A33580237B5E1886045A8" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "79FCD156-9C7B-40B2-BB0C-11264755FE09",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD" : "Attention\/client\/Swifter\/",
+    "25A84C47B1444AFD004A33580237B5E1886045A8" : "Attention\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Attention",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "client\/Attention.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:almichest\/Attention.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "25A84C47B1444AFD004A33580237B5E1886045A8"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mattdonnelly\/Swifter.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD"
+    }
+  ]
+}
