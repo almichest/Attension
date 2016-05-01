@@ -99,6 +99,10 @@ class RootViewController: UIViewController {
         guideButton.bk_addEventHandler({[weak self] (button) in
             self?.showGuideView()
         }, forControlEvents: .TouchUpInside)
+
+        menuButton.bk_addEventHandler({[weak self] (button) in
+            self?.showMenu()
+        }, forControlEvents: .TouchUpInside)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -131,6 +135,19 @@ class RootViewController: UIViewController {
                 vc.view.alpha = 1.0
             })
         }
+    }
+
+    private func showMenu() {
+        let vc = UIAlertController(title: NSLocalizedString("menu.title", comment: ""), message: nil , preferredStyle: .ActionSheet)
+        vc.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .Cancel) { (action) in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        vc.addAction(UIAlertAction(title: NSLocalizedString("refresh.items", comment: ""), style: .Default) {[weak self] (action) in
+            self?.searchItems()
+            self?.dismissViewControllerAnimated(true, completion: nil)
+        })
+        presentViewController(vc, animated: true, completion: nil)
+
     }
 
     private static let mininumFetchInterval: NSTimeInterval = 60 * 60 * 24

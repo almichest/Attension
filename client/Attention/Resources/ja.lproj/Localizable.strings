@@ -36,3 +36,6 @@
 "reporting" = "通報中...";
 "report.done" = "通報完了。ありがとうございました。";
 "report.failed" = "通報に失敗しました。また後でお試しください。";
+
+"menu.title" = "メニュー";
+"refresh.items" = "アイテム一覧を再取得する";

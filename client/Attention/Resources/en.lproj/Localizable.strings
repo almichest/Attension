@@ -36,3 +36,6 @@
 "reporting" = "Reporting...";
 "report.done" = "Done. Thank you.";
 "report.failed" = "Reporting failed. Please try later again.";
+
+"menu.title" = "Menu";
+"refresh.items" = "Refresh information items on the map.";
