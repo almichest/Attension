@@ -20,6 +20,7 @@ class RootViewController: UIViewController {
     @IBOutlet private weak var zoomInButton: UIButton!
     @IBOutlet private weak var zoomOutButton: UIButton!
     @IBOutlet private weak var menuButton: UIButton!
+    @IBOutlet private weak var guideButton: UIButton!
 
     private var locationSelectViewController: LocationSelectViewController?
     private var currentAnnotation: MKAnnotation?
@@ -94,21 +95,41 @@ class RootViewController: UIViewController {
                 vc.view.frame = originalFrame
             })
         }.disposeIn(bnd_bag)
+
+        guideButton.bk_addEventHandler({[weak self] (button) in
+            self?.showGuideView()
+        }, forControlEvents: .TouchUpInside)
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         focusOnUserLocation()
         searchItemsIfNeeded()
-        showGuideView()
     }
 
     private func showGuideView() {
         if let vc = R.storyboard.guideViewController.initialViewController() {
             vc.view.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(view.bounds), height: CGRectGetHeight(view.bounds))
+
+            let tap = UITapGestureRecognizer.bk_recognizerWithHandler({(recognizer, state, point) in
+                if state == .Ended {
+                    UIView.animateWithDuration(0.5, animations: {
+                        vc.view.alpha = 0.0
+                    }, completion: { (completed) in
+                        vc.willMoveToParentViewController(nil)
+                        vc.view.removeFromSuperview()
+                    })
+                }
+            }) as! UITapGestureRecognizer
+            view.addGestureRecognizer(tap)
+
             view.addSubview(vc.view)
             addChildViewController(vc)
             vc.didMoveToParentViewController(self)
+            vc.view.alpha = 0.0
+            UIView.animateWithDuration(0.5, animations: {
+                vc.view.alpha = 1.0
+            })
         }
     }
 

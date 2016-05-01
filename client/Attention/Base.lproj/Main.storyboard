@@ -9,6 +9,7 @@
             <string>WebHostingHub-Glyphs</string>
             <string>WebHostingHub-Glyphs</string>
             <string>WebHostingHub-Glyphs</string>
+            <string>WebHostingHub-Glyphs</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -43,12 +44,19 @@
                                         <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="14"/>
                                         <state key="normal" title="chevronup"/>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvX-PC-Xdt">
+                                        <rect key="frame" x="565" y="-2" width="30" height="32"/>
+                                        <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="18"/>
+                                        <state key="normal" title="questionsign"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="A1n-bt-4OP" firstAttribute="leading" secondItem="c2r-F1-N3r" secondAttribute="leading" id="Eq0-wT-1Vc"/>
                                     <constraint firstAttribute="height" constant="30" id="MiE-fi-ZJ7"/>
+                                    <constraint firstAttribute="trailing" secondItem="RvX-PC-Xdt" secondAttribute="trailing" constant="5" id="YCi-3y-vI0"/>
                                     <constraint firstAttribute="bottom" secondItem="A1n-bt-4OP" secondAttribute="bottom" id="gMN-OC-vNs"/>
+                                    <constraint firstAttribute="bottom" secondItem="RvX-PC-Xdt" secondAttribute="bottom" id="qJQ-V6-b9g"/>
                                 </constraints>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="roV-Gv-tng" customClass="AttentionMapView" customModule="Attention" customModuleProvider="target">
@@ -100,6 +108,7 @@
                     </view>
                     <connections>
                         <outlet property="currentLocationButton" destination="ntI-to-XxS" id="FSS-eF-fcN"/>
+                        <outlet property="guideButton" destination="RvX-PC-Xdt" id="nZR-Su-hJn"/>
                         <outlet property="mapView" destination="roV-Gv-tng" id="UYW-U3-GJg"/>
                         <outlet property="menuButton" destination="A1n-bt-4OP" id="0Dn-se-eYB"/>
                         <outlet property="searchBar" destination="dcc-LH-loY" id="zQp-ox-vMU"/>
