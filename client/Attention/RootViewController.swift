@@ -17,8 +17,9 @@ class RootViewController: UIViewController {
     @IBOutlet private weak var mapView: AttentionMapView!
     @IBOutlet private weak var searchBar: GeoLocationSearchBar!
     @IBOutlet private weak var currentLocationButton: UIButton!
-    @IBOutlet weak var zoomInButton: UIButton!
-    @IBOutlet weak var zoomOutButton: UIButton!
+    @IBOutlet private weak var zoomInButton: UIButton!
+    @IBOutlet private weak var zoomOutButton: UIButton!
+    @IBOutlet private weak var menuButton: UIButton!
 
     private var locationSelectViewController: LocationSelectViewController?
     private var currentAnnotation: MKAnnotation?

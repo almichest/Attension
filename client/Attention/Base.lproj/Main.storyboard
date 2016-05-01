@@ -8,6 +8,7 @@
             <string>WebHostingHub-Glyphs</string>
             <string>WebHostingHub-Glyphs</string>
             <string>WebHostingHub-Glyphs</string>
+            <string>WebHostingHub-Glyphs</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -63,6 +64,11 @@
                                 <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="20"/>
                                 <state key="normal" title="zoomin"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntI-to-XxS">
+                                <rect key="frame" x="565" y="458" width="30" height="34"/>
+                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="20"/>
+                                <state key="normal" title="placeios"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -77,10 +83,12 @@
                             <constraint firstAttribute="trailing" secondItem="c2r-F1-N3r" secondAttribute="trailing" id="VVp-m9-Ggm"/>
                             <constraint firstItem="roV-Gv-tng" firstAttribute="top" secondItem="dcc-LH-loY" secondAttribute="bottom" id="WFJ-hT-q54"/>
                             <constraint firstAttribute="trailing" secondItem="TJ8-9O-AcH" secondAttribute="trailing" constant="5" id="XBk-gc-qA9"/>
+                            <constraint firstItem="TJ8-9O-AcH" firstAttribute="top" secondItem="ntI-to-XxS" secondAttribute="bottom" constant="10" id="bG1-Jp-CGQ"/>
                             <constraint firstItem="dcc-LH-loY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dXn-Bw-Opy"/>
                             <constraint firstAttribute="trailing" secondItem="dcc-LH-loY" secondAttribute="trailing" id="e5B-DG-435"/>
                             <constraint firstItem="dcc-LH-loY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="jpE-cJ-4wq"/>
                             <constraint firstAttribute="trailing" secondItem="roV-Gv-tng" secondAttribute="trailing" id="n7Y-Gs-zny"/>
+                            <constraint firstItem="ntI-to-XxS" firstAttribute="trailing" secondItem="TJ8-9O-AcH" secondAttribute="trailing" id="o4B-ef-kuB"/>
                             <constraint firstItem="g6J-J2-8hN" firstAttribute="top" secondItem="TJ8-9O-AcH" secondAttribute="bottom" id="wB6-S1-rJB"/>
                         </constraints>
                         <variation key="default">
@@ -91,8 +99,9 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="currentLocationButton" destination="A1n-bt-4OP" id="TqV-2p-2PC"/>
+                        <outlet property="currentLocationButton" destination="ntI-to-XxS" id="FSS-eF-fcN"/>
                         <outlet property="mapView" destination="roV-Gv-tng" id="UYW-U3-GJg"/>
+                        <outlet property="menuButton" destination="A1n-bt-4OP" id="0Dn-se-eYB"/>
                         <outlet property="searchBar" destination="dcc-LH-loY" id="zQp-ox-vMU"/>
                         <outlet property="zoomInButton" destination="TJ8-9O-AcH" id="S91-pl-1Mg"/>
                         <outlet property="zoomOutButton" destination="g6J-J2-8hN" id="LeE-Kx-qDa"/>
