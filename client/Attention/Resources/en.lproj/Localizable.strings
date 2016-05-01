@@ -11,7 +11,7 @@
 "OK" = "OK";
 
 "please.share.title" = "Please Share";
-"please.share.body" = "Please share this useful information with others!.";
+"please.share.body" = "Please share this useful information with others. (Item can be shared later, and sharing cannot be cancelled.)";
 "no.information" = "No information.";
 "alert.notext" = "Sorry. 'Where' and 'What' must have one or more letters.";
 "alert.textlength" = "Sorry. 'Where' must be less than 50 letters, and 'What' must be less than 200 letters.";
@@ -33,3 +33,6 @@
 
 "report.title" = "Report";
 "report.body" = "Is this item needs to be reported?";
+"reporting" = "Reporting...";
+"report.done" = "Done. Thank you.";
+"report.failed" = "Reporting failed. Please try later again.";

@@ -465,7 +465,7 @@ extension RootViewController: AttentionMapViewDelegate {
             TwitterClient.sharedClient.post(AttentionUtil.makeReportText(item)).on(success: { (result) in
                 self?.showStatus(NSLocalizedString("report.done", comment: ""))
             }, failure: { (error, isCancelled) in
-                self?.showError(NSLocalizedString("failed.reporting", comment: ""))
+                self?.showError(NSLocalizedString("report.failed", comment: ""))
             })
 
             self?.dismissViewControllerAnimated(true, completion: nil)
