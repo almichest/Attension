@@ -31,7 +31,6 @@
 		422D33461CCD2E780094A877 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D33261CCD2E780094A877 /* LocationManager.swift */; };
 		422D33471CCD2E780094A877 /* LocationSelectViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 422D33271CCD2E780094A877 /* LocationSelectViewController.storyboard */; };
 		422D33481CCD2E780094A877 /* LocationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D33281CCD2E780094A877 /* LocationSelectViewController.swift */; };
-		422D33491CCD2E780094A877 /* PostResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D33291CCD2E780094A877 /* PostResult.swift */; };
 		422D334A1CCD2E780094A877 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D332A1CCD2E780094A877 /* R.generated.swift */; };
 		422D334B1CCD2E780094A877 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 422D332C1CCD2E780094A877 /* Localizable.strings */; };
 		422D334C1CCD2E780094A877 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D332F1CCD2E780094A877 /* RootViewController.swift */; };
@@ -118,7 +117,6 @@
 		422D33261CCD2E780094A877 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		422D33271CCD2E780094A877 /* LocationSelectViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LocationSelectViewController.storyboard; sourceTree = "<group>"; };
 		422D33281CCD2E780094A877 /* LocationSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSelectViewController.swift; sourceTree = "<group>"; };
-		422D33291CCD2E780094A877 /* PostResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostResult.swift; sourceTree = "<group>"; };
 		422D332A1CCD2E780094A877 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		422D332D1CCD2E780094A877 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		422D332E1CCD2E780094A877 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -181,43 +179,82 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		422D33091CCD2E780094A877 /* Attention */ = {
+		422581721CD5DEA9009BFF64 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				42BDD0461CD4E7EE008E71DA /* TwitterClient.swift */,
+			);
+			name = Twitter;
+			sourceTree = "<group>";
+		};
+		422581731CD5DEC1009BFF64 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				422D33131CCD2E780094A877 /* AttentionItemDataSource.swift */,
+				422D33121CCD2E780094A877 /* AttentionItem.swift */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		422581741CD5DEC9009BFF64 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				422D33111CCD2E780094A877 /* AttentionAPIClient.swift */,
+				422D33141CCD2E780094A877 /* AttentionResponseItem.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		422581751CD5DED7009BFF64 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				422D33151CCD2E780094A877 /* AddingItemViewController.storyboard */,
+				422D331C1CCD2E780094A877 /* AddingItemViewController.strings */,
 				422D330A1CCD2E780094A877 /* AddingItemViewController.swift */,
 				42E86D381CCE5D4C005E4EC0 /* AnnotationBodyViewController.storyboard */,
 				422D330C1CCD2E780094A877 /* AnnotationBodyViewController.swift */,
+				422D33101CCD2E780094A877 /* AttentionAnnotation.swift */,
+				42E86D341CCE4ACE005E4EC0 /* AttentionMapView.swift */,
+				422D331F1CCD2E780094A877 /* GeoLocationSearchBar.swift */,
+				422D33171CCD2E780094A877 /* LaunchScreen.storyboard */,
+				422D33271CCD2E780094A877 /* LocationSelectViewController.storyboard */,
+				422D33281CCD2E780094A877 /* LocationSelectViewController.swift */,
+				422D33191CCD2E780094A877 /* Main.storyboard */,
+				422D332F1CCD2E780094A877 /* RootViewController.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		422581761CD5DF1E009BFF64 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				422D33261CCD2E780094A877 /* LocationManager.swift */,
+				422D331E1CCD2E780094A877 /* GeoLocationProvider.swift */,
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
+		422D33091CCD2E780094A877 /* Attention */ = {
+			isa = PBXGroup;
+			children = (
+				422581761CD5DF1E009BFF64 /* Location */,
+				422581751CD5DED7009BFF64 /* UI */,
+				422581741CD5DEC9009BFF64 /* API */,
+				422581731CD5DEC1009BFF64 /* Database */,
+				422581721CD5DEA9009BFF64 /* Twitter */,
 				422D330D1CCD2E780094A877 /* AppDelegate.swift */,
 				422D330E1CCD2E780094A877 /* Assets.xcassets */,
 				422D330F1CCD2E780094A877 /* Attension-Bridging-Header.h */,
-				422D33101CCD2E780094A877 /* AttentionAnnotation.swift */,
-				422D33111CCD2E780094A877 /* AttentionAPIClient.swift */,
-				422D33121CCD2E780094A877 /* AttentionItem.swift */,
-				422D33131CCD2E780094A877 /* AttentionItemDataSource.swift */,
-				422D33141CCD2E780094A877 /* AttentionResponseItem.swift */,
-				422D33151CCD2E780094A877 /* AddingItemViewController.storyboard */,
-				422D331C1CCD2E780094A877 /* AddingItemViewController.strings */,
-				422D33171CCD2E780094A877 /* LaunchScreen.storyboard */,
-				422D33191CCD2E780094A877 /* Main.storyboard */,
 				422D331B1CCD2E780094A877 /* Config.swift */,
-				422D331E1CCD2E780094A877 /* GeoLocationProvider.swift */,
-				422D331F1CCD2E780094A877 /* GeoLocationSearchBar.swift */,
 				422D33201CCD2E780094A877 /* Info.plist */,
 				422D33221CCD2E780094A877 /* LaunchScreen.strings */,
 				422D33241CCD2E780094A877 /* Main.strings */,
-				422D33261CCD2E780094A877 /* LocationManager.swift */,
-				422D33271CCD2E780094A877 /* LocationSelectViewController.storyboard */,
-				422D33281CCD2E780094A877 /* LocationSelectViewController.swift */,
-				422D33291CCD2E780094A877 /* PostResult.swift */,
 				422D332A1CCD2E780094A877 /* R.generated.swift */,
-				422D332B1CCD2E780094A877 /* Resources */,
-				422D332F1CCD2E780094A877 /* RootViewController.swift */,
 				422D33301CCD2E780094A877 /* UIBarButtonItem+BKWrapper.h */,
 				422D33311CCD2E780094A877 /* UIBarButtonItem+BKWrapper.m */,
-				42E86D341CCE4ACE005E4EC0 /* AttentionMapView.swift */,
 				42BDD03C1CD4B369008E71DA /* Settings.swift */,
-				42BDD0461CD4E7EE008E71DA /* TwitterClient.swift */,
 				4224844F1CD5252B0053A451 /* AttentionUtil.swift */,
+				422D332B1CCD2E780094A877 /* Resources */,
 			);
 			path = Attention;
 			sourceTree = "<group>";
@@ -234,13 +271,13 @@
 		4287D5151CB14ACC00E78E47 = {
 			isa = PBXGroup;
 			children = (
-				422581591CD5CF7C009BFF64 /* Swifter.xcodeproj */,
-				42BDD03A1CD3E404008E71DA /* Settings.bundle */,
 				422D33091CCD2E780094A877 /* Attention */,
 				4287D5351CB14ACC00E78E47 /* AttensionTests */,
 				4287D51F1CB14ACC00E78E47 /* Products */,
 				EDD3FFD094FB9366099A13D6 /* Frameworks */,
 				CC3DE574811D3DD5FA8E9718 /* Pods */,
+				42BDD03A1CD3E404008E71DA /* Settings.bundle */,
+				422581591CD5CF7C009BFF64 /* Swifter.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -601,7 +638,6 @@
 				422D333F1CCD2E780094A877 /* Config.swift in Sources */,
 				422D33421CCD2E780094A877 /* GeoLocationSearchBar.swift in Sources */,
 				422D334D1CCD2E780094A877 /* UIBarButtonItem+BKWrapper.m in Sources */,
-				422D33491CCD2E780094A877 /* PostResult.swift in Sources */,
 				422D334C1CCD2E780094A877 /* RootViewController.swift in Sources */,
 				422D33411CCD2E780094A877 /* GeoLocationProvider.swift in Sources */,
 				422D333B1CCD2E780094A877 /* AttentionResponseItem.swift in Sources */,
