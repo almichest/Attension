@@ -69,12 +69,12 @@ public class AttentionAPIClient: NSObject {
                 self.firebase.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                     debugPrint("fetch result - \(snapshot.value)")
                     guard let value = snapshot.value as? Dictionary<String, Dictionary<String, AnyObject>> else {
-                        reject(NSError(domain: APIErrorDomain, code: APIErrorCode.GeneralError.rawValue, userInfo: nil))
+                        reject(APIErrorCode.GeneralError.createError())
                         return
                     }
 
                     guard let dic = value["attentions"] else {
-                        reject(NSError(domain: APIErrorDomain, code: APIErrorCode.GeneralError.rawValue, userInfo: nil))
+                        reject(APIErrorCode.GeneralError.createError())
                         return
                     }
                     let items = Array(dic.keys).map({ (key) -> AttentionResponseItem? in
@@ -116,7 +116,7 @@ public class AttentionAPIClient: NSObject {
 
                         fulfill(newItem)
                     } else {
-                        reject(NSError(domain: APIErrorDomain, code: APIErrorCode.GeneralError.rawValue, userInfo: nil))
+                        reject(APIErrorCode.GeneralError.createError())
                     }
                 }
             })
@@ -134,7 +134,7 @@ public class AttentionAPIClient: NSObject {
                 let dic = item.toDictionary(false)
                 attentionsRef.updateChildValues(dic, withCompletionBlock: { (error, firebase) in
                     if let _ = error {
-                        reject(NSError(domain: APIErrorDomain, code: APIErrorCode.GeneralError.rawValue, userInfo: nil))
+                        reject(APIErrorCode.GeneralError.createError())
                     } else {
                         fulfill(item)
                     }
