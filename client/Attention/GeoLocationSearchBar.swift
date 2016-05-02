@@ -12,6 +12,7 @@ class GeoLocationSearchBar: UISearchBar {
     
     var searchHandler: ((UISearchBar) -> Void)?
     var startHandler: ((UISearchBar) -> Void)?
+    var determineHandler: ((UISearchBar) -> Void)?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -33,6 +34,12 @@ extension GeoLocationSearchBar: UISearchBarDelegate {
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if let handler = searchHandler {
+            handler(searchBar)
+        }
+    }
+
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        if let handler = determineHandler {
             handler(searchBar)
         }
     }

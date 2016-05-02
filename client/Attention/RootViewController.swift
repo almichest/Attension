@@ -58,6 +58,13 @@ class RootViewController: UIViewController {
         }
 
         searchBar.startHandler = {(searchBar) in self.showLocationSearchResultView()}
+
+        searchBar.determineHandler = {[weak self](searchBar) in
+            guard let items = self?.locationSelectViewController?.mapItems where 0 < items.count else {return}
+            self?.focusOnMapItem(items[0])
+            self?.hideMapItems(true)
+            self?.view.endEditing(true)
+        }
         
         AttentionItemDataSource.sharedInstance.subscribe(self)
 
@@ -226,11 +233,10 @@ extension RootViewController {
         }
 
         let vc = LocationSelectViewController.viewController()
-        vc.mapItemSelectionHandler = {(mapItem) in
-            var region = self.mapView.region
-            region.center = mapItem.placemark.coordinate
-            region.span = MKCoordinateSpanMake(0.005, 0.005)
-            self.mapView.setRegion(region, animated: true)
+        vc.mapItemSelectionHandler = {[weak self] (mapItem) in
+            self?.focusOnMapItem(mapItem)
+            self?.hideMapItems(true)
+            self?.view.endEditing(true)
         }
 
         vc.view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
@@ -243,6 +249,13 @@ extension RootViewController {
         UIView.animateWithDuration(0.5, animations: {
             vc.view.frame = self.locationSelectViewOriginalFrame
         })
+    }
+
+    private func focusOnMapItem(item: MKMapItem) {
+        var region = self.mapView.region
+        region.center = item.placemark.coordinate
+        region.span = MKCoordinateSpanMake(0.005, 0.005)
+        self.mapView.setRegion(region, animated: true)
     }
 
     private func searchLocation(locationName: String) {
