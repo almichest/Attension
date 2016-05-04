@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hogehogehogehoge" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbY-Og-1e4">
-                                <rect key="frame" x="176" y="321" width="250" height="21"/>
+                                <rect key="frame" x="175" y="312" width="250" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="qkX-Qx-ecs"/>
                                 </constraints>
@@ -31,8 +31,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="handup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQP-79-WjT">
-                                <rect key="frame" x="292" y="271" width="17" height="19"/>
-                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="17"/>
+                                <rect key="frame" x="175" y="253" width="50" height="54"/>
+                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="50"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="↑ 「新宿駅」を検索すると、入力例が見られます。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOH-yx-Irk">
+                                <rect key="frame" x="10" y="45" width="580" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -41,9 +47,18 @@
                         <constraints>
                             <constraint firstItem="lbY-Og-1e4" firstAttribute="centerX" secondItem="VQP-79-WjT" secondAttribute="centerX" id="241-ai-dob"/>
                             <constraint firstItem="VQP-79-WjT" firstAttribute="centerY" secondItem="DLp-is-eNV" secondAttribute="centerY" constant="-20" id="5Y5-DV-cu6"/>
-                            <constraint firstItem="VQP-79-WjT" firstAttribute="centerX" secondItem="DLp-is-eNV" secondAttribute="centerX" id="kNi-Sn-jGu"/>
-                            <constraint firstItem="lbY-Og-1e4" firstAttribute="top" secondItem="VQP-79-WjT" secondAttribute="bottom" constant="31" id="wnx-ua-1ff"/>
+                            <constraint firstItem="UOH-yx-Irk" firstAttribute="top" secondItem="UE8-Mg-InP" secondAttribute="bottom" constant="45" id="JuS-Ys-fQ8"/>
+                            <constraint firstItem="UOH-yx-Irk" firstAttribute="leading" secondItem="DLp-is-eNV" secondAttribute="leading" constant="10" id="Rmn-Ei-8i0"/>
+                            <constraint firstAttribute="trailing" secondItem="UOH-yx-Irk" secondAttribute="trailing" constant="10" id="UGQ-yf-y1s"/>
+                            <constraint firstItem="lbY-Og-1e4" firstAttribute="centerX" secondItem="DLp-is-eNV" secondAttribute="centerX" id="jzY-NT-UEe"/>
+                            <constraint firstItem="VQP-79-WjT" firstAttribute="centerX" secondItem="DLp-is-eNV" secondAttribute="centerX" constant="-100" id="kNi-Sn-jGu"/>
+                            <constraint firstItem="lbY-Og-1e4" firstAttribute="top" secondItem="VQP-79-WjT" secondAttribute="bottom" constant="5" id="wnx-ua-1ff"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="241-ai-dob"/>
+                            </mask>
+                        </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                 </viewController>
