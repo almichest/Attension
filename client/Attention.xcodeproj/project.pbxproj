@@ -362,6 +362,7 @@
 				283B38706410D82D3C3892D7 /* Check Pods Manifest.lock */,
 				AF4B21ECF37F9D7D630A802A /* 📦 Check Pods Manifest.lock */,
 				422F2E971CB9320100F74FBF /* Run R.swift generator */,
+				422BC83D1CD9BD2900833BFF /* Update build number */,
 				4287D51A1CB14ACC00E78E47 /* Sources */,
 				4287D51C1CB14ACC00E78E47 /* Resources */,
 				F74911ADD27B854444CEA478 /* Embed Pods Frameworks */,
@@ -551,6 +552,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AttentionTests/Pods-AttentionTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		422BC83D1CD9BD2900833BFF /* Update build number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Update build number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" != \"Debug\" ]; then\nbuildNumber=$(date +'%y%m%d%H%M')\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nfi";
 		};
 		422F2E971CB9320100F74FBF /* Run R.swift generator */ = {
 			isa = PBXShellScriptBuildPhase;
