@@ -1,8 +1,6 @@
 # Attension
 
-Create "Config.swift" file and set firebaseUrl like
+## How to build
 
-```
-let filrebaseUrl = "http://hogehoge.firebaseio.com"
-```
-
+1. Copy `Config.swift.org` to `Config.swift` and set each parameters.
+2. Open with Xcode7.3 and run.
