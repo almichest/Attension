@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "attentions" : {
+      ".read": true,
+      ".write": false,
+      "$id": {
+        "place_name" : {
+          ".validate": "newData.isString() && newData.val().length <= 50"
+        },
+        "attention_body" : {
+          ".validate": "newData.isString() && newData.val().length <= 200"
+        }
+      }
+    }
+  }
+}
