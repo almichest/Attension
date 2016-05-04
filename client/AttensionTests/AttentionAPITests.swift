@@ -42,6 +42,45 @@ class AttentionAPITests: XCTestCase {
         waitForExpectationsWithTimeout(5, handler: nil)
     }
 
+    func testPostingLongPlaceName() {
+        let expectation = self.expectationWithDescription("Wait for API response")
+        let item = AttentionItem()
+        let date = NSDate()
+        item.placeName = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+        item.identifier = "hogehoge\(UInt(date.timeIntervalSince1970))"
+        AttentionAPIClient.sharedClient.createNewItem(item).on(success: { (item) in
+            XCTFail()
+            expectation.fulfill()
+        }) { (error, isCancelled) in
+            print(error)
+            XCTAssert(true)
+            expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(5, handler: nil)
+
+    }
+
+    func testPostingLongBody() {
+        let expectation = self.expectationWithDescription("Wait for API response")
+        let item = AttentionItem()
+        let date = NSDate()
+        item.identifier = "hogehoge\(UInt(date.timeIntervalSince1970))"
+        item.attentionBody = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+        AttentionAPIClient.sharedClient.createNewItem(item).on(success: { (item) in
+            XCTFail()
+            expectation.fulfill()
+        }) { (error, isCancelled) in
+            print(error)
+            XCTAssert(true)
+            expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(5, handler: nil)
+
+    }
+
+
     func testUpdateAPI() {
         let expectation = self.expectationWithDescription("Wait for API response")
         let item = AttentionItem()
