@@ -28,7 +28,7 @@ public class AttentionAPIClient: NSObject {
     public static let sharedClient = AttentionAPIClient()
 
     private let firebase = Firebase(url: FIRE_BASE_URL)
-    private var authTask: Task<Float, FAuthData, NSError>!
+    private var authTask: LoginTask!
 
     override init() {
         super.init()
@@ -39,8 +39,7 @@ public class AttentionAPIClient: NSObject {
     private var loginTryCount = 0
     private func auth() {
         authTask = LoginTask(promiseInitClosure:{[weak self] (fulfill, reject) in
-            let firebase = Firebase(url: FIRE_BASE_URL)
-            firebase.authWithCustomToken(FIRE_BASE_AUTH_TOKEN) { (error, data) in
+            self?.firebase.authWithCustomToken(FIRE_BASE_AUTH_TOKEN) { (error, data) in
                 if let data = data {
                     debugPrint("***** Log in complete *****")
                     fulfill(data)
