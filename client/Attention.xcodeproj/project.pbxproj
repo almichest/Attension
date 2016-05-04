@@ -412,6 +412,7 @@
 				TargetAttributes = {
 					4287D51D1CB14ACC00E78E47 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 5M2EQKMGE5;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -877,6 +878,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -887,8 +889,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hira.Attension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hira.attention;
 				PRODUCT_NAME = Attention;
+				PROVISIONING_PROFILE = "e1dc971f-034a-49bd-8501-1e94490594e5";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/Attension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "Pods/BlocksKit/**/** Pods/INTULocationManager/**";
@@ -901,6 +904,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -910,8 +914,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hira.Attension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hira.attention;
 				PRODUCT_NAME = Attention;
+				PROVISIONING_PROFILE = "e1dc971f-034a-49bd-8501-1e94490594e5";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/Attension-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "Pods/BlocksKit/**/** Pods/INTULocationManager/**";
 			};
