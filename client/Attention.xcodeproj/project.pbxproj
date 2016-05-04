@@ -903,7 +903,7 @@
 				INFOPLIST_FILE = Attention/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hira.attention;
 				PRODUCT_NAME = Attention;
 				PROVISIONING_PROFILE = "e1dc971f-034a-49bd-8501-1e94490594e5";
@@ -928,7 +928,7 @@
 				INFOPLIST_FILE = Attention/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hira.attention;
 				PRODUCT_NAME = Attention;
 				PROVISIONING_PROFILE = "e1dc971f-034a-49bd-8501-1e94490594e5";
