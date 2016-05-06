@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		422484501CD5252B0053A451 /* AttentionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4224844F1CD5252B0053A451 /* AttentionUtil.swift */; };
-		4225816B1CD5CF90009BFF64 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422581641CD5CF7C009BFF64 /* SwifteriOS.framework */; };
 		422581791CD5E17F009BFF64 /* GuideViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4225817B1CD5E17F009BFF64 /* GuideViewController.storyboard */; };
-		422581801CD5F0D2009BFF64 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422581641CD5CF7C009BFF64 /* SwifteriOS.framework */; };
 		422581811CD5F0D2009BFF64 /* SwifteriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 422581641CD5CF7C009BFF64 /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		422D33321CCD2E780094A877 /* AddingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330A1CCD2E780094A877 /* AddingItemViewController.swift */; };
 		422D33341CCD2E780094A877 /* AnnotationBodyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D330C1CCD2E780094A877 /* AnnotationBodyViewController.swift */; };
@@ -178,9 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4225816B1CD5CF90009BFF64 /* SwifteriOS.framework in Frameworks */,
 				B67B0EDCD8D0FA7DF6713FBE /* Pods_Attention.framework in Frameworks */,
-				422581801CD5F0D2009BFF64 /* SwifteriOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

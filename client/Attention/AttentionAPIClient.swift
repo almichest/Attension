@@ -11,15 +11,16 @@ import Firebase
 
 let APIErrorDomain = "APIError"
 enum APIErrorCode: Int {
-    case GeneralError
-    case LoginError
+    case GeneralError           = 0
+    case PermissionDeniedError  = 1
+    case LoginError             = 2
 
     func createError() -> NSError {
         return NSError(domain: APIErrorDomain, code: self.rawValue, userInfo: nil)
     }
 }
 
-typealias LoginTask = Task<Float, FAuthData, NSError>
+typealias LoginTask = Task<Float, Bool, NSError>
 typealias FetchTask = Task<Float, [AttentionResponseItem], NSError>
 typealias PushTask = Task<Float, AttentionItem, NSError>
 
@@ -35,26 +36,8 @@ public class AttentionAPIClient: NSObject {
         auth()
     }
 
-    private static let maxLoginTry = 5
-    private var loginTryCount = 0
     private func auth() {
-        authTask = LoginTask(promiseInitClosure:{[weak self] (fulfill, reject) in
-            self?.firebase.authWithCustomToken(FIRE_BASE_AUTH_TOKEN) { (error, data) in
-                if let data = data {
-                    debugPrint("***** Log in complete *****")
-                    fulfill(data)
-                } else {
-                    if self?.loginTryCount < AttentionAPIClient.maxLoginTry {
-                        debugPrint("***** Log in Failed ***** : \(self?.loginTryCount)")
-                        self?.loginTryCount += 1
-                        self?.auth()
-                    } else {
-                        debugPrint("***** Log in Completely Failed ... *****")
-                        reject(APIErrorCode.LoginError.createError())
-                    }
-                }
-            }
-        })
+        authTask = LoginTask(value: true)
     }
 
 
@@ -104,7 +87,7 @@ public class AttentionAPIClient: NSObject {
                 let dic = item.toDictionary(false)
                 attentionsRef.childByAutoId().setValue(dic) { (error, firebase) in
                     debugPrint("create complete. key = \(firebase.key)")
-                    if let key = firebase.key {
+                    if let key = firebase.key where error == nil {
                         let newItem = AttentionItem()
                         newItem.latitude = item.latitude
                         newItem.longtitude = item.longtitude
@@ -114,6 +97,8 @@ public class AttentionAPIClient: NSObject {
                         newItem.shared = true
 
                         fulfill(newItem)
+                    } else if let error = error where error.code == APIErrorCode.PermissionDeniedError.rawValue {
+                        reject(APIErrorCode.PermissionDeniedError.createError())
                     } else {
                         reject(APIErrorCode.GeneralError.createError())
                     }
@@ -132,7 +117,9 @@ public class AttentionAPIClient: NSObject {
                 let attentionsRef = self.firebase.childByAppendingPath("attentions/" + item.identifier)
                 let dic = item.toDictionary(false)
                 attentionsRef.updateChildValues(dic, withCompletionBlock: { (error, firebase) in
-                    if let _ = error {
+                    if let error = error where error.code == APIErrorCode.PermissionDeniedError.rawValue {
+                        reject(APIErrorCode.PermissionDeniedError.createError())
+                    } else if let _ = error {
                         reject(APIErrorCode.GeneralError.createError())
                     } else {
                         fulfill(item)
