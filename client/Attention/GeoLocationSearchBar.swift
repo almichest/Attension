@@ -23,24 +23,15 @@ class GeoLocationSearchBar: UISearchBar {
 extension GeoLocationSearchBar: UISearchBarDelegate {
 
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        if let handler = startHandler {
-            handler(searchBar)
-        }
-        
-        if let handler = searchHandler {
-            handler(searchBar)
-        }
+        startHandler?(searchBar)
+        searchHandler?(searchBar)
     }
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        if let handler = searchHandler {
-            handler(searchBar)
-        }
+        searchHandler?(searchBar)
     }
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        if let handler = determineHandler {
-            handler(searchBar)
-        }
+        determineHandler?(searchBar)
     }
 }

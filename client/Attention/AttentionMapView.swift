@@ -33,8 +33,7 @@ class AttentionMapView: MKMapView {
 extension AttentionMapView: MKMapViewDelegate {
 
     func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        guard let completion = zoomCompletion else {return}
-        completion()
+        zoomCompletion?()
         zoomCompletion = nil
     }
 
