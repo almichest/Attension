@@ -21,6 +21,7 @@ PODS:
   - Firebase (2.5.1)
   - Himotoki (2.0.0)
   - INTULocationManager (4.2.0)
+  - MTMigration (0.0.5)
   - R.swift (2.1.0):
     - R.swift.Library (~> 2.0.0)
   - R.swift.Library (2.0.0)
@@ -40,6 +41,7 @@ DEPENDENCIES:
   - Firebase
   - Himotoki
   - INTULocationManager
+  - MTMigration
   - R.swift
   - RealmSwift
   - SVProgressHUD
@@ -53,6 +55,7 @@ SPEC CHECKSUMS:
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   Himotoki: 77fb61dbd6cd5dae033af630b591fec383eece28
   INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
+  MTMigration: 725315e6469c8fd7d13966887f59e65eb8aecb2e
   R.swift: efff131531b5cf142e28fd94957806ff71ccbcf2
   R.swift.Library: 9f4b2d12040daa1ffe336d8f7e1574f73721fd01
   Realm: b13b548e712d28a66678970c45cd245ebb94ba3b
