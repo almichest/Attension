@@ -22,7 +22,7 @@ class TwitterTest: XCTestCase {
     func testPostTweet() {
         let expectation = self.expectationWithDescription("Wait for API response")
 
-        TwitterClient.sharedClient.post("@" + TWITTER_REPORT_DESTINATION + " \(NSDate())").on(success: { (result) in
+        TwitterClient.sharedClient.post("Test \(NSDate())").on(success: { (result) in
             XCTAssert(result)
             expectation.fulfill()
         }) { (error, isCancelled) in

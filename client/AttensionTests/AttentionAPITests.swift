@@ -87,10 +87,14 @@ class AttentionAPITests: XCTestCase {
         item.attentionBody = "before"
         var key = ""
         AttentionAPIClient.sharedClient.createNewItem(item).then { (item,error) -> Task<Float, AttentionItem, NSError> in
-            XCTAssertEqual(item?.attentionBody, "before")
-            item?.attentionBody = "after"
-            key = item!.identifier
-            return AttentionAPIClient.sharedClient.updateItem(item!)
+            guard let item = item else {
+                XCTFail()
+                return Task<Float, AttentionItem, NSError>(error: APIErrorCode.GeneralError.createError())
+            }
+            XCTAssertEqual(item.attentionBody, "before")
+            item.attentionBody = "after"
+            key = item.identifier
+            return AttentionAPIClient.sharedClient.updateItem(item)
         }.on(success: {(item) in
             XCTAssertEqual(item.attentionBody, "after")
             XCTAssertEqual(item.identifier, key)
