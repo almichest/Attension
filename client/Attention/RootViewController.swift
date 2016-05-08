@@ -28,58 +28,16 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let longPress = UILongPressGestureRecognizer.bk_recognizerWithHandler {[weak self] (sender, state, location) in
-            
-            guard self != nil && state == .Began else {return}
-            
-            let coordinater = self!.mapView.convertPoint(location, toCoordinateFromView: self!.mapView)
-            let annotation = AttentionAnnotation()
-            annotation.coordinate = coordinater
-            self?.mapView.addAnnotation(annotation)
-            self?.currentAnnotation = annotation
-            self?.showPopupForAddingAttentionItem(location, annotation: annotation)
-            
-            } as! UILongPressGestureRecognizer
-        
-        mapView.addGestureRecognizer(longPress)
-        mapView.attentionDelegate = self
-
-        let tap = UITapGestureRecognizer.bk_recognizerWithHandler {[weak self] (recognizer, state, point) in
-            self?.hideMapItems(true)
-            self?.searchBar.resignFirstResponder()
-        } as! UITapGestureRecognizer
-        mapView.addGestureRecognizer(tap)
-
         mapView.showsUserLocation = true
 
-        searchBar.searchHandler = {(searchBar) in
-            guard let text = searchBar.text else {return}
-            self.searchLocation(text)
-        }
-
-        searchBar.startHandler = {(searchBar) in self.showLocationSearchResultView()}
-
-        searchBar.determineHandler = {[weak self](searchBar) in
-            guard let items = self?.locationSelectViewController?.mapItems where 0 < items.count else {return}
-            self?.focusOnMapItem(items[0])
-            self?.hideMapItems(true)
-            self?.view.endEditing(true)
-        }
-        
         AttentionItemDataSource.sharedInstance.subscribe(self)
 
-        currentLocationButton.bk_addEventHandler({[weak self] (button) in
-            self?.focusOnUserLocation()
-        }, forControlEvents: .TouchUpInside)
+        setupNotificationReceivers()
+        setupGestureRecognizers()
+        setupEventHandlers()
+    }
 
-        zoomInButton.bk_addEventHandler({[weak self] (button) in
-            self?.zoom(true)
-        }, forControlEvents: .TouchUpInside)
-
-        zoomOutButton.bk_addEventHandler({[weak self] (button) in
-            self?.zoom(false)
-        }, forControlEvents: .TouchUpInside)
-
+    private func setupNotificationReceivers() {
         NSNotificationCenter.defaultCenter().bnd_notification(UIKeyboardWillShowNotification, object: nil).observe {[weak self] (notification) in
             guard let userInfo = notification.userInfo else {return}
             guard let vc = self?.locationSelectViewController else {return}
@@ -102,6 +60,88 @@ class RootViewController: UIViewController {
                 vc.view.frame = originalFrame
             })
         }.disposeIn(bnd_bag)
+    }
+
+    private var simultaneousRecognizerHandler: SimultaneousRecognizerHandler?
+    private func setupGestureRecognizers() {
+        let longPress = UILongPressGestureRecognizer.bk_recognizerWithHandler {[weak self] (sender, state, location) in
+            
+            guard self != nil && state == .Began else {return}
+            
+            let coordinater = self!.mapView.convertPoint(location, toCoordinateFromView: self!.mapView)
+            let annotation = AttentionAnnotation()
+            annotation.coordinate = coordinater
+            self?.mapView.addAnnotation(annotation)
+            self?.currentAnnotation = annotation
+            self?.showPopupForAddingAttentionItem(location, annotation: annotation)
+            
+        } as! UILongPressGestureRecognizer
+        mapView.addGestureRecognizer(longPress)
+
+        var dragPoint: CGPoint = CGPointZero
+        var startPoint: CGPoint = CGPointZero
+        let doubleLongPress = UILongPressGestureRecognizer.bk_recognizerWithHandler {[weak self] (sender, state, location) in
+            switch state {
+            case .Began:
+                dragPoint = location
+                startPoint = location
+            case .Changed:
+                let diffY = Double(location.y - dragPoint.y)
+                self?.zoom(diffY < 0, magnification: 1 + abs(diffY) * 0.01, animated: false)
+                dragPoint = location
+            case .Ended:
+                guard location == startPoint else {return}
+            default:
+                break
+            }
+        } as! UILongPressGestureRecognizer
+        doubleLongPress.minimumPressDuration = 0
+        doubleLongPress.numberOfTapsRequired = 1
+
+        mapView.addGestureRecognizer(doubleLongPress)
+
+        mapView.subviews[0].gestureRecognizers?.forEach({ (recognizer) in
+            if recognizer is UITapGestureRecognizer && (recognizer as! UITapGestureRecognizer).numberOfTapsRequired == 2 {
+                self.simultaneousRecognizerHandler = SimultaneousRecognizerHandler(recognizers: [recognizer, doubleLongPress])
+            }
+        })
+
+        mapView.attentionDelegate = self
+
+        let tap = UITapGestureRecognizer.bk_recognizerWithHandler {[weak self] (recognizer, state, point) in
+            self?.hideMapItems(true)
+            self?.searchBar.resignFirstResponder()
+        } as! UITapGestureRecognizer
+        mapView.addGestureRecognizer(tap)
+    }
+
+    private func setupEventHandlers() {
+
+        searchBar.searchHandler = {(searchBar) in
+            guard let text = searchBar.text else {return}
+            self.searchLocation(text)
+        }
+
+        searchBar.startHandler = {(searchBar) in self.showLocationSearchResultView()}
+
+        searchBar.determineHandler = {[weak self](searchBar) in
+            guard let items = self?.locationSelectViewController?.mapItems where 0 < items.count else {return}
+            self?.focusOnMapItem(items[0])
+            self?.hideMapItems(true)
+            self?.view.endEditing(true)
+        }
+
+        currentLocationButton.bk_addEventHandler({[weak self] (button) in
+            self?.focusOnUserLocation()
+        }, forControlEvents: .TouchUpInside)
+
+        zoomInButton.bk_addEventHandler({[weak self] (button) in
+            self?.zoom(true, magnification: 1.5, animated: true)
+        }, forControlEvents: .TouchUpInside)
+
+        zoomOutButton.bk_addEventHandler({[weak self] (button) in
+            self?.zoom(false, magnification: 1.5, animated: true)
+        }, forControlEvents: .TouchUpInside)
 
         guideButton.bk_addEventHandler({[weak self] (button) in
             self?.showGuideView()
@@ -110,6 +150,7 @@ class RootViewController: UIViewController {
         menuButton.bk_addEventHandler({[weak self] (button) in
             self?.showMenu()
         }, forControlEvents: .TouchUpInside)
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -123,14 +164,13 @@ class RootViewController: UIViewController {
             vc.view.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(view.bounds), height: CGRectGetHeight(view.bounds))
 
             let tap = UITapGestureRecognizer.bk_recognizerWithHandler({(recognizer, state, point) in
-                if state == .Ended {
-                    UIView.animateWithDuration(0.5, animations: {
-                        vc.view.alpha = 0.0
-                    }, completion: { (completed) in
-                        vc.willMoveToParentViewController(nil)
-                        vc.view.removeFromSuperview()
-                    })
-                }
+                guard state == .Ended else {return}
+                UIView.animateWithDuration(0.5, animations: {
+                    vc.view.alpha = 0.0
+                }, completion: { (completed) in
+                    vc.willMoveToParentViewController(nil)
+                    vc.view.removeFromSuperview()
+                })
             }) as! UITapGestureRecognizer
             view.addGestureRecognizer(tap)
 
@@ -168,19 +208,21 @@ class RootViewController: UIViewController {
         }
     }
 
-    private static let zoomMagnification = 1.5
-    private func zoom(zoomIn: Bool) {
+    private func zoom(zoomIn: Bool, magnification: Double, animated: Bool) {
         var region = self.mapView.region
         let span = region.span
-        let magnification = RootViewController.zoomMagnification
         if zoomIn {
             region.span = MKCoordinateSpan(latitudeDelta: span.latitudeDelta / magnification, longitudeDelta: span.longitudeDelta / magnification)
         } else {
             region.span = MKCoordinateSpan(latitudeDelta: span.latitudeDelta * magnification, longitudeDelta: span.longitudeDelta * magnification)
         }
 
-        UIView.animateWithDuration(0.1) { 
-            self.mapView.setRegion(region, animated: true)
+        let delay = animated ? 0.1 : 0.0
+
+        guard region.span.latitudeDelta <= 180 && region.span.longitudeDelta <= 180 else {return}
+
+        UIView.animateWithDuration(delay) {
+            self.mapView.setRegion(region, animated: animated)
         }
     }
 

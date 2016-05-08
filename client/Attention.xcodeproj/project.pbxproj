@@ -36,6 +36,7 @@
 		422D334B1CCD2E780094A877 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 422D332C1CCD2E780094A877 /* Localizable.strings */; };
 		422D334C1CCD2E780094A877 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D332F1CCD2E780094A877 /* RootViewController.swift */; };
 		422D334D1CCD2E780094A877 /* UIBarButtonItem+BKWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 422D33311CCD2E780094A877 /* UIBarButtonItem+BKWrapper.m */; };
+		427192981CE0B0F600AB2C32 /* SimultaneousRecognizerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427192971CE0B0F600AB2C32 /* SimultaneousRecognizerHandler.swift */; };
 		4287D5371CB14ACC00E78E47 /* AttensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287D5361CB14ACC00E78E47 /* AttensionTests.swift */; };
 		42A0DEC01CC66F2D0098C41A /* AttentionAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A0DEBF1CC66F2D0098C41A /* AttentionAPITests.swift */; };
 		42BDD03B1CD3E404008E71DA /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 42BDD03A1CD3E404008E71DA /* Settings.bundle */; };
@@ -148,6 +149,7 @@
 		422D332F1CCD2E780094A877 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		422D33301CCD2E780094A877 /* UIBarButtonItem+BKWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+BKWrapper.h"; sourceTree = "<group>"; };
 		422D33311CCD2E780094A877 /* UIBarButtonItem+BKWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+BKWrapper.m"; sourceTree = "<group>"; };
+		427192971CE0B0F600AB2C32 /* SimultaneousRecognizerHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimultaneousRecognizerHandler.swift; sourceTree = "<group>"; };
 		4287D51E1CB14ACC00E78E47 /* Attention.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attention.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4287D5321CB14ACC00E78E47 /* AttentionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AttentionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4287D5361CB14ACC00E78E47 /* AttensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttensionTests.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				422D33191CCD2E780094A877 /* Main.storyboard */,
 				422D332F1CCD2E780094A877 /* RootViewController.swift */,
 				4225817B1CD5E17F009BFF64 /* GuideViewController.storyboard */,
+				427192971CE0B0F600AB2C32 /* SimultaneousRecognizerHandler.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 				422D33351CCD2E780094A877 /* AppDelegate.swift in Sources */,
 				422D334A1CCD2E780094A877 /* R.generated.swift in Sources */,
 				422D333F1CCD2E780094A877 /* Config.swift in Sources */,
+				427192981CE0B0F600AB2C32 /* SimultaneousRecognizerHandler.swift in Sources */,
 				422D33421CCD2E780094A877 /* GeoLocationSearchBar.swift in Sources */,
 				422D334D1CCD2E780094A877 /* UIBarButtonItem+BKWrapper.m in Sources */,
 				422D334C1CCD2E780094A877 /* RootViewController.swift in Sources */,
