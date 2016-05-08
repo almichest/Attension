@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
@@ -63,18 +63,18 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="506"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6J-J2-8hN">
-                                <rect key="frame" x="565" y="523" width="30" height="37"/>
-                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="23"/>
+                                <rect key="frame" x="560" y="518" width="30" height="42"/>
+                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="28"/>
                                 <state key="normal" title="zoomout"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJ8-9O-AcH">
-                                <rect key="frame" x="565" y="486" width="30" height="37"/>
-                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="23"/>
+                                <rect key="frame" x="560" y="476" width="30" height="42"/>
+                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="28"/>
                                 <state key="normal" title="zoomin"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntI-to-XxS">
-                                <rect key="frame" x="565" y="439" width="30" height="37"/>
-                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="23"/>
+                                <rect key="frame" x="560" y="424" width="30" height="42"/>
+                                <fontDescription key="fontDescription" name="WebHostingHub-Glyphs" family="WebHostingHub-Glyphs" pointSize="28"/>
                                 <state key="normal" title="placeios"/>
                             </button>
                         </subviews>
@@ -83,7 +83,7 @@
                             <constraint firstItem="c2r-F1-N3r" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="08r-Rt-aWh"/>
                             <constraint firstItem="c2r-F1-N3r" firstAttribute="top" secondItem="roV-Gv-tng" secondAttribute="bottom" id="6xc-12-dvp"/>
                             <constraint firstItem="TJ8-9O-AcH" firstAttribute="centerX" secondItem="g6J-J2-8hN" secondAttribute="centerX" id="942-ks-0K9"/>
-                            <constraint firstAttribute="trailing" secondItem="g6J-J2-8hN" secondAttribute="trailing" constant="5" id="BKg-8u-WBx"/>
+                            <constraint firstAttribute="trailing" secondItem="g6J-J2-8hN" secondAttribute="trailing" constant="10" id="BKg-8u-WBx"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="roV-Gv-tng" secondAttribute="bottom" id="FG8-Er-qMa"/>
                             <constraint firstItem="roV-Gv-tng" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="H7t-7l-Miz"/>
                             <constraint firstAttribute="bottom" secondItem="c2r-F1-N3r" secondAttribute="bottom" id="HHX-Ap-H1Z"/>
