@@ -1,8 +1,10 @@
 {
   "rules": {
+    ".read": true,
+    ".write": true,
     "attentions" : {
       ".read": true,
-      ".write": false,
+      ".write": true,
       "$id": {
         "place_name" : {
           ".validate": "newData.isString() && newData.val().length <= 50"
@@ -14,3 +16,4 @@
     }
   }
 }
+
